@@ -1,6 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons } from "@expo/vector-icons";
+import React, { useEffect, useRef, useState } from "react";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function CameraComponent() {
   const videoRef = useRef<any>(null);
@@ -10,34 +10,44 @@ export default function CameraComponent() {
   const startCamera = async () => {
     try {
       setError(null);
+
+      // STEP 1: Request a generic stream first.
+      // This "unlocks" the hardware and populates the device labels.
+      const initialStream = await navigator.mediaDevices.getUserMedia({
+        video: true,
+        audio: false,
+      });
+
+      // STEP 2: Enumerate devices now that labels are unlocked.
       const devices = await navigator.mediaDevices.enumerateDevices();
-      const videoDevices = devices.filter(d => d.kind === 'videoinput');
+      const videoDevices = devices.filter((d) => d.kind === "videoinput");
 
-      // 1. Try to find the Echify bridge specifically
-      // 2. Fallback to the first available camera if name is different
-      const selectedDevice = videoDevices.find(d => 
-        d.label.toLowerCase().includes('echify')
-      ) || videoDevices[0];
+      // STEP 3: Find your bridge or fallback to the first one.
+      const selectedDevice =
+        videoDevices.find((d) => d.label.toLowerCase().includes("echify")) ||
+        videoDevices[0];
 
-      if (!selectedDevice) {
-        throw new Error("No camera hardware detected.");
-      }
-
+      // STEP 4: Start the final stream with your thesis dimensions.
       const stream = await navigator.mediaDevices.getUserMedia({
         video: {
-          deviceId: { exact: selectedDevice.deviceId },
+          deviceId: selectedDevice
+            ? { exact: selectedDevice.deviceId }
+            : undefined,
           width: 640,
-          height: 480
-        }
+          height: 480,
+        },
       });
 
       if (videoRef.current) {
         videoRef.current.srcObject = stream;
         setIsCameraActive(true);
       }
-    } catch (err) {
+
+      // Clean up the initial "unlock" stream
+      initialStream.getTracks().forEach((track) => track.stop());
+    } catch (err: any) {
       console.error(err);
-      setError("Camera found but access denied. Try: sudo chmod 777 /dev/video10");
+      setError(`Hardware error: ${err.name}. Check your GStreamer Terminal.`);
     }
   };
 
@@ -82,36 +92,36 @@ export default function CameraComponent() {
 }
 
 const styles = StyleSheet.create({
-  container: { 
-    flex: 1, 
-    borderRadius: 20, 
-    overflow: 'hidden', 
-    backgroundColor: '#333' 
+  container: {
+    flex: 1,
+    borderRadius: 20,
+    overflow: "hidden",
+    backgroundColor: "#333",
   },
-  cameraWrapper: { flex: 1, position: 'relative' },
+  cameraWrapper: { flex: 1, position: "relative" },
   // Native video element styling
-  videoElement: { 
-    width: '100%', 
-    height: '100%', 
-    objectFit: 'cover' 
+  videoElement: {
+    width: "100%",
+    height: "100%",
+    objectFit: "cover",
   },
-  placeholder: { 
-    flex: 1, 
-    justifyContent: 'center', 
-    alignItems: 'center', 
-    padding: 20 
+  placeholder: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 20,
   },
-  text: { 
-    marginTop: 10, 
-    color: '#bbb', 
-    fontSize: 14, 
-    textAlign: 'center' 
+  text: {
+    marginTop: 10,
+    color: "#bbb",
+    fontSize: 14,
+    textAlign: "center",
   },
   closeButton: {
-    position: 'absolute',
+    position: "absolute",
     top: 10,
     right: 10,
-    backgroundColor: 'rgba(0,0,0,0.5)',
-    borderRadius: 20
-  }
+    backgroundColor: "rgba(0,0,0,0.5)",
+    borderRadius: 20,
+  },
 });
