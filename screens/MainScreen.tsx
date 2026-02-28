@@ -1,5 +1,5 @@
 import { Audio } from 'expo-av';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import AudioWave from '../components/AudioWave';
 import CameraComponent from '../components/CameraView';
@@ -7,14 +7,19 @@ import CameraComponent from '../components/CameraView';
 export default function MainScreen() {
   const [activeTab, setActiveTab] = useState<'sign' | 'speech'>('sign');
   const [isRecording, setIsRecording] = useState(false);
+  
+  // 1. Added dynamic state for translations
+  const [translation, setTranslation] = useState('Waiting for sign...');
+  const [speechResult, setSpeechResult] = useState('Listening...');
 
   const startSpeechToText = async () => {
     const { granted } = await Audio.requestPermissionsAsync();
     if (!granted) {
-      Alert.alert("Permission Required", "Please enable microphone access in settings to use Speech to Text.");
+      Alert.alert("Permission Required", "Please enable microphone access in settings.");
       return;
     }
     setIsRecording(true);
+    setSpeechResult("Listening to speech...");
   };
 
   return (
@@ -44,14 +49,21 @@ export default function MainScreen() {
         {activeTab === 'sign' ? (
           <View style={styles.stackedContainer}>
             <View style={styles.cameraBox}>
+              {/* This component should now handle the imx708 stream */}
               <CameraComponent />
             </View>
-            <View style={styles.fullTextBox}><Text>Annyeonghaseyo</Text></View>
+            <View style={styles.fullTextBox}>
+              <Text style={styles.resultLabel}>FSL TRANSLATION:</Text>
+              <Text style={styles.placeholderText}>{translation}</Text>
+            </View>
           </View>
         ) : (
-          <View>
+          <View style={styles.stackedContainer}>
             <AudioWave isRecording={isRecording} />
-            <View style={styles.fullTextBox}><Text>Hello</Text></View>
+            <View style={styles.fullTextBox}>
+              <Text style={styles.resultLabel}>SPEECH RESULT:</Text>
+              <Text style={styles.placeholderText}>{speechResult}</Text>
+            </View>
           </View>
         )}
       </View>
@@ -60,15 +72,12 @@ export default function MainScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, paddingTop: 0, paddingHorizontal: 20, paddingBottom: 20, backgroundColor: '#fff'},
-  header: { fontSize: 22, fontWeight: 'bold', color: '#6d3d1e', marginBottom: 20 },
+  container: { flex: 1, paddingTop: 40, paddingHorizontal: 20, paddingBottom: 20, backgroundColor: '#fff'},
   tabContainer: { flexDirection: 'row', backgroundColor: '#e5e0db', borderRadius: 25, padding: 5 },
   tab: { flex: 1, paddingVertical: 12, alignItems: 'center', borderRadius: 20 },
   activeTab: { backgroundColor: '#6d3d1e' },
   tabText: { color: '#777', fontWeight: '600' },
   activeTabText: { color: '#fff' },
-  row: { flexDirection: 'row', gap: 15 },
-  box: { flex: 1, height: 250, borderRadius: 20 },
   content: { 
     marginTop: 20, 
     flex: 1 
@@ -79,20 +88,29 @@ const styles = StyleSheet.create({
     height: '100%' 
   },
   cameraBox: { 
-    height: 300,
+    height: 320,
     borderRadius: 20, 
+    backgroundColor: '#000',
     overflow: 'hidden' 
   },
-  textBox: { 
-    flex: 1,
-    backgroundColor: '#e5e0db', 
+  fullTextBox: { 
+    backgroundColor: '#f4f1ee', 
+    height: 180, 
     borderRadius: 20, 
     padding: 20,
-    minHeight: 150 
+    borderWidth: 1,
+    borderColor: '#e5e0db'
+  },
+  resultLabel: {
+    fontSize: 12,
+    color: '#6d3d1e',
+    fontWeight: 'bold',
+    marginBottom: 8,
+    textTransform: 'uppercase'
   },
   placeholderText: {
-    fontSize: 18,
-    color: '#333'
-  },
-  fullTextBox: { backgroundColor: '#e5e0db', height: 200, borderRadius: 20, padding: 20}
+    fontSize: 24,
+    color: '#333',
+    fontWeight: '500'
+  }
 });
