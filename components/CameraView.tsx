@@ -10,25 +10,24 @@ export default function CameraComponent() {
   const startCamera = async () => {
     try {
       setError(null);
-
-      // 1. Get a list of all cameras the Pi can see
       const devices = await navigator.mediaDevices.enumerateDevices();
-      const videoDevices = devices.filter(device => device.kind === 'videoinput');
-      
-      // 2. Look for our "Echify-Camera" bridge first, otherwise take the first available
-      const echifyCam = videoDevices.find(d => d.label.includes('Echify')) || videoDevices[0];
+      const videoDevices = devices.filter(d => d.kind === 'videoinput');
 
-      if (!echifyCam) {
-        throw new Error("No camera devices found. Is the bridge running?");
+      // 1. Try to find the Echify bridge specifically
+      // 2. Fallback to the first available camera if name is different
+      const selectedDevice = videoDevices.find(d => 
+        d.label.toLowerCase().includes('echify')
+      ) || videoDevices[0];
+
+      if (!selectedDevice) {
+        throw new Error("No camera hardware detected.");
       }
 
-      // 3. Request the stream using the specific ID of the bridge
       const stream = await navigator.mediaDevices.getUserMedia({
         video: {
-          deviceId: { exact: echifyCam.deviceId },
-          width: { ideal: 640 }, // Lowering to 640 for better stability on the bridge
-          height: { ideal: 480 },
-          frameRate: { ideal: 30 }
+          deviceId: { exact: selectedDevice.deviceId },
+          width: 640,
+          height: 480
         }
       });
 
@@ -36,10 +35,9 @@ export default function CameraComponent() {
         videoRef.current.srcObject = stream;
         setIsCameraActive(true);
       }
-    } catch (err: any) {
-      console.error("Camera Access Error:", err);
-      // Detailed error for you to see in the UI
-      setError(err.message || "Camera not found or permission denied.");
+    } catch (err) {
+      console.error(err);
+      setError("Camera found but access denied. Try: sudo chmod 777 /dev/video10");
     }
   };
 
