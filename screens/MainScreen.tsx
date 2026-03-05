@@ -1,6 +1,6 @@
 import { Audio } from 'expo-av';
 import React, { useState, useEffect } from 'react';
-import { Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Alert, StyleSheet, Text, TouchableOpacity, View, ScrollView } from 'react-native';
 import AudioWave from '../components/AudioWave';
 import CameraComponent from '../components/CameraView';
 
@@ -23,7 +23,7 @@ export default function MainScreen() {
   };
 
   return (
-    <View style={styles.container}>      
+    <ScrollView style={styles.container} contentContainerStyle={styles.scrollContent}>
       {/* Toggle Buttons */}
       <View style={styles.tabContainer}>
         <TouchableOpacity 
@@ -45,8 +45,8 @@ export default function MainScreen() {
       </View>
 
       {/* Main Content Area */}
-      <View style={styles.content}>
-        {activeTab === 'sign' ? (
+      {activeTab === 'sign' ? (
+        <View style={styles.content}>
           <View style={styles.stackedContainer}>
             <View style={styles.cameraBox}>
               {/* This component should now handle the imx708 stream */}
@@ -57,7 +57,9 @@ export default function MainScreen() {
               <Text style={styles.placeholderText}>{translation}</Text>
             </View>
           </View>
+        </View>
         ) : (
+          <View style={styles.content1}>
           <View style={styles.stackedContainer2}>
             <View style={styles.audioWave}>
               <AudioWave isRecording={isRecording} />
@@ -67,15 +69,15 @@ export default function MainScreen() {
               <Text style={styles.placeholderText}>{speechResult}</Text>
             </View>
           </View>
+          </View>
         )}
-      </View>
-    </View>
+    </ScrollView> 
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, paddingTop: 40, paddingHorizontal: 20, paddingBottom: 20, backgroundColor: '#fff'},
-  tabContainer: { flexDirection: 'row', backgroundColor: '#e5e0db', borderRadius: 25, padding: 5 },
+  container: { flex: 1, paddingHorizontal: 20, paddingBottom: 20, backgroundColor: '#fff'},
+  tabContainer: { flexDirection: 'row', backgroundColor: '#e5e0db', borderRadius: 25, padding: 0 },
   tab: { flex: 1, paddingVertical: 12, alignItems: 'center', borderRadius: 20 },
   activeTab: { backgroundColor: '#6d3d1e' },
   tabText: { color: '#777', fontWeight: '600' },
@@ -83,6 +85,13 @@ const styles = StyleSheet.create({
   content: { 
     marginTop: 20, 
     flex: 1 
+  },
+  content1: { 
+    flex: 1 
+  },
+  scrollContent: { 
+    paddingHorizontal: 20, 
+    paddingBottom: 40, 
   },
   stackedContainer: { 
     flexDirection: 'row',
@@ -113,7 +122,7 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   audioWave: {
-    flex: 0.3,
+    flex: 0.2,
     overflow: 'hidden'
   },
   resultLabel: {
