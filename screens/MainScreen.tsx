@@ -58,8 +58,10 @@ export default function MainScreen() {
             </View>
           </View>
         ) : (
-          <View style={styles.stackedContainer}>
-            <AudioWave isRecording={isRecording} />
+          <View style={styles.stackedContainer2}>
+            <View style={styles.audioWave}>
+              <AudioWave isRecording={isRecording} />
+            </View>
             <View style={styles.fullTextBox}>
               <Text style={styles.resultLabel}>SPEECH RESULT:</Text>
               <Text style={styles.placeholderText}>{speechResult}</Text>
@@ -83,23 +85,36 @@ const styles = StyleSheet.create({
     flex: 1 
   },
   stackedContainer: { 
-    flexDirection: 'column',
+    flexDirection: 'row',
     gap: 15, 
-    height: '100%' 
+    height: 500,
+    width: '100%',
   },
   cameraBox: { 
-    height: 320,
+    flex: 2, 
+    height: '100%', 
     borderRadius: 20, 
     backgroundColor: '#000',
     overflow: 'hidden' 
   },
   fullTextBox: { 
+    flex: 1, 
     backgroundColor: '#f4f1ee', 
-    height: 180, 
+    height: '100%', 
     borderRadius: 20, 
     padding: 20,
     borderWidth: 1,
     borderColor: '#e5e0db'
+  },
+  stackedContainer2: {
+    flexDirection: 'column',
+    gap: 15,
+    height: 500,
+    width: '100%',
+  },
+  audioWave: {
+    flex: 0.3,
+    overflow: 'hidden'
   },
   resultLabel: {
     fontSize: 12,
