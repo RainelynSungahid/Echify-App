@@ -1,24 +1,34 @@
 #!/bin/bash
 
-echo "🚀 Starting Echify: Bridging the Silence..."
+BASE_DIR="/home/sms/Echify-App"
 
-# 1. Initialize the Virtual Camera Hardware
-echo "⚙️  Setting up V4L2 Loopback..."
+echo "🧹 Step 0: Cleaning up old processes and drivers..."
+# Kill anything running on your ports
+sudo fuser -k 8000/tcp 2>/dev/null
+sudo fuser -k 3000/tcp 2>/dev/null
+
+# Force reload the camera driver to fix the 'not an output device' error
+sudo modprobe -r v4l2loopback 2>/dev/null
 sudo modprobe v4l2loopback video_nr=10 card_label='Echify-Camera' exclusive_caps=1
 sudo chmod 777 /dev/video10
 
-# 2. Start the AI Backend in the background
+echo "🚀 Starting Echify..."
+
+# 1. Start AI Backend
 echo "🧠 Starting AI Backend..."
-cd /home/sms/Echify-App/backend
+cd "$BASE_DIR/backend"
 source venv/bin/activate
-# Run uvicorn in background (&)
-uvicorn main:app --host 127.0.0.1 --port 8000 & 
+# Added --reload for easier debugging during development
+uvicorn main:app --host 127.0.0.1 --port 8000 &
 BACKEND_PID=$!
 
-# 3. Start the Camera Engine and UI
+# Give the backend 3 seconds to fully initialize the AI model
+sleep 2
+
+# 2. Start Camera Engine & UI
 echo "📷 Starting Camera Engine and UI..."
-cd /home/sms/Echify-App/hardware/camera
+cd "$BASE_DIR/hardware/camera"
 python3 camera_engine.py
 
-# Cleanup: Kill the backend when you close the UI
-kill $BACKEND_PID
+# Cleanup on exit
+kill $BACKEND_PID 2>/dev/null
