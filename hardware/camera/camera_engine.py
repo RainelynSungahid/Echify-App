@@ -4,11 +4,20 @@ import threading
 import time
 
 def start_gstreamer():
+    # print("Step 1: Starting GStreamer Bridge...")
+    # command = [
+    #     "env", "GST_PLUGIN_FEATURE_RANK=v4l2codecs:NONE",
+    #     "gst-launch-1.0", "libcamerasrc", "!",
+    #     "video/x-raw,width=640,height=480,format=YUY2", "!",
+    #     "videoconvert", "!",
+    #     "v4l2sink", "device=/dev/video10"
+    # ]
+    # subprocess.run(command)
     print("Step 1: Starting GStreamer Bridge...")
     command = [
         "env", "GST_PLUGIN_FEATURE_RANK=v4l2codecs:NONE",
         "gst-launch-1.0", "libcamerasrc", "!",
-        "video/x-raw,width=640,height=480,format=YUY2", "!",
+        "video/x-raw,width=1280,height=720,format=YUY2", "!",
         "videoconvert", "!",
         "v4l2sink", "device=/dev/video10"
     ]
