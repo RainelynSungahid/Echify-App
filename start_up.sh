@@ -19,7 +19,8 @@ echo "🧠 Starting AI Backend..."
 cd "$BASE_DIR/backend"
 source venv/bin/activate
 # Added --reload for easier debugging during development
-uvicorn main:app --host 127.0.0.1 --port 8000 &
+# uvicorn main:app --host 127.0.0.1 --port 8000 &
+uvicorn main:app --host 0.0.0.0 --port 8000 &
 BACKEND_PID=$!
 
 # Give the backend 3 seconds to fully initialize the AI model
