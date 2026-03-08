@@ -1,4 +1,4 @@
-const STT_URL = "http://192.168.1.11:8000/stt";
+const STT_URL = "http://10.61.89.64:8000/stt";
 
 export async function sendAudioForSTT(uri: string): Promise<string> {
   console.log("🎤 Uploading audio:", uri);
@@ -25,11 +25,11 @@ export async function sendAudioForSTT(uri: string): Promise<string> {
 
   console.log("✅ STT status:", res.status);
 
-  const textBody = await res.text(); // ✅ read as text first
+  const textBody = await res.text();        // ✅ read as text first
   console.log("✅ STT raw body:", textBody);
 
   try {
-    const json = JSON.parse(textBody); // ✅ parse manually
+    const json = JSON.parse(textBody);      // ✅ parse manually
     return json.text ?? "";
   } catch {
     // If backend returns plain text, still support it:
