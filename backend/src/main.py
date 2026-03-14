@@ -23,6 +23,8 @@ from src.gesture.ws_fsl_dynamic_server import router as fsl_dynamic_router
 from src.stt.stt_http import router as stt_router
 from src.routes.preview import router as preview_router
 from src.stt.ws_stt_live import router as stt_live_router
+from src.gesture.fsl_dynamic_inference import initialize_dynamic_model
+from src.stt.ws_stt_live import get_model as get_stt_model
 
 # ENABLE_LOGGING
 # from session_logger import SessionLogger
@@ -57,16 +59,27 @@ async def lifespan(app: FastAPI):
     print("=" * 60)
 
     # KEEP THESE — these are part of your working Pi setup
+    import asyncio
     shared_camera.start()
-    # shared_mic.start()   # uncomment only if you actually use/start it here
+    shared_mic.start()   # uncomment only if you actually use/start it here
+
+
+    # Pre-load both models at startup in executor so async loop stays free
+    loop = asyncio.get_event_loop()
+    
+    print("⏳ Pre-loading STT model...")
+    await loop.run_in_executor(None, get_stt_model)
+    print("✅ STT model ready.")
+
+    print("⏳ Pre-loading FSL dynamic model...")
+    await loop.run_in_executor(None, initialize_dynamic_model)
+    print("✅ FSL dynamic model ready.")
 
     yield
 
-    print("\n🛑 Server shutting down...")
-
     # KEEP THESE — these are part of your working Pi setup
     shared_camera.stop()
-    # shared_mic.stop()    # uncomment only if you actually use/start it here
+    shared_mic.stop()    # uncomment only if you actually use/start it here
 
     # ENABLE_LOGGING
     # if _server_logger:

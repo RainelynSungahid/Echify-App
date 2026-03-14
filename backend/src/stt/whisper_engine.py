@@ -21,22 +21,14 @@ class WhisperEngine:
 
     def transcribe_file(self, audio_path: str):
         try:
-            # NEW: Pre-process the file just like your mic_test.sh
-            processed_path = audio_path.replace(".wav", "_clean.wav")
-            
-            # This command does the remix 1 and gain 5 automatically
-            subprocess.run([
-                "sox", audio_path, processed_path, 
-                "remix", "1", "gain", "5"
-            ], check=True)
-
-            segments, _ = self.model.transcribe(processed_path, language="en")
+            segments, _ = self.model.transcribe(
+                audio_path,
+                language="en",
+                vad_filter=True,
+                condition_on_previous_text=False,
+                beam_size=5,
+            )
             text = " ".join(seg.text.strip() for seg in segments)
-            
-            # Clean up the temp file
-            if os.path.exists(processed_path):
-                os.remove(processed_path)
-                
             return text if text else None
         except Exception as e:
             print(f"Transcription error: {e}")

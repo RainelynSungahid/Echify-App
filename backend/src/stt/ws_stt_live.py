@@ -45,26 +45,26 @@ def save_wav(samples: np.ndarray, path: str):
 
 def transcribe_samples(samples: np.ndarray) -> str:
     model = get_model()
+
     with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as tmp:
         tmp_path = tmp.name
-        clean_path = tmp_path.replace(".wav", "_clean.wav") # Add this
 
     try:
         mono_16k = downsample_48k_to_16k(samples)
         save_wav(mono_16k, tmp_path)
-        
-        # ADD THIS: Use the 'sox' fix that worked in your script!
-        import subprocess
-        subprocess.run(["sox", tmp_path, clean_path, "gain", "5"], check=True)
-        
-        # Transcribe the CLEAN file, not the raw one
-        segments, _ = model.transcribe(clean_path, language="en") 
+
+        segments, _ = model.transcribe(
+            tmp_path,
+            language="en",
+            vad_filter=True,          # enable — you have real signal now
+            condition_on_previous_text=False,
+            beam_size=5,
+        )
         text = " ".join(seg.text.strip() for seg in segments).strip()
         return text
     finally:
-        # Clean up both temp files
-        for p in [tmp_path, clean_path]:
-            if os.path.exists(p): os.remove(p)
+        if os.path.exists(tmp_path):
+            os.remove(tmp_path)
 
 
 @router.websocket("/ws/stt-live")
@@ -72,15 +72,15 @@ async def stt_live_endpoint(websocket: WebSocket):
     await websocket.accept()
     print("🎤 Client connected to /ws/stt-live")
 
-    try:
-        get_model()
-    except Exception as e:
-        await websocket.send_json({
-            "type": "error",
-            "message": f"Failed to load STT model: {str(e)}"
-        })
-        await websocket.close()
-        return
+    # try:
+    #     get_model()
+    # except Exception as e:
+    #     await websocket.send_json({
+    #         "type": "error",
+    #         "message": f"Failed to load STT model: {str(e)}"
+    #     })
+    #     await websocket.close()
+    #     return
 
     is_listening = False
     recorded_chunks = []
