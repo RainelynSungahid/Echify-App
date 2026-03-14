@@ -58,15 +58,12 @@ async def lifespan(app: FastAPI):
     print("   Logging    : DISABLED")
     print("=" * 60)
 
-    # KEEP THESE — these are part of your working Pi setup
     import asyncio
-    shared_camera.start()
-    shared_mic.start()   # uncomment only if you actually use/start it here
-
-
-    # Pre-load both models at startup in executor so async loop stays free
     loop = asyncio.get_event_loop()
-    
+
+    shared_camera.start()
+    shared_mic.start()
+
     print("⏳ Pre-loading STT model...")
     await loop.run_in_executor(None, get_stt_model)
     print("✅ STT model ready.")
@@ -77,9 +74,8 @@ async def lifespan(app: FastAPI):
 
     yield
 
-    # KEEP THESE — these are part of your working Pi setup
     shared_camera.stop()
-    shared_mic.stop()    # uncomment only if you actually use/start it here
+    shared_mic.stop()
 
     # ENABLE_LOGGING
     # if _server_logger:
@@ -90,7 +86,7 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(
     title="FSL Bidirectional Communication System",
-    lifespan=lifespan
+    lifespan=lifespan 
 )
 
 app.add_middleware(
