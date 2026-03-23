@@ -5,7 +5,7 @@ import time
 
 
 class SharedCamera:
-    def __init__(self, device="/dev/video10"):
+    def __init__(self, device=0):  # 0 = default laptop webcam
         self.device = device
         self.cap = None
         self.frame = None
@@ -17,13 +17,13 @@ class SharedCamera:
         if self.running:
             return
 
-        retries = 10
+        retries = 5
         for attempt in range(retries):
             self.cap = cv2.VideoCapture(self.device)
             if self.cap.isOpened():
                 break
 
-            print(f"⚠️ Camera open failed on {self.device}, retry {attempt + 1}/{retries}")
+            print(f"Warning: Camera open failed on device {self.device}, retry {attempt + 1}/{retries}")
             time.sleep(1)
 
         if self.cap is None or not self.cap.isOpened():
@@ -32,12 +32,13 @@ class SharedCamera:
         self.running = True
         self.thread = threading.Thread(target=self._reader_loop, daemon=True)
         self.thread.start()
-        print(f"✅ Shared camera started on {self.device}")
+        print(f"Shared camera started on device index {self.device}")
 
     def _reader_loop(self):
         while self.running:
             ok, frame = self.cap.read()
             if ok:
+                # Flip horizontally — mirror effect for laptop webcam
                 frame = cv2.flip(frame, 1)
                 with self.lock:
                     self.frame = frame
@@ -56,7 +57,7 @@ class SharedCamera:
             self.thread.join(timeout=1)
         if self.cap:
             self.cap.release()
-        print("🛑 Shared camera stopped")
+        print("Shared camera stopped")
 
 
-shared_camera = SharedCamera("/dev/video10")
+shared_camera = SharedCamera(0)  # 0 = default laptop webcam

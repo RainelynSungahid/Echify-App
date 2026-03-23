@@ -8,8 +8,8 @@ ONE CSV FOR THE ENTIRE PI SESSION (boot → shutdown).
 The CSV is opened once when the server starts and is appended to for ALL
 subsequent WebSocket connections and flows:
 
-  Flow A — Sign → TTS  : GESTURE + TTS rows  (ws_fsl_dynamic_server.py)
-  Flow B — STT         : STT rows             (ws_stt_live.py)
+  Flow A - Sign → TTS  : GESTURE + TTS rows  (ws_fsl_dynamic_server.py)
+  Flow B - STT         : STT rows             (ws_stt_live.py)
   SOS                  : SOS rows             (main.py  /sos/trigger)
 
 Every WebSocket reconnect just appends rows to the SAME file.
@@ -21,7 +21,7 @@ Usage:
     from session_logger import global_logger
 
     global_logger.start()                          # called once in lifespan startup
-    global_logger.log_reconnect("Sign→TTS", cid)  # each WS connect
+    global_logger.log_reconnect("Sign-TTS", cid)  # each WS connect
     global_logger.log_gesture(...)
     global_logger.log_tts(...)
     global_logger.log_stt(...)
@@ -52,7 +52,7 @@ try:
     WER_AVAILABLE = True
 except ImportError:
     WER_AVAILABLE = False
-    print("⚠️  jiwer not installed — WER disabled. Run: pip install jiwer")
+    print("WARNING:  jiwer not installed - WER disabled. Run: pip install jiwer")
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -88,9 +88,9 @@ def get_mic_dbfs(shared_mic) -> Optional[float]:
 
 class SessionLogger:
     """
-    Persistent logger — ONE CSV file for the Pi's entire runtime.
+    Persistent logger - ONE CSV file for the Pi's entire runtime.
 
-    All WebSocket connections (Sign→TTS and STT) share the same instance
+    All WebSocket connections (Sign-TTS and STT) share the same instance
     via the module-level `global_logger` singleton at the bottom of this file.
     """
 
@@ -142,7 +142,7 @@ class SessionLogger:
         self.log_dir.mkdir(parents=True, exist_ok=True)
         self.shared_mic = shared_mic
 
-        # Filename is fixed at boot — never changes across reconnects
+        # Filename is fixed at boot - never changes across reconnects
         boot_ts            = datetime.now().strftime("%Y%m%d_%H%M%S")
         self._csv_path     = self.log_dir / f"session_{boot_ts}.csv"
         self._summary_path = self.log_dir / f"session_{boot_ts}_summary.json"
@@ -153,7 +153,7 @@ class SessionLogger:
         self._closed        = False
         self._boot_time     = time.monotonic()
 
-        # Aggregates — accumulate across ALL connections for the full summary
+        # Aggregates - accumulate across ALL connections for the full summary
         self._gesture_events: list = []
         self._tts_events:     list = []
         self._stt_events:     list = []
@@ -170,7 +170,7 @@ class SessionLogger:
     def start(self):
         """
         Open the CSV and write the BOOT row.
-        Idempotent — safe to call multiple times (only opens once).
+        Idempotent - safe to call multiple times (only opens once).
         Called once from main.py lifespan startup.
         """
         if self._started:
@@ -201,7 +201,7 @@ class SessionLogger:
         Lets you slice the CSV into individual connections in post-processing.
 
         Args:
-            flow      : "Sign→TTS" or "STT"
+            flow      : "Sign-TTS" or "STT"
             client_id : e.g. "192.168.1.5:50123"
         """
         self._ensure_started()
@@ -209,7 +209,7 @@ class SessionLogger:
             "event_type": self.EVENT_RECONNECT,
             "notes": f"RECONNECT flow={flow} client={client_id}",
         })
-        print(f"[LOGGER] 🔗 Reconnect — flow={flow} client={client_id}")
+        print(f"[LOGGER] 🔗 Reconnect - flow={flow} client={client_id}")
 
     def close(self):
         """
@@ -630,7 +630,7 @@ class SessionLogger:
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# Global singleton — import this in ALL server files
+# Global singleton - import this in ALL server files
 # ─────────────────────────────────────────────────────────────────────────────
 
 # SharedMic is wired in by main.py after it imports shared_mic itself.

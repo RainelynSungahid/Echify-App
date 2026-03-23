@@ -1,4 +1,3 @@
-#shared_mic.py
 import queue
 import threading
 
@@ -10,9 +9,9 @@ class SharedMic:
     def __init__(
         self,
         samplerate=48000,
-        channels=2,
+        channels=1,       # laptops typically have mono or stereo; 1 is safest default
         blocksize=4800,
-        device_index=None,      # auto-detect
+        device_index=None,  # None = sounddevice default (laptop mic)
     ):
         self.samplerate = samplerate
         self.channels = channels
@@ -25,75 +24,26 @@ class SharedMic:
         self.lock = threading.Lock()
         self.chunk_queue = queue.Queue()
 
-    def _find_voicehat_device(self) -> int:
-        """
-        Scan sounddevice list for Google VoiceHAT on card 1 or card 2.
-        Returns the device index if found, raises RuntimeError if not.
-        """
-        devices = sd.query_devices()
-        print("🎤 Available audio devices:")
-        print(devices)
-
-        # Keywords that identify the VoiceHAT mic
-        keywords = ["googlevoicehat", "google voicehat", "voicehat", "googevoicehat"]
-
-        for i, dev in enumerate(devices):
-            name = dev["name"].lower().replace(" ", "").replace("-", "")
-            has_input = dev["max_input_channels"] > 0
-            is_voicehat = any(k.replace(" ", "") in name for k in keywords)
-
-            if has_input and is_voicehat:
-                print(f"✅ Found VoiceHAT mic at device index {i}: {dev['name']}")
-                return i
-
-        # Fallback: try card 1 and card 2 directly by checking ALSA hw names
-        print("⚠️ VoiceHAT not found by name, trying card 1 and card 2...")
-        for i, dev in enumerate(devices):
-            name = dev["name"].lower()
-            has_input = dev["max_input_channels"] > 0
-            is_card1_or_2 = "hw:1" in name or "hw:2" in name or \
-                            "card 1" in name or "card 2" in name
-
-            if has_input and is_card1_or_2:
-                print(f"✅ Found input device at index {i}: {dev['name']}")
-                return i
-
-        # Last resort: try index 1 then 2 directly
-        print("⚠️ Fallback: probing device index 1 and 2 directly...")
-        for idx in [1, 2]:
-            try:
-                dev = sd.query_devices(idx)
-                if dev["max_input_channels"] > 0:
-                    print(f"✅ Using device index {idx}: {dev['name']}")
-                    return idx
-            except Exception:
-                continue
-
-        raise RuntimeError(
-            "❌ Could not find Google VoiceHAT microphone on card 1 or card 2. "
-            "Check physical connection on the 40-pin header."
-        )
-
     def start(self):
         if self.running:
             return
 
         try:
-            # Auto-detect if no device_index was specified
-            if self.device_index is None:
-                self.device_index = self._find_voicehat_device()
+            print("🎤 Available audio devices:")
+            print(sd.query_devices())
+            print(f"✅ Using microphone device: {self.device_index or 'system default'}")
 
             self.stream = sd.InputStream(
                 samplerate=self.samplerate,
                 channels=self.channels,
                 blocksize=self.blocksize,
                 dtype="float32",
-                device=self.device_index,
+                device=self.device_index,  # None = use system default
                 callback=self._audio_callback,
             )
             self.stream.start()
             self.running = True
-            print(f"✅ Shared microphone started on device index {self.device_index}")
+            print("✅ Shared microphone started")
         except Exception as e:
             print(f"❌ Failed to start shared microphone: {e}")
             raise
@@ -102,7 +52,8 @@ class SharedMic:
         if status:
             print(f"⚠️ Mic status: {status}")
 
-        mono = indata[:, 0].copy() * 5.0
+        # Use first channel (works for both mono and stereo input)
+        mono = indata[:, 0].copy()
         mono = np.clip(mono, -1.0, 1.0)
 
         rms = float(np.sqrt(np.mean(np.square(mono)))) if len(mono) > 0 else 0.0
@@ -134,4 +85,4 @@ class SharedMic:
         print("🛑 Shared microphone stopped")
 
 
-shared_mic = SharedMic()
+shared_mic = SharedMic()  # uses system default mic
