@@ -12,3 +12,4 @@
 *.pyc
 *.pyc
 *.log
+backend/src/camera/__pycache__/shared_camera.cpython-310.pyc

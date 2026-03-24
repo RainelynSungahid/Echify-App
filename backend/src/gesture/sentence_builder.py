@@ -85,11 +85,11 @@ class SentenceBuilder:
 
         elapsed = now - self.pause_start_time
 
-        # Short pause (0.8s) with 3+ tokens — likely a complete phrase
-        if elapsed >= self.short_pause and len(self.tokens) >= 3:
-            return self.finalize()
+        # ❌ REMOVE short pause trigger
+        # if elapsed >= self.short_pause and len(self.tokens) >= 3:
+        #     return self.finalize()
 
-        # Long pause (2.2s) — finalize anything, even single words
+        # ✅ ONLY finalize on long pause
         if elapsed >= self.long_pause and self.tokens:
             return self.finalize()
 

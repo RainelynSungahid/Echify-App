@@ -5,7 +5,7 @@ import time
 
 
 class SharedCamera:
-    def __init__(self, device=1):  # 0 = default laptop webcam
+    def __init__(self, device=0):  # 0 = default laptop webcam
         self.device = device
         self.cap = None
         self.frame = None
