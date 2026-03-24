@@ -8,10 +8,9 @@ UPDATED:
 - Avoid filling buffer with zeros when no hands are present
 - Start/stop gesture based on consecutive hand presence/absence
 - Optional cooldown to prevent rapid repeated triggers
-
-ARCHITECTURE FIX:
-- ImprovedLSTMModel now uses hidden_size=128, num_layers=2 to match the
-  retrained model weights. The old values (256, 3) caused size mismatch errors.
+- Raspberry Pi-friendly optimization:
+  * Frame skipping for MediaPipe
+  * Reuse last extracted features on skipped frames
 """
 
 import json
@@ -21,7 +20,6 @@ import numpy as np
 import torch
 import torch.nn as nn
 from pathlib import Path
-from collections import deque
 import time
 
 # --- Configuration ---
@@ -34,28 +32,27 @@ INPUT_SIZE = 252
 SEQUENCE_LENGTH = 30
 
 # Gesture segmentation thresholds (tune these)
-START_HAND_FRAMES = 4     # need this many consecutive frames with hands to "start" gesture
-END_NOHAND_FRAMES = 6     # need this many consecutive frames without hands to "end" gesture
-MIN_GESTURE_FRAMES = 12   # ignore gestures shorter than this
-COOLDOWN_SECONDS = 0.6    # after a prediction, ignore triggers briefly
+START_HAND_FRAMES = 2     # need this many consecutive frames with hands to "start" gesture
+END_NOHAND_FRAMES = 3     # need this many consecutive frames without hands to "end" gesture
+MIN_GESTURE_FRAMES = 3    # ignore gestures shorter than this
+COOLDOWN_SECONDS = 0.3    # after a prediction, ignore triggers briefly
+
+# Raspberry Pi performance tuning
+_FRAME_SKIP = 2           # run MediaPipe every 2 frames
+_frame_counter = 0
+_last_frame_feats = None
+_last_hands_detected = False
 
 # --- Model Architecture ---
 class ImprovedLSTMModel(nn.Module):
-    """LSTM with Conv1D preprocessing, bidirectional layers, and attention.
-    
-    IMPORTANT: hidden_size and num_layers must match what was used during training.
-    Current trained model: hidden_size=128, num_layers=2.
-    """
-    def __init__(self, input_size=252, hidden_size=256, num_layers=3,  # matched to retrained model
-                 num_classes=44, dropout=0.4):
+    """LSTM with Conv1D preprocessing, bidirectional layers, and attention"""
+    def __init__(self, input_size=126, hidden_size=256, num_layers=3, num_classes=44, dropout=0.4):
         super(ImprovedLSTMModel, self).__init__()
         self.conv1 = nn.Conv1d(input_size, 256, kernel_size=3, padding=1)
         self.bn_conv = nn.BatchNorm1d(256)
         self.lstm = nn.LSTM(
             256, hidden_size, num_layers,
-            batch_first=True,
-            dropout=dropout if num_layers > 1 else 0.0,
-            bidirectional=True
+            batch_first=True, dropout=dropout, bidirectional=True
         )
         self.attention = nn.MultiheadAttention(
             embed_dim=hidden_size * 2, num_heads=8, batch_first=True
@@ -71,13 +68,9 @@ class ImprovedLSTMModel(nn.Module):
         x = x.transpose(1, 2)
         x = torch.relu(self.bn_conv(self.conv1(x)))
         x = x.transpose(1, 2)
-        lstm_out, (hidden, _) = self.lstm(x)
-        forward_hidden = hidden[-2]
-        backward_hidden = hidden[-1]
-        pooled = torch.cat([forward_hidden, backward_hidden], dim=1)
+        lstm_out, _ = self.lstm(x)
         attn_out, _ = self.attention(lstm_out, lstm_out, lstm_out)
-        attn_pooled = torch.mean(attn_out, dim=1)
-        pooled = pooled + attn_pooled
+        pooled = torch.mean(attn_out, dim=1)
         return self.fc(pooled)
 
 # --- Global State ---
@@ -94,6 +87,7 @@ consec_hand = 0
 consec_nohand = 0
 last_prediction_time = 0.0
 
+
 def normalize_landmarks(landmarks_array: np.ndarray) -> np.ndarray:
     """Normalizes landmarks relative to the wrist (Landmark 0) and scales."""
     coords = landmarks_array.reshape(21, 3)
@@ -103,6 +97,7 @@ def normalize_landmarks(landmarks_array: np.ndarray) -> np.ndarray:
     if max_val > 0:
         centered_coords = centered_coords / max_val
     return centered_coords.flatten().astype(np.float32)
+
 
 def load_label_mapping():
     """Load label mapping from JSON file"""
@@ -117,6 +112,7 @@ def load_label_mapping():
         print(f"   Run: python src/gesture/create_label_mapping.py")
         label_mapping = {}
 
+
 def get_label(folder_name: str) -> str:
     """Convert folder name to human-readable label"""
     global label_mapping
@@ -124,10 +120,15 @@ def get_label(folder_name: str) -> str:
         return label_mapping[folder_name]
     return f"SIGN_{folder_name}"
 
+
 def initialize_dynamic_model():
     """Load trained model and initialize MediaPipe"""
     global model, classes, mp_hands, hands
     global collecting, gesture_frames, consec_hand, consec_nohand, last_prediction_time
+    global _frame_counter, _last_frame_feats, _last_hands_detected
+
+    if model is not None and hands is not None:
+        return
 
     print("=" * 60)
     print("🚀 Initializing FSL Dynamic Recognition System")
@@ -149,19 +150,7 @@ def initialize_dynamic_model():
     print(f"   - Device:  {DEVICE}")
     print(f"   - Test F1: {checkpoint['test_metrics']['f1']:.4f}")
 
-    # Read architecture from checkpoint metadata if available, else use new defaults
-    input_size = checkpoint.get('input_size', INPUT_SIZE)
-    best_config = checkpoint.get('best_config', {})
-    dropout = best_config.get('Dropout', 0.4)
-
-    model = ImprovedLSTMModel(
-        input_size=input_size,
-        hidden_size=256,   # Explicitly set to 256
-        num_layers=3,      # Explicitly set to 3
-        num_classes=num_classes,
-        dropout=dropout
-        # hidden_size and num_layers use the new defaults: 128, 2
-    )
+    model = ImprovedLSTMModel(input_size=INPUT_SIZE, num_classes=num_classes, dropout=0.4)
     model.load_state_dict(checkpoint['model_state_dict'])
     model.to(DEVICE)
     model.eval()
@@ -181,20 +170,38 @@ def initialize_dynamic_model():
     consec_nohand = 0
     last_prediction_time = 0.0
 
+    # reset frame-skip cache
+    _frame_counter = 0
+    _last_frame_feats = None
+    _last_hands_detected = False
+
     print("✅ Initialization complete!")
     print("=" * 60 + "\n")
+
 
 def extract_frame_features(frame: np.ndarray) -> tuple[np.ndarray, bool]:
     """
     Extract 126-dim features for one frame.
     Returns: (features, hands_detected)
+
+    Raspberry Pi optimization:
+    - Run MediaPipe only every _FRAME_SKIP frames
+    - Reuse last extracted features on skipped frames
     """
     global hands
+    global _frame_counter, _last_frame_feats, _last_hands_detected
+
+    _frame_counter += 1
+
+    # Reuse last result on skipped frames
+    if (_frame_counter % _FRAME_SKIP) != 0 and _last_frame_feats is not None:
+        return _last_frame_feats.copy(), _last_hands_detected
 
     img_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
     results = hands.process(img_rgb)
 
-    frame_feats = np.zeros(INPUT_SIZE, dtype=np.float32)
+    # Keep only landmark features (126 dims = 63 left + 63 right)
+    frame_feats = np.zeros(126, dtype=np.float32)
     hands_detected = False
 
     if results.multi_hand_landmarks and results.multi_handedness:
@@ -215,26 +222,33 @@ def extract_frame_features(frame: np.ndarray) -> tuple[np.ndarray, bool]:
             mp_drawing = mp.solutions.drawing_utils
             mp_drawing.draw_landmarks(frame, hand_landmarks, mp.solutions.hands.HAND_CONNECTIONS)
 
+    _last_frame_feats = frame_feats.copy()
+    _last_hands_detected = hands_detected
+
     return frame_feats, hands_detected
+
 
 def resample_sequence(seq: np.ndarray, target_len: int) -> np.ndarray:
     """
     Resample a variable-length sequence to target_len using linear index spacing.
+    Similar idea to your dataset extraction (linspace sampling over frames).
     seq: (T, 126)
     returns: (target_len, 126)
     """
     T = seq.shape[0]
     if T == 0:
-        return np.zeros((target_len, INPUT_SIZE), dtype=np.float32)
+        return np.zeros((target_len, 126), dtype=np.float32)
 
     if T == target_len:
         return seq.astype(np.float32)
 
+    # choose indices spaced over [0..T-1]
     idxs = np.linspace(0, T - 1, target_len).astype(int)
     return seq[idxs].astype(np.float32)
 
+
 def predict_from_sequence(sequence_30: np.ndarray) -> dict:
-    """Run model on a (30, 126) sequence, adds velocity, returns top results."""
+    """Run model on a sequence, adds velocity if needed, returns top results."""
     global model, classes
 
     # Only add velocity if not already added (check if shape is still 126)
@@ -260,6 +274,7 @@ def predict_from_sequence(sequence_30: np.ndarray) -> dict:
         'top3_confs': [float(p) for p in top3_probs],
         'is_ready': True
     }
+
 
 def update_and_maybe_predict(frame: np.ndarray) -> dict:
     """
@@ -288,6 +303,7 @@ def update_and_maybe_predict(frame: np.ndarray) -> dict:
         gesture_frames.append(feats)
 
     elif collecting:
+        # While collecting, only append frames when hands detected
         if hands_detected:
             gesture_frames.append(feats)
 
@@ -312,7 +328,6 @@ def update_and_maybe_predict(frame: np.ndarray) -> dict:
                     'is_ready': False
                 }
 
-    # default: not predicting yet
     status = "Collecting..." if collecting else "Waiting..."
     return {
         'top1_label': status,
@@ -328,14 +343,23 @@ def update_and_maybe_predict(frame: np.ndarray) -> dict:
         }
     }
 
+
 def reset_buffer():
     """Manual reset gesture collection."""
     global collecting, gesture_frames, consec_hand, consec_nohand
+    global _frame_counter, _last_frame_feats, _last_hands_detected
+
     collecting = False
     gesture_frames = []
     consec_hand = 0
     consec_nohand = 0
+
+    _frame_counter = 0
+    _last_frame_feats = None
+    _last_hands_detected = False
+
     print("🔄 Gesture state reset")
+
 
 def get_model_info():
     """Get loaded model information"""
@@ -348,6 +372,7 @@ def get_model_info():
         'num_classes': len(classes),
         'device': str(DEVICE),
         'sequence_length': SEQUENCE_LENGTH,
+        'frame_skip': _FRAME_SKIP,
         'segmentation': {
             'START_HAND_FRAMES': START_HAND_FRAMES,
             'END_NOHAND_FRAMES': END_NOHAND_FRAMES,
