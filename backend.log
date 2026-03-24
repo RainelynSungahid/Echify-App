@@ -1,106 +1,157 @@
-Traceback (most recent call last):
-  File "D:\THESIS-SMS\Echify-App\venv\lib\site-packages\httpx\_transports\default.py", line 101, in map_httpcore_exceptions
-    yield
-  File "D:\THESIS-SMS\Echify-App\venv\lib\site-packages\httpx\_transports\default.py", line 250, in handle_request
-    resp = self._pool.handle_request(req)
-  File "D:\THESIS-SMS\Echify-App\venv\lib\site-packages\httpcore\_sync\connection_pool.py", line 256, in handle_request
-    raise exc from None
-  File "D:\THESIS-SMS\Echify-App\venv\lib\site-packages\httpcore\_sync\connection_pool.py", line 236, in handle_request
-    response = connection.handle_request(
-  File "D:\THESIS-SMS\Echify-App\venv\lib\site-packages\httpcore\_sync\connection.py", line 103, in handle_request
-    return self._connection.handle_request(request)
-  File "D:\THESIS-SMS\Echify-App\venv\lib\site-packages\httpcore\_sync\http11.py", line 136, in handle_request
-    raise exc
-  File "D:\THESIS-SMS\Echify-App\venv\lib\site-packages\httpcore\_sync\http11.py", line 106, in handle_request
-    ) = self._receive_response_headers(**kwargs)
-  File "D:\THESIS-SMS\Echify-App\venv\lib\site-packages\httpcore\_sync\http11.py", line 177, in _receive_response_headers
-    event = self._receive_event(timeout=timeout)
-  File "D:\THESIS-SMS\Echify-App\venv\lib\site-packages\httpcore\_sync\http11.py", line 231, in _receive_event
-    raise RemoteProtocolError(msg)
-httpcore.RemoteProtocolError: Server disconnected without sending a response.
-
-The above exception was the direct cause of the following exception:
-
-Traceback (most recent call last):
-  File "C:\Users\Gwapa\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 196, in _run_module_as_main
-    return _run_code(code, main_globals, None,
-  File "C:\Users\Gwapa\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 86, in _run_code
-    exec(code, run_globals)
-  File "D:\THESIS-SMS\Echify-App\venv\Scripts\uvicorn.exe\__main__.py", line 7, in <module>
-    sys.exit(main())
-  File "D:\THESIS-SMS\Echify-App\venv\lib\site-packages\click\core.py", line 1485, in __call__
-    return self.main(*args, **kwargs)
-  File "D:\THESIS-SMS\Echify-App\venv\lib\site-packages\click\core.py", line 1406, in main
-    rv = self.invoke(ctx)
-  File "D:\THESIS-SMS\Echify-App\venv\lib\site-packages\click\core.py", line 1269, in invoke
-    return ctx.invoke(self.callback, **ctx.params)
-  File "D:\THESIS-SMS\Echify-App\venv\lib\site-packages\click\core.py", line 824, in invoke
-    return callback(*args, **kwargs)
-  File "D:\THESIS-SMS\Echify-App\venv\lib\site-packages\uvicorn\main.py", line 433, in main
-    run(
-  File "D:\THESIS-SMS\Echify-App\venv\lib\site-packages\uvicorn\main.py", line 606, in run
-    server.run()
-  File "D:\THESIS-SMS\Echify-App\venv\lib\site-packages\uvicorn\server.py", line 75, in run
-    return asyncio_run(self.serve(sockets=sockets), loop_factory=self.config.get_loop_factory())
-  File "D:\THESIS-SMS\Echify-App\venv\lib\site-packages\uvicorn\_compat.py", line 60, in asyncio_run
-    return loop.run_until_complete(main)
-  File "C:\Users\Gwapa\AppData\Local\Programs\Python\Python310\lib\asyncio\base_events.py", line 649, in run_until_complete
-    return future.result()
-  File "D:\THESIS-SMS\Echify-App\venv\lib\site-packages\uvicorn\server.py", line 79, in serve
-    await self._serve(sockets)
-  File "D:\THESIS-SMS\Echify-App\venv\lib\site-packages\uvicorn\server.py", line 86, in _serve
-    config.load()
-  File "D:\THESIS-SMS\Echify-App\venv\lib\site-packages\uvicorn\config.py", line 441, in load
-    self.loaded_app = import_from_string(self.app)
-  File "D:\THESIS-SMS\Echify-App\venv\lib\site-packages\uvicorn\importer.py", line 19, in import_from_string
-    module = importlib.import_module(module_str)
-  File "C:\Users\Gwapa\AppData\Local\Programs\Python\Python310\lib\importlib\__init__.py", line 126, in import_module
-    return _bootstrap._gcd_import(name[level:], package, level)
-  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
-  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
-  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
-  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
-  File "<frozen importlib._bootstrap_external>", line 883, in exec_module
-  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
-  File "D:\THESIS-SMS\Echify-App\backend\src\main.py", line 27, in <module>
-    from src.stt.stt_http import router as stt_router
-  File "D:\THESIS-SMS\Echify-App\backend\src\stt\stt_http.py", line 10, in <module>
-    engine = WhisperEngine(model_size="small.en")
-  File "D:\THESIS-SMS\Echify-App\backend\src\stt\whisper_engine.py", line 14, in __init__
-    self.model = WhisperModel(
-  File "D:\THESIS-SMS\Echify-App\venv\lib\site-packages\faster_whisper\transcribe.py", line 681, in __init__
-    model_path = download_model(
-  File "D:\THESIS-SMS\Echify-App\venv\lib\site-packages\faster_whisper\utils.py", line 116, in download_model
-    return huggingface_hub.snapshot_download(repo_id, **kwargs)
-  File "D:\THESIS-SMS\Echify-App\venv\lib\site-packages\huggingface_hub\utils\_validators.py", line 89, in _inner_fn
-    return fn(*args, **kwargs)
-  File "D:\THESIS-SMS\Echify-App\venv\lib\site-packages\huggingface_hub\_snapshot_download.py", line 240, in snapshot_download
-    repo_info = api.repo_info(repo_id=repo_id, repo_type=repo_type, revision=revision)
-  File "D:\THESIS-SMS\Echify-App\venv\lib\site-packages\huggingface_hub\utils\_validators.py", line 89, in _inner_fn
-    return fn(*args, **kwargs)
-  File "D:\THESIS-SMS\Echify-App\venv\lib\site-packages\huggingface_hub\hf_api.py", line 3146, in repo_info
-    return method(
-  File "D:\THESIS-SMS\Echify-App\venv\lib\site-packages\huggingface_hub\utils\_validators.py", line 89, in _inner_fn
-    return fn(*args, **kwargs)
-  File "D:\THESIS-SMS\Echify-App\venv\lib\site-packages\huggingface_hub\hf_api.py", line 2939, in model_info
-    r = get_session().get(path, headers=headers, timeout=timeout, params=params)
-  File "D:\THESIS-SMS\Echify-App\venv\lib\site-packages\httpx\_client.py", line 1053, in get
-    return self.request(
-  File "D:\THESIS-SMS\Echify-App\venv\lib\site-packages\httpx\_client.py", line 825, in request
-    return self.send(request, auth=auth, follow_redirects=follow_redirects)
-  File "D:\THESIS-SMS\Echify-App\venv\lib\site-packages\httpx\_client.py", line 914, in send
-    response = self._send_handling_auth(
-  File "D:\THESIS-SMS\Echify-App\venv\lib\site-packages\httpx\_client.py", line 942, in _send_handling_auth
-    response = self._send_handling_redirects(
-  File "D:\THESIS-SMS\Echify-App\venv\lib\site-packages\httpx\_client.py", line 979, in _send_handling_redirects
-    response = self._send_single_request(request)
-  File "D:\THESIS-SMS\Echify-App\venv\lib\site-packages\httpx\_client.py", line 1014, in _send_single_request
-    response = transport.handle_request(request)
-  File "D:\THESIS-SMS\Echify-App\venv\lib\site-packages\httpx\_transports\default.py", line 249, in handle_request
-    with map_httpcore_exceptions():
-  File "C:\Users\Gwapa\AppData\Local\Programs\Python\Python310\lib\contextlib.py", line 153, in __exit__
-    self.gen.throw(typ, value, traceback)
-  File "D:\THESIS-SMS\Echify-App\venv\lib\site-packages\httpx\_transports\default.py", line 118, in map_httpcore_exceptions
-    raise mapped_exc(message) from exc
-httpx.RemoteProtocolError: Server disconnected without sending a response.
+INFO:     Started server process [43844]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
 🔊 Loading faster-whisper small.en on cpu
+
+============================================================
+📋 SESSION LOGGER STARTED  (one CSV for entire Pi session)
+   CSV     : logs\session_20260324_143930.csv
+   Summary : logs\session_20260324_143930_summary.json
+   Mic dB  : enabled
+============================================================
+
+============================================================
+🚀 FSL Communication System — Server Started
+   Session ID : 20260324_143932
+   CSV log    : logs\session_20260324_143930.csv
+============================================================
+Shared camera started on device index 1
+🎤 Available audio devices:
+   0 Microsoft Sound Mapper - Input, MME (2 in, 0 out)
+>  1 Microphone (A4tech FHD 1080P PC, MME (2 in, 0 out)
+   2 Microphone (C-Media(R) Audio), MME (2 in, 0 out)
+   3 AI Noise-cancelling Input (ASUS, MME (2 in, 0 out)
+   4 Microsoft Sound Mapper - Output, MME (0 in, 2 out)
+<  5 Speakers (C-Media(R) Audio), MME (0 in, 2 out)
+   6 AI Noise-cancelling Output (ASU, MME (0 in, 2 out)
+   7 Primary Sound Capture Driver, Windows DirectSound (2 in, 0 out)
+   8 Microphone (A4tech FHD 1080P PC Camera), Windows DirectSound (2 in, 0 out)
+   9 Microphone (C-Media(R) Audio), Windows DirectSound (2 in, 0 out)
+  10 AI Noise-cancelling Input (ASUS Utility), Windows DirectSound (2 in, 0 out)
+  11 Primary Sound Driver, Windows DirectSound (0 in, 2 out)
+  12 Speakers (C-Media(R) Audio), Windows DirectSound (0 in, 2 out)
+  13 AI Noise-cancelling Output (ASUS Utility), Windows DirectSound (0 in, 2 out)
+  14 AI Noise-cancelling Output (ASUS Utility), Windows WASAPI (0 in, 2 out)
+  15 Speakers (C-Media(R) Audio), Windows WASAPI (0 in, 2 out)
+  16 Microphone (C-Media(R) Audio), Windows WASAPI (2 in, 0 out)
+  17 AI Noise-cancelling Input (ASUS Utility), Windows WASAPI (2 in, 0 out)
+  18 Microphone (A4tech FHD 1080P PC Camera), Windows WASAPI (2 in, 0 out)
+  19 Speakers (C-Media(R) Audio), Windows WDM-KS (0 in, 2 out)
+  20 Microphone (C-Media(R) Audio), Windows WDM-KS (2 in, 0 out)
+  21 AI Noise-cancelling Input (Intelligo VAC (W)), Windows WDM-KS (2 in, 0 out)
+  22 Line Out 1 (Intelligo VAC (W)), Windows WDM-KS (0 in, 2 out)
+  23 System Virtual Line (Intelligo VAC (W)), Windows WDM-KS (2 in, 0 out)
+  24 Line Out 2 (Intelligo VAC (W)), Windows WDM-KS (0 in, 2 out)
+  25 Microphone (A4tech FHD 1080P PC Camera), Windows WDM-KS (2 in, 0 out)
+✅ Using microphone device: system default
+✅ Shared microphone started
+🔊 Loading faster-whisper tiny.en on cpu
+INFO:     127.0.0.1:63407 - "GET /preview HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62377 - "WebSocket /ws/fsl-dynamic" [accepted]
+INFO:     connection open
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+INFO:     127.0.0.1:50464 - "WebSocket /ws/fsl-dynamic" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     127.0.0.1:57832 - "WebSocket /ws/stt-live" [accepted]
+INFO:     connection open
+[DYNAMIC] Client connected: 127.0.0.1:62377
+[DYNAMIC] Model ready: {'status': 'ready', 'num_classes': 35, 'device': 'cpu'}
+[LOGGER] 🔗 Reconnect - flow=Sign->TTS client=127.0.0.1:62377
+
+=== LIVE STATUS LOG ===
+
+[.] [14:39:35] Waiting for sign...
+[DYNAMIC] Client connected: 127.0.0.1:50464
+[DYNAMIC] Model ready: {'status': 'ready', 'num_classes': 35, 'device': 'cpu'}
+[LOGGER] 🔗 Reconnect - flow=Sign->TTS client=127.0.0.1:50464
+
+=== LIVE STATUS LOG ===
+
+[H] [14:39:37] Hand detected (0 frames)
+[H] [14:39:37] Hand detected (1 frames)
+[.] [14:39:38] Waiting for sign...
+[OK] [14:39:38] I (98%)
+[GESTURE] I | conf=97.6% | frames=0 | latency=16.0ms
+[.] [14:39:38] Waiting for sign...
+[H] [14:39:39] Hand detected (0 frames)
+[.] [14:39:39] Waiting for sign...
+[H] [14:39:39] Hand detected (0 frames)
+[H] [14:39:39] Hand detected (1 frames)
+[.] [14:39:40] Waiting for sign...
+[OK] [14:39:40] Like (86%)
+[GESTURE] Like | conf=86.5% | frames=0 | latency=16.0ms
+[.] [14:39:40] Waiting for sign...
+[H] [14:39:41] Hand detected (0 frames)
+[H] [14:39:41] Hand detected (1 frames)
+[.] [14:39:42] Waiting for sign...
+[OK] [14:39:42] You (97%)
+[GESTURE] You | conf=97.4% | frames=0 | latency=32.0ms
+[.] [14:39:42] Waiting for sign...
+[H] [14:39:43] Hand detected (0 frames)
+[H] [14:39:43] Hand detected (1 frames)
+[.] [14:39:44] Waiting for sign...
+[H] [14:39:44] Hand detected (37 frames)
+[.] [14:39:44] Waiting for sign...
+[OK] [14:39:44] Love (97%)
+[GESTURE] Love | conf=97.2% | frames=0 | latency=16.0ms
+[.] [14:39:44] Waiting for sign...
+[H] [14:39:45] Hand detected (0 frames)
+[H] [14:39:45] Hand detected (1 frames)
+[.] [14:39:46] Waiting for sign...
+[OK] [14:39:46] You (97%)
+[GESTURE] You | conf=97.4% | frames=0 | latency=31.0ms
+[.] [14:39:46] Waiting for sign...
+Disconnected: 127.0.0.1:62377 | frames=736
+🔄 Gesture state reset
+
+Server cleanup done.
+🎤 Client connected to /ws/stt-live | 127.0.0.1:57832
+[LOGGER] 🔗 Reconnect - flow=STT client=127.0.0.1:57832
+🎙 STT start | env=quiet | client=127.0.0.1:57832
+🛑 STT stop | client=127.0.0.1:57832
+🧪 Recorded chunks: 15
+🧪 Audio samples  : 72000
+🧪 Max amplitude  : 0.1818
+🧪 Transcript: "Love, love, love." | latency=281.0ms | dBFS=-31.2
+[STT] "Love, love, love." | env=quiet | latency=281.0ms | dB=-31.2 dBFS
+INFO:     127.0.0.1:64440 - "GET /preview HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     127.0.0.1:58084 - "WebSocket /ws/fsl-dynamic" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     127.0.0.1:56990 - "WebSocket /ws/stt-live" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     127.0.0.1:52590 - "WebSocket /ws/fsl-dynamic" [accepted]
+INFO:     connection open
+🔌 Client disconnected from /ws/stt-live | 127.0.0.1:57832
+[DYNAMIC] Client connected: 127.0.0.1:58084
+[DYNAMIC] Model ready: {'status': 'ready', 'num_classes': 35, 'device': 'cpu'}
+[LOGGER] 🔗 Reconnect - flow=Sign->TTS client=127.0.0.1:58084
+
+=== LIVE STATUS LOG ===
+
+[.] [14:40:08] Waiting for sign...
+Disconnected: 127.0.0.1:58084 | frames=61
+🔄 Gesture state reset
+
+Server cleanup done.
+🎤 Client connected to /ws/stt-live | 127.0.0.1:56990
+[LOGGER] 🔗 Reconnect - flow=STT client=127.0.0.1:56990
+🎙 STT start | env=quiet | client=127.0.0.1:56990
+🛑 STT stop | client=127.0.0.1:56990
+🧪 Recorded chunks: 28
+🧪 Audio samples  : 134400
+🧪 Max amplitude  : 0.5886
+🧪 Transcript: "I am Angelina Mia." | latency=219.0ms | dBFS=-30.25
+[STT] "I am Angelina Mia." | env=quiet | latency=219.0ms | dB=-30.2 dBFS
+🔌 Client disconnected from /ws/stt-live | 127.0.0.1:56990
+[DYNAMIC] Client connected: 127.0.0.1:52590
+[DYNAMIC] Model ready: {'status': 'ready', 'num_classes': 35, 'device': 'cpu'}
+[LOGGER] 🔗 Reconnect - flow=Sign->TTS client=127.0.0.1:52590
+
+=== LIVE STATUS LOG ===
+
+INFO:     127.0.0.1:57961 - "GET /preview HTTP/1.1" 200 OK
