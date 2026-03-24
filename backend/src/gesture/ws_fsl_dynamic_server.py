@@ -59,7 +59,18 @@ def _decode_frame(frame_b64: str):
         img_bytes = base64.b64decode(frame_b64)
         np_arr = np.frombuffer(img_bytes, np.uint8)
         frame = cv2.imdecode(np_arr, cv2.IMREAD_COLOR)
+
+        if frame is None:
+            return None
+
+        # ✅ FIX 1: Mirror like webcam
+        frame = cv2.flip(frame, 1)
+
+        # ✅ FIX 2: Force consistent resolution
+        frame = cv2.resize(frame, (640, 480))
+
         return frame
+
     except Exception as e:
         print(f"Frame decode error: {e}")
         return None

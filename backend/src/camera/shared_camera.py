@@ -5,7 +5,7 @@ import time
 
 
 class SharedCamera:
-    def __init__(self, device=0):  # 0 = default laptop webcam
+    def __init__(self, device=1):  # 0 = default laptop webcam
         self.device = device
         self.cap = None
         self.frame = None
@@ -60,4 +60,4 @@ class SharedCamera:
         print("Shared camera stopped")
 
 
-shared_camera = SharedCamera(0)  # 0 = default laptop webcam
+shared_camera = SharedCamera(1)  # 0 = default laptop webcam

@@ -35,51 +35,49 @@ useEffect(() => {
     if (!previewLoaded) return;
 
     const sendCurrentFrame = () => {
-      const img = imgRef.current;
-      const canvas = canvasRef.current;
+  const img = imgRef.current;
+  const canvas = canvasRef.current;
 
-      if (!img || !canvas) return;
-      if (!img.naturalWidth || !img.naturalHeight) return;
+  if (!img || !canvas) return;
+  if (!img.naturalWidth || !img.naturalHeight) return;
 
-      const ctx = canvas.getContext("2d");
-      if (!ctx) return;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) return;
 
-      const targetWidth = 320;
-      const targetHeight = 240;
+  const targetWidth = 640;
+  const targetHeight = 480;
 
-      canvas.width = targetWidth;
-      canvas.height = targetHeight;
+  canvas.width = targetWidth;
+  canvas.height = targetHeight;
 
-      try {
-        ctx.drawImage(img, 0, 0, targetWidth, targetHeight);
+  try {
+    // ✅ CRITICAL: disable smoothing (keeps landmark sharp)
+    ctx.imageSmoothingEnabled = false;
 
-        const frameBase64 = canvas.toDataURL("image/jpeg", 0.6);
+    ctx.drawImage(img, 0, 0, targetWidth, targetHeight);
 
-        sentPreviewCountRef.current += 1;
+    // ✅ HIGH QUALITY JPEG
+    const frameBase64 = canvas.toDataURL("image/jpeg", 0.9);
 
-        if (
-          sentPreviewCountRef.current <= 5 ||
-          sentPreviewCountRef.current % 30 === 0
-        ) {
-          console.log(
-            `🎥 Captured frame #${sentPreviewCountRef.current}, length=${frameBase64.length}`,
-          );
-        }
+    sentPreviewCountRef.current += 1;
 
-        const ok = sendFrame(frameBase64);
+    const ok = sendFrame(frameBase64);
 
-        if (
-          sentPreviewCountRef.current <= 5 ||
-          sentPreviewCountRef.current % 30 === 0
-        ) {
-          console.log(`📡 sendFrame result: ${ok}`);
-        }
-      } catch (e) {
-        console.log("❌ Failed to capture/send frame:", e);
-      }
-    };
+    if (
+      sentPreviewCountRef.current <= 5 ||
+      sentPreviewCountRef.current % 30 === 0
+    ) {
+      console.log(
+        `🎥 Frame #${sentPreviewCountRef.current} sent | size=${frameBase64.length} | ok=${ok}`
+      );
+    }
 
-    frameTimerRef.current = setInterval(sendCurrentFrame, 120);
+  } catch (e) {
+    console.log("❌ Failed to capture/send frame:", e);
+  }
+};
+
+    frameTimerRef.current = setInterval(sendCurrentFrame, 33);
 
     return () => {
       if (frameTimerRef.current) {

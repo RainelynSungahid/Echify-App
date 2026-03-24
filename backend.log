@@ -1,202 +1,106 @@
-INFO:     Started server process [6444]
-INFO:     Waiting for application startup.
-INFO:     Application startup complete.
-INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+Traceback (most recent call last):
+  File "D:\THESIS-SMS\Echify-App\venv\lib\site-packages\httpx\_transports\default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "D:\THESIS-SMS\Echify-App\venv\lib\site-packages\httpx\_transports\default.py", line 250, in handle_request
+    resp = self._pool.handle_request(req)
+  File "D:\THESIS-SMS\Echify-App\venv\lib\site-packages\httpcore\_sync\connection_pool.py", line 256, in handle_request
+    raise exc from None
+  File "D:\THESIS-SMS\Echify-App\venv\lib\site-packages\httpcore\_sync\connection_pool.py", line 236, in handle_request
+    response = connection.handle_request(
+  File "D:\THESIS-SMS\Echify-App\venv\lib\site-packages\httpcore\_sync\connection.py", line 103, in handle_request
+    return self._connection.handle_request(request)
+  File "D:\THESIS-SMS\Echify-App\venv\lib\site-packages\httpcore\_sync\http11.py", line 136, in handle_request
+    raise exc
+  File "D:\THESIS-SMS\Echify-App\venv\lib\site-packages\httpcore\_sync\http11.py", line 106, in handle_request
+    ) = self._receive_response_headers(**kwargs)
+  File "D:\THESIS-SMS\Echify-App\venv\lib\site-packages\httpcore\_sync\http11.py", line 177, in _receive_response_headers
+    event = self._receive_event(timeout=timeout)
+  File "D:\THESIS-SMS\Echify-App\venv\lib\site-packages\httpcore\_sync\http11.py", line 231, in _receive_event
+    raise RemoteProtocolError(msg)
+httpcore.RemoteProtocolError: Server disconnected without sending a response.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Gwapa\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "C:\Users\Gwapa\AppData\Local\Programs\Python\Python310\lib\runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "D:\THESIS-SMS\Echify-App\venv\Scripts\uvicorn.exe\__main__.py", line 7, in <module>
+    sys.exit(main())
+  File "D:\THESIS-SMS\Echify-App\venv\lib\site-packages\click\core.py", line 1485, in __call__
+    return self.main(*args, **kwargs)
+  File "D:\THESIS-SMS\Echify-App\venv\lib\site-packages\click\core.py", line 1406, in main
+    rv = self.invoke(ctx)
+  File "D:\THESIS-SMS\Echify-App\venv\lib\site-packages\click\core.py", line 1269, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+  File "D:\THESIS-SMS\Echify-App\venv\lib\site-packages\click\core.py", line 824, in invoke
+    return callback(*args, **kwargs)
+  File "D:\THESIS-SMS\Echify-App\venv\lib\site-packages\uvicorn\main.py", line 433, in main
+    run(
+  File "D:\THESIS-SMS\Echify-App\venv\lib\site-packages\uvicorn\main.py", line 606, in run
+    server.run()
+  File "D:\THESIS-SMS\Echify-App\venv\lib\site-packages\uvicorn\server.py", line 75, in run
+    return asyncio_run(self.serve(sockets=sockets), loop_factory=self.config.get_loop_factory())
+  File "D:\THESIS-SMS\Echify-App\venv\lib\site-packages\uvicorn\_compat.py", line 60, in asyncio_run
+    return loop.run_until_complete(main)
+  File "C:\Users\Gwapa\AppData\Local\Programs\Python\Python310\lib\asyncio\base_events.py", line 649, in run_until_complete
+    return future.result()
+  File "D:\THESIS-SMS\Echify-App\venv\lib\site-packages\uvicorn\server.py", line 79, in serve
+    await self._serve(sockets)
+  File "D:\THESIS-SMS\Echify-App\venv\lib\site-packages\uvicorn\server.py", line 86, in _serve
+    config.load()
+  File "D:\THESIS-SMS\Echify-App\venv\lib\site-packages\uvicorn\config.py", line 441, in load
+    self.loaded_app = import_from_string(self.app)
+  File "D:\THESIS-SMS\Echify-App\venv\lib\site-packages\uvicorn\importer.py", line 19, in import_from_string
+    module = importlib.import_module(module_str)
+  File "C:\Users\Gwapa\AppData\Local\Programs\Python\Python310\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 883, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "D:\THESIS-SMS\Echify-App\backend\src\main.py", line 27, in <module>
+    from src.stt.stt_http import router as stt_router
+  File "D:\THESIS-SMS\Echify-App\backend\src\stt\stt_http.py", line 10, in <module>
+    engine = WhisperEngine(model_size="small.en")
+  File "D:\THESIS-SMS\Echify-App\backend\src\stt\whisper_engine.py", line 14, in __init__
+    self.model = WhisperModel(
+  File "D:\THESIS-SMS\Echify-App\venv\lib\site-packages\faster_whisper\transcribe.py", line 681, in __init__
+    model_path = download_model(
+  File "D:\THESIS-SMS\Echify-App\venv\lib\site-packages\faster_whisper\utils.py", line 116, in download_model
+    return huggingface_hub.snapshot_download(repo_id, **kwargs)
+  File "D:\THESIS-SMS\Echify-App\venv\lib\site-packages\huggingface_hub\utils\_validators.py", line 89, in _inner_fn
+    return fn(*args, **kwargs)
+  File "D:\THESIS-SMS\Echify-App\venv\lib\site-packages\huggingface_hub\_snapshot_download.py", line 240, in snapshot_download
+    repo_info = api.repo_info(repo_id=repo_id, repo_type=repo_type, revision=revision)
+  File "D:\THESIS-SMS\Echify-App\venv\lib\site-packages\huggingface_hub\utils\_validators.py", line 89, in _inner_fn
+    return fn(*args, **kwargs)
+  File "D:\THESIS-SMS\Echify-App\venv\lib\site-packages\huggingface_hub\hf_api.py", line 3146, in repo_info
+    return method(
+  File "D:\THESIS-SMS\Echify-App\venv\lib\site-packages\huggingface_hub\utils\_validators.py", line 89, in _inner_fn
+    return fn(*args, **kwargs)
+  File "D:\THESIS-SMS\Echify-App\venv\lib\site-packages\huggingface_hub\hf_api.py", line 2939, in model_info
+    r = get_session().get(path, headers=headers, timeout=timeout, params=params)
+  File "D:\THESIS-SMS\Echify-App\venv\lib\site-packages\httpx\_client.py", line 1053, in get
+    return self.request(
+  File "D:\THESIS-SMS\Echify-App\venv\lib\site-packages\httpx\_client.py", line 825, in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+  File "D:\THESIS-SMS\Echify-App\venv\lib\site-packages\httpx\_client.py", line 914, in send
+    response = self._send_handling_auth(
+  File "D:\THESIS-SMS\Echify-App\venv\lib\site-packages\httpx\_client.py", line 942, in _send_handling_auth
+    response = self._send_handling_redirects(
+  File "D:\THESIS-SMS\Echify-App\venv\lib\site-packages\httpx\_client.py", line 979, in _send_handling_redirects
+    response = self._send_single_request(request)
+  File "D:\THESIS-SMS\Echify-App\venv\lib\site-packages\httpx\_client.py", line 1014, in _send_single_request
+    response = transport.handle_request(request)
+  File "D:\THESIS-SMS\Echify-App\venv\lib\site-packages\httpx\_transports\default.py", line 249, in handle_request
+    with map_httpcore_exceptions():
+  File "C:\Users\Gwapa\AppData\Local\Programs\Python\Python310\lib\contextlib.py", line 153, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "D:\THESIS-SMS\Echify-App\venv\lib\site-packages\httpx\_transports\default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.RemoteProtocolError: Server disconnected without sending a response.
 🔊 Loading faster-whisper small.en on cpu
-
-============================================================
-📋 SESSION LOGGER STARTED  (one CSV for entire Pi session)
-   CSV     : logs\session_20260323_101129.csv
-   Summary : logs\session_20260323_101129_summary.json
-   Mic dB  : enabled
-============================================================
-
-============================================================
-🚀 FSL Communication System — Server Started
-   Session ID : 20260323_101136
-   CSV log    : logs\session_20260323_101129.csv
-============================================================
-Shared camera started on device index 0
-🎤 Available audio devices:
-   0 Microsoft Sound Mapper - Input, MME (2 in, 0 out)
->  1 Microphone Array (Realtek(R) Au, MME (2 in, 0 out)
-   2 Microsoft Sound Mapper - Output, MME (0 in, 2 out)
-<  3 Speakers (Realtek(R) Audio), MME (0 in, 2 out)
-   4 Speakers (EShare Audio), MME (0 in, 2 out)
-   5 Primary Sound Capture Driver, Windows DirectSound (2 in, 0 out)
-   6 Microphone Array (Realtek(R) Audio), Windows DirectSound (2 in, 0 out)
-   7 Primary Sound Driver, Windows DirectSound (0 in, 2 out)
-   8 Speakers (Realtek(R) Audio), Windows DirectSound (0 in, 2 out)
-   9 Speakers (EShare Audio), Windows DirectSound (0 in, 2 out)
-  10 Speakers (Realtek(R) Audio), Windows WASAPI (0 in, 2 out)
-  11 Speakers (EShare Audio), Windows WASAPI (0 in, 2 out)
-  12 Microphone Array (Realtek(R) Audio), Windows WASAPI (2 in, 0 out)
-  13 Speakers (Nahimic Easy Surround), Windows WDM-KS (0 in, 8 out)
-  14 Stereo Mix (Realtek HD Audio Stereo input), Windows WDM-KS (2 in, 0 out)
-  15 Headphones 1 (Realtek HD Audio 2nd output with HAP), Windows WDM-KS (0 in, 2 out)
-  16 Headphones 2 (Realtek HD Audio 2nd output with HAP), Windows WDM-KS (0 in, 2 out)
-  17 PC Speaker (Realtek HD Audio 2nd output with HAP), Windows WDM-KS (2 in, 0 out)
-  18 Microphone Array (Realtek HD Audio Mic input), Windows WDM-KS (2 in, 0 out)
-  19 Mic in at front panel (black) (Mic in at front panel (black)), Windows WDM-KS (2 in, 0 out)
-  20 Speakers 1 (Realtek HD Audio output with HAP), Windows WDM-KS (0 in, 2 out)
-  21 Speakers 2 (Realtek HD Audio output with HAP), Windows WDM-KS (0 in, 2 out)
-  22 PC Speaker (Realtek HD Audio output with HAP), Windows WDM-KS (2 in, 0 out)
-  23 Speakers (), Windows WDM-KS (0 in, 2 out)
-  24 Speakers (Nahimic mirroring Wave Speaker), Windows WDM-KS (0 in, 2 out)
-✅ Using microphone device: system default
-✅ Shared microphone started
-🔊 Loading faster-whisper tiny.en on cpu
-INFO:     127.0.0.1:57202 - "GET /preview HTTP/1.1" 200 OK
-INFO:     127.0.0.1:53941 - "WebSocket /ws/fsl-dynamic" [accepted]
-INFO:     connection open
-INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
-
-[DYNAMIC] Client connected: 127.0.0.1:53941
-============================================================
-🚀 Initializing FSL Dynamic Recognition System
-============================================================
-✅ Loaded label mapping: 34 labels
-📂 Loading model from: C:\Users\Rain\Documents\GitHub\Echify-App\backend\models\lstm_dynamic_final\final_model_complete.pth
-📊 Model Info:
-   - Classes: 34
-   - Device:  cpu
-   - Test F1: 0.9881
-✅ Initialization complete!
-============================================================
-
-[DYNAMIC] Model ready: {'status': 'ready', 'num_classes': 34, 'device': 'cpu', 'sequence_length': 30, 'frame_skip': 2, 'segmentation': {'START_HAND_FRAMES': 2, 'END_NOHAND_FRAMES': 3, 'MIN_GESTURE_FRAMES': 3, 'COOLDOWN_SECONDS': 0.3}}
-[LOGGER] 🔗 Reconnect - flow=Sign->TTS client=127.0.0.1:53941
-
-=======================================================
-  LIVE STATUS LOG (prints only on change)
-  [.] = no hand   [H] = hand seen   [C] = collecting
-  [OK] = gesture predicted   [S] = sentence ready
-=======================================================
-
-INFO:     127.0.0.1:51225 - "GET /preview?t=1774231904475 HTTP/1.1" 200 OK
-INFO:     connection closed
-INFO:     127.0.0.1:58053 - "WebSocket /ws/stt-live" [accepted]
-INFO:     connection open
-INFO:     connection closed
-INFO:     127.0.0.1:49846 - "WebSocket /ws/fsl-dynamic" [accepted]
-INFO:     connection open
-Frame received from 127.0.0.1:53941 | frame #1 | size=9135
-Decoded frame #1 | shape=(240, 320, 3)
-Result #1 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 1}
-  [.] [10:11:44] Waiting... (frame #1)
-Frame received from 127.0.0.1:53941 | frame #2 | size=9159
-Decoded frame #2 | shape=(240, 320, 3)
-Result #2 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 2}
-Frame received from 127.0.0.1:53941 | frame #3 | size=9247
-Decoded frame #3 | shape=(240, 320, 3)
-Result #3 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 3}
-  [.] [10:11:44] Waiting... (frame #3)
-Frame received from 127.0.0.1:53941 | frame #4 | size=9231
-Decoded frame #4 | shape=(240, 320, 3)
-Result #4 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 4}
-Frame received from 127.0.0.1:53941 | frame #5 | size=9187
-Decoded frame #5 | shape=(240, 320, 3)
-Result #5 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 5}
-  [.] [10:11:45] Waiting... (frame #6)
-  [.] [10:11:45] Waiting... (frame #9)
-  [H] [10:11:46] HAND DETECTED -- 1/2 needed
-  [C] [10:11:46] COLLECTING... 1 frames
-  [C] [10:11:46] COLLECTING... 3 frames
-  [C] [10:11:46] COLLECTING... 6 frames
-  [C] [10:11:47] COLLECTING... 9 frames
-
-  [OK] [10:11:47] PREDICTED -> Hello (100%)
-[GESTURE] Hello | conf=100.0% | frames=0 | latency=219.0ms
-  [.] [10:11:47] Waiting... (frame #25)
-  [.] [10:11:47] Waiting... (frame #27)
-Frame received from 127.0.0.1:53941 | frame #30 | size=9231
-Decoded frame #30 | shape=(240, 320, 3)
-Result #30 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 9}
-  [.] [10:11:48] Waiting... (frame #30)
-  [FRAME    30]  inference=30.3ms (avg30)  server_total=208.9ms (avg30)  pred=Waiting...  ready=False
-  [.] [10:11:48] Waiting... (frame #33)
-  [.] [10:11:48] Waiting... (frame #36)
-  [.] [10:11:49] Waiting... (frame #39)
-
-  [S] [10:11:49] SENTENCE FINALIZED | -54.6 dBFS
-       Signs   : HELLO
-       English : "Hello!"
-       -> Speaking...
-
-Speaking: Hello!
-[TTS] "Hello!" | latency=0.0ms | dB=-54.6 dBFS
-  [.] [10:11:49] Waiting... (frame #42)
-  [.] [10:11:49] Waiting... (frame #45)
-  [H] [10:11:50] HAND DETECTED -- 1/2 needed
-  [C] [10:11:50] COLLECTING... 1 frames
-  [C] [10:11:50] COLLECTING... 3 frames
-
-  [OK] [10:11:51] PREDICTED -> Thanks (51%)
-[GESTURE] Thanks | conf=51.0% | frames=0 | latency=47.0ms
-  [.] [10:11:51] Waiting... (frame #57)
-  [.] [10:11:51] Waiting... (frame #59)
-Frame received from 127.0.0.1:53941 | frame #60 | size=8787
-Decoded frame #60 | shape=(240, 320, 3)
-Result #60 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 7}
-  [FRAME    60]  inference=20.9ms (avg30)  server_total=120.3ms (avg30)  pred=Waiting...  ready=False
-  [.] [10:11:51] Waiting... (frame #62)
-  [.] [10:11:52] Waiting... (frame #65)
-  [.] [10:11:52] Waiting... (frame #68)
-  [.] [10:11:53] Waiting... (frame #71)
-
-  [S] [10:11:53] SENTENCE FINALIZED | -96.7 dBFS
-       Signs   : THANKS
-       English : "Thank you."
-       -> Speaking...
-
-Speaking: Thank you.
-[TTS] "Thank you." | latency=0.0ms | dB=-96.7 dBFS
-  [.] [10:11:53] Waiting... (frame #74)
-  [.] [10:11:53] Waiting... (frame #77)
-  [.] [10:11:54] Waiting... (frame #80)
-  [.] [10:11:54] Waiting... (frame #83)
-  [.] [10:11:54] Waiting... (frame #86)
-  [.] [10:11:55] Waiting... (frame #89)
-Frame received from 127.0.0.1:53941 | frame #90 | size=8715
-Decoded frame #90 | shape=(240, 320, 3)
-Result #90 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 37}
-  [FRAME    90]  inference=16.7ms (avg30)  server_total=120.3ms (avg30)  pred=Waiting...  ready=False
-  [.] [10:11:55] Waiting... (frame #92)
-  [.] [10:11:55] Waiting... (frame #95)
-  [.] [10:11:56] Waiting... (frame #98)
-  [.] [10:11:56] Waiting... (frame #101)
-  [.] [10:11:57] Waiting... (frame #104)
-
-Disconnected: 127.0.0.1:53941 | frames=106
-🔄 Gesture state reset
-
-  Frame-level Stats (106 frames total)
-     Avg inference      : 21.42 ms
-     Avg server total   : 145.20 ms
-     P95 server total   : 187.00 ms
-     Avg gesture interval: 3672.00 ms
-🎤 Client connected to /ws/stt-live | 127.0.0.1:58053
-[LOGGER] 🔗 Reconnect - flow=STT client=127.0.0.1:58053
-🎙 STT start | env=quiet | client=127.0.0.1:58053
-🛑 STT stop | client=127.0.0.1:58053
-🧪 Recorded chunks: 24
-🧪 Audio samples  : 115200
-🧪 Max amplitude  : 0.1534
-🧪 Transcript: "Hello everyone." | latency=562.0ms | dBFS=-64.89
-[STT] "Hello everyone." | env=quiet | latency=562.0ms | dB=-64.9 dBFS
-🔌 Client disconnected from /ws/stt-live | 127.0.0.1:58053
-
-[DYNAMIC] Client connected: 127.0.0.1:49846
-[DYNAMIC] Model ready: {'status': 'ready', 'num_classes': 34, 'device': 'cpu', 'sequence_length': 30, 'frame_skip': 2, 'segmentation': {'START_HAND_FRAMES': 2, 'END_NOHAND_FRAMES': 3, 'MIN_GESTURE_FRAMES': 3, 'COOLDOWN_SECONDS': 0.3}}
-[LOGGER] 🔗 Reconnect - flow=Sign->TTS client=127.0.0.1:49846
-
-=======================================================
-  LIVE STATUS LOG (prints only on change)
-  [.] = no hand   [H] = hand seen   [C] = collecting
-  [OK] = gesture predicted   [S] = sentence ready
-=======================================================
-
-INFO:     127.0.0.1:54567 - "GET /preview HTTP/1.1" 200 OK
-INFO:     connection closed
-INFO:     127.0.0.1:53759 - "WebSocket /ws/stt-live" [accepted]
-INFO:     connection open

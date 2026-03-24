@@ -33,7 +33,8 @@
     "30",
     "31",
     "32",
-    "33"
+    "33",
+    "34"
   ],
   "class_to_idx": {
     "0": 0,
@@ -69,22 +70,34 @@
     "30": 30,
     "31": 31,
     "32": 32,
-    "33": 33
+    "33": 33,
+    "34": 34
   },
-  "num_classes": 34,
+  "num_classes": 35,
   "input_size": 252,
   "best_hyperparameters": {
-    "LR": 0.0005,
-    "Dropout": 0.3,
-    "Val_Loss": 0.15485817783822617,
-    "Val_Precision": 0.9612044817927172,
-    "Val_Recall": 0.9529411764705882,
-    "Val_F1": 0.9493527714115949
+    "LR": 0.001,
+    "Dropout": 0.6,
+    "Val_Loss": 0.9057828783988953,
+    "Val_Precision": 0.9496598639455783,
+    "Val_Recall": 0.937142857142857,
+    "Val_F1": 0.9355699855699856
   },
   "test_performance": {
-    "loss": 0.09185897125204671,
-    "precision": 0.9901960784313727,
-    "recall": 0.9882352941176471,
-    "f1": 0.9881164587046941
-  }
+    "loss": 0.8075069427490235,
+    "precision": 0.972987012987013,
+    "recall": 0.9682539682539681,
+    "f1": 0.9681866430782841
+  },
+  "overfitting_fixes": [
+    "Smaller model: hidden 256\u2192128, layers 3\u21922",
+    "Removed MultiheadAttention \u2014 mean pooling instead",
+    "Runtime augmentation: noise, scale jitter, speed warp",
+    "weight_decay=0.01 in AdamW",
+    "Dropout 0.4/0.6 options (was 0.3/0.5)",
+    "Phase 3 gated by val F1 >= 0.65",
+    "Label smoothing 0.1",
+    "Input feature dropout 0.1",
+    "Gap monitoring every epoch"
+  ]
 }
