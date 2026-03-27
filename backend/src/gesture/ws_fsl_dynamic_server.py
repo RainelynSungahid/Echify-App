@@ -1,18 +1,34 @@
+"""
+ws_fsl_dynamic_server.py
+========================
+Dynamic FSL Gesture Recognition — WebSocket Server for Raspberry Pi 5
+
+Logs into the global single CSV via global_logger (session_logger.py).
+Every reconnect appends to the same file — no new CSV is ever created.
+
+Timing:
+  T1 = frame received
+  T2 = inference done
+  T3 = response sent
+"""
+
 import asyncio
 import sys
 import base64
 import time
 from datetime import datetime
 from pathlib import Path
- 
+
 import cv2
 import numpy as np
 from fastapi import APIRouter, WebSocket, WebSocketDisconnect
- 
+
+# ── sys.path fix FIRST ────────────────────────────────────────────────────
 _BACKEND_ROOT = Path(__file__).parent.parent.parent
 if str(_BACKEND_ROOT) not in sys.path:
     sys.path.insert(0, str(_BACKEND_ROOT))
- 
+
+# ── Local imports ─────────────────────────────────────────────────────────
 from src.gesture.sentence_builder import SentenceBuilder
 from src.gesture.fsl_dynamic_inference import (
     initialize_dynamic_model,
@@ -22,127 +38,327 @@ from src.gesture.fsl_dynamic_inference import (
 )
 from src.tts.tts_engine import speak
 from session_logger import global_logger, get_mic_dbfs
- 
+
+# ── SharedMic — safe import ───────────────────────────────────────────────
 try:
     from src.audio.shared_mic import shared_mic
-except:
-    shared_mic = None
- 
+    _MIC_AVAILABLE = True
+except Exception as _mic_err:
+    print(f"⚠️  SharedMic not available: {_mic_err}")
+    shared_mic     = None
+    _MIC_AVAILABLE = False
+
 router = APIRouter()
- 
+
+# ── busy flag: skip decode entirely if inference is still running ──────────
 _inference_busy = False
- 
- 
+
+
 def _strip_data_url(frame_b64: str) -> str:
-    if frame_b64.startswith("data:"):
+    """Strip browser data URL prefix if present."""
+    if frame_b64 and frame_b64.lower().startswith("data:") and "," in frame_b64:
         return frame_b64.split(",", 1)[1]
     return frame_b64
- 
- 
+
+
 def _decode_frame_sync(frame_b64: str):
+    """
+    CPU-bound decode — runs in thread pool via run_in_executor.
+    shared_camera already flips, so no redundant cv2.flip here.
+    No resize either — shared_camera captures at its native resolution.
+    """
+    frame_b64 = _strip_data_url(frame_b64)
     try:
-        frame_b64 = _strip_data_url(frame_b64)
         img_bytes = base64.b64decode(frame_b64)
-        np_arr = np.frombuffer(img_bytes, np.uint8)
-        frame = cv2.imdecode(np_arr, cv2.IMREAD_COLOR)
+        np_arr    = np.frombuffer(img_bytes, np.uint8)
+        frame     = cv2.imdecode(np_arr, cv2.IMREAD_COLOR)
         return frame
     except Exception as e:
-        print("Decode error:", e)
+        print(f"❌ Frame decode error: {e}")
         return None
- 
- 
+
+
 @router.websocket("/ws/fsl-dynamic")
 async def fsl_dynamic_endpoint(websocket: WebSocket):
     global _inference_busy
- 
+
     await websocket.accept()
-    print("Client connected")
- 
+
+    client_id  = f"{websocket.client.host}:{websocket.client.port}"
+    session_ts = datetime.now().strftime("%Y%m%d_%H%M%S")
+    print(f"\n📱 [DYNAMIC] Client connected: {client_id}")
+
+    # ── Initialize model ───────────────────────────────────────────────────
     try:
         initialize_dynamic_model()
+        print(f"📌 Model: {get_model_info()}")
     except Exception as e:
-        await websocket.send_json({"error": str(e)})
+        await websocket.send_json({"error": str(e), "prediction": "ERROR"})
+        await websocket.close()
         return
- 
+
+    # ── Mark this connection in the global CSV ─────────────────────────────
+    global_logger.log_reconnect("Sign→TTS", client_id)
+
+    # ── Per-connection state ───────────────────────────────────────────────
     builder = SentenceBuilder()
-    loop = asyncio.get_event_loop()
- 
+    loop    = asyncio.get_event_loop()
+
+    frame_count         = 0
+    frame_latencies_ms  = []
+    inference_latencies = []
+    gesture_intervals   = []
+    last_gesture_time   = None
+    last_printed_status = None
+
+    print("\n" + "=" * 55)
+    print("  🔍 LIVE STATUS LOG (prints only on change)")
+    print("  ⚫ = no hand   🟠 = hand seen   🟡 = collecting")
+    print("  ✅ = gesture predicted   💬 = sentence ready")
+    print("=" * 55 + "\n")
+
     try:
         while True:
-            frame_b64 = await websocket.receive_text()
- 
+            # ── T1: frame received ─────────────────────────────────────────
+            t1_received = time.monotonic()
+            frame_b64   = await websocket.receive_text()
+            frame_count += 1
+
+            if frame_count <= 5 or frame_count % 30 == 0:
+                print(f"📥 Frame #{frame_count} from {client_id} | size={len(frame_b64)}")
+
+            # ── Frame-drop: skip if inference still running ────────────────
             if _inference_busy:
                 await websocket.send_json({
-                    "is_ready": False,
-                    "top1_label": "SKIPPED",
-                    "top1_conf": 0.0,
+                    "is_ready":        False,
+                    "top1_label":      "SKIPPED",
+                    "top1_conf":       0.0,
+                    "sentence_raw":    None,
                     "sentence_english": None,
+                    "debug": {
+                        "frame_no":        frame_count,
+                        "hands_detected":  False,
+                        "collecting":      False,
+                        "frames_collected": 0,
+                        "consec_hand":     0,
+                        "consec_nohand":   0,
+                        "status":          "SKIPPED",
+                    }
                 })
                 continue
- 
+
+            # ── Offload CPU decode to thread pool ─────────────────────────
             frame = await loop.run_in_executor(None, _decode_frame_sync, frame_b64)
- 
+
             if frame is None:
                 await websocket.send_json({
-                    "is_ready": False,
-                    "top1_label": "DECODE_ERROR",
-                    "top1_conf": 0.0,
+                    "is_ready":        False,
+                    "top1_label":      "DECODE_ERROR",
+                    "top1_conf":       0.0,
+                    "sentence_raw":    None,
                     "sentence_english": None,
+                    "debug": {
+                        "frame_no":        frame_count,
+                        "hands_detected":  False,
+                        "collecting":      False,
+                        "frames_collected": 0,
+                        "consec_hand":     0,
+                        "consec_nohand":   0,
+                        "status":          "DECODE_ERROR",
+                    }
                 })
                 continue
- 
+
+            if frame_count <= 5 or frame_count % 30 == 0:
+                print(f"🖼 Decoded frame #{frame_count} | shape={frame.shape}")
+
+            # ── T2: inference (offloaded to thread pool) ───────────────────
             _inference_busy = True
+            t2_infer_start  = time.monotonic()
             try:
                 result = await loop.run_in_executor(None, update_and_maybe_predict, frame)
             finally:
                 _inference_busy = False
- 
-            dbg = result.get("debug", {})
-            consec_hand = int(dbg.get("consec_hand", 0))
-            hands_now = consec_hand > 0
-            is_ready = result.get("is_ready", False)
- 
+            t2_infer_end = time.monotonic()
+
+            inference_ms = (t2_infer_end - t2_infer_start) * 1000
+            inference_latencies.append(inference_ms)
+
+            dbg           = result.get("debug", {})
+            collecting    = bool(dbg.get("collecting", False))
+            frames_in_seg = int(dbg.get("frames_collected", 0))
+            consec_hand   = int(dbg.get("consec_hand", 0))
+            consec_nohand = int(dbg.get("consec_nohand", 0))
+            is_ready      = bool(result.get("is_ready", False))
+            top1_label    = result.get("top1_label", "Waiting...")
+            hands_now     = consec_hand > 0
+
+            if frame_count <= 5 or frame_count % 30 == 0:
+                print(
+                    f"🧠 Result #{frame_count} | "
+                    f"label={result.get('top1_label')} | "
+                    f"ready={result.get('is_ready')} | "
+                    f"debug={result.get('debug', {})}"
+                )
+
+            # ── Status key for terminal logging ────────────────────────────
+            if is_ready:
+                status_key = f"READY:{top1_label}"
+            elif top1_label == "Too short / ignored":
+                status_key = "TOO_SHORT"
+            elif collecting:
+                status_key = f"COLLECTING:{(frames_in_seg // 3) * 3}"
+            elif hands_now:
+                status_key = f"HAND:{consec_hand}"
+            else:
+                status_key = f"NOHAND:{(consec_nohand // 3) * 3}"
+
+            if status_key != last_printed_status:
+                ts = datetime.now().strftime("%H:%M:%S")
+                if is_ready:
+                    conf = result.get("top1_conf", 0.0)
+                    print(f"\n  ✅ [{ts}] PREDICTED → {top1_label} ({conf:.0%})")
+                elif top1_label == "Too short / ignored":
+                    print(f"  ❌ [{ts}] TOO SHORT — {frames_in_seg} frames")
+                elif collecting:
+                    print(f"  🟡 [{ts}] COLLECTING... {frames_in_seg} frames")
+                elif hands_now:
+                    print(f"  🟠 [{ts}] HAND DETECTED — {consec_hand}/2 needed")
+                else:
+                    print(f"  ⚫ [{ts}] Waiting... (frame #{frame_count})")
+                last_printed_status = status_key
+
+            # ── Build enriched response ────────────────────────────────────
             enriched = {
                 **result,
-                "sentence_raw": None,
+                "sentence_raw":     None,
                 "sentence_english": None,
+                "debug": {
+                    "frame_no":        frame_count,
+                    "hands_detected":  hands_now,
+                    "collecting":      collecting,
+                    "frames_collected": frames_in_seg,
+                    "consec_hand":     consec_hand,
+                    "consec_nohand":   consec_nohand,
+                    "status":          status_key,
+                    "inference_ms":    round(inference_ms, 1),
+                    "frame_size":      f"{frame.shape[1]}x{frame.shape[0]}",
+                }
             }
- 
-            # ✅ FIX 1: Check for pause-based sentence completion
+
+            # ── Feed pause into sentence builder every frame ───────────────
             sentence_result = builder.update_pause(hands_now)
- 
-            # ✅ FIX 2: Add recognized tokens to the builder
+
+            # ── On completed gesture: log + feed token ─────────────────────
             if is_ready:
                 label = result.get("top1_label", "UNKNOWN")
+                conf  = result.get("top1_conf", 0.0)
+
+                now_ts = time.monotonic()
+                if last_gesture_time is not None:
+                    gesture_intervals.append((now_ts - last_gesture_time) * 1000)
+                last_gesture_time = now_ts
+
+                # ✅ Log gesture into global CSV
+                global_logger.log_gesture(
+                    predicted_label=label,
+                    confidence=conf,
+                    frames_collected=frames_in_seg,
+                    inference_time_ms=inference_ms,
+                    ground_truth=None,
+                    notes=f"frame_no={frame_count}|client={client_id}"
+                )
+
                 token_result = builder.add_token(label)
                 if token_result:
                     sentence_result = token_result
- 
-            # ✅ FIX 3: Speak IMMEDIATELY when sentence is ready
+
+            # ── Finalize sentence + speak + log TTS ───────────────────────
             if sentence_result:
                 raw, english = sentence_result
-                enriched["sentence_raw"] = raw
+
+                # Snapshot ambient dB BEFORE speaking
+                current_dbfs = get_mic_dbfs(shared_mic)
+
+                enriched["sentence_raw"]     = raw
                 enriched["sentence_english"] = english
-                
-                print("\n[SENTENCE READY]")
-                print("RAW:", raw)
-                print("ENGLISH:", english)
-                print("[SPEAKING NOW]", english)
-                
-                # ✅ SPEAK IMMEDIATELY (don't wait for hands to disappear)
-                try:
-                    await loop.run_in_executor(None, speak, english)
-                except Exception as e:
-                    print("TTS error:", e)
-                
-                # Reset builder for next sentence
+
                 builder.reset()
- 
+
+                ts     = datetime.now().strftime("%H:%M:%S")
+                db_str = f" | {current_dbfs:.1f} dBFS" if current_dbfs is not None else ""
+                print(f"\n  💬 [{ts}] SENTENCE FINALIZED{db_str}")
+                print(f"       Signs   : {raw}")
+                print(f"       English : \"{english}\"")
+                print(f"       → Speaking through Pi speaker...\n")
+
+                # Offload TTS (blocking) to thread pool so WS stays responsive
+                tts_latency_ms = 0.0
+                try:
+                    tts_t0 = time.monotonic()
+                    await loop.run_in_executor(None, speak, english)
+                    tts_latency_ms = (time.monotonic() - tts_t0) * 1000
+                except Exception as e:
+                    print(f"❌ TTS error: {e}")
+
+                # ✅ Log TTS exactly ONCE per finalized sentence
+                global_logger.log_tts(
+                    text=english,
+                    tts_latency_ms=tts_latency_ms,
+                    dbfs=current_dbfs,
+                    notes=f"sentence_raw={raw}|frame_no={frame_count}"
+                )
+
+            # ── T3: send response ──────────────────────────────────────────
             await websocket.send_json(enriched)
- 
+            t3_sent         = time.monotonic()
+            total_server_ms = (t3_sent - t1_received) * 1000
+            frame_latencies_ms.append(total_server_ms)
+            enriched["debug"]["server_total_ms"] = round(total_server_ms, 1)
+
+            # ── Rolling stats every 30 frames ─────────────────────────────
+            if frame_count % 30 == 0:
+                avg_inf = sum(inference_latencies[-30:]) / min(30, len(inference_latencies))
+                avg_srv = sum(frame_latencies_ms[-30:])  / min(30, len(frame_latencies_ms))
+                print(
+                    f"  [FRAME {frame_count:>5}]  "
+                    f"inference={avg_inf:.1f}ms (avg30)  "
+                    f"server_total={avg_srv:.1f}ms (avg30)  "
+                    f"pred={result.get('top1_label', '?')}  "
+                    f"ready={result.get('is_ready', False)}"
+                )
+
     except WebSocketDisconnect:
-        print("Disconnected")
+        print(
+            f"\n🔌 Disconnected: {client_id} | "
+            f"frames={frame_count} | "
+            f"gestures={len(gesture_intervals) + (1 if last_gesture_time else 0)}"
+        )
+
+    except Exception as e:
+        print(f"❌ Error [{client_id}]: {e}")
+        import traceback
+        traceback.print_exc()
+        try:
+            await websocket.close()
+        except Exception:
+            pass
+
     finally:
+        # Reset per-connection state only.
+        # Do NOT close global_logger — it stays open for the next reconnect.
         _inference_busy = False
         reset_buffer()
         builder.reset()
+
+        if frame_latencies_ms:
+            avg_inf = sum(inference_latencies) / len(inference_latencies) if inference_latencies else 0.0
+            avg_srv = sum(frame_latencies_ms) / len(frame_latencies_ms)
+            p95_srv = sorted(frame_latencies_ms)[int(len(frame_latencies_ms) * 0.95)]
+            print(f"\n  📡 Frame-level Stats ({frame_count} frames total)")
+            print(f"     Avg inference      : {avg_inf:.2f} ms")
+            print(f"     Avg server total   : {avg_srv:.2f} ms")
+            print(f"     P95 server total   : {p95_srv:.2f} ms")
+            if gesture_intervals:
+                avg_interval = sum(gesture_intervals) / len(gesture_intervals)
+                print(f"     Avg gesture interval: {avg_interval:.2f} ms")

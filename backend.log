@@ -1,84 +1,61 @@
-INFO:     Started server process [17060]
+INFO:     Started server process [12404]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
 INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
-INFO:     127.0.0.1:60371 - "WebSocket /ws/fsl-dynamic" [accepted]
-INFO:     connection open
-INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
-INFO:     connection closed
 🔊 Loading faster-whisper small.en on cpu
 
 ============================================================
 📋 SESSION LOGGER STARTED  (one CSV for entire Pi session)
-   CSV     : logs\session_20260325_001507.csv
-   Summary : logs\session_20260325_001507_summary.json
+   CSV     : logs\session_20260327_162928.csv
+   Summary : logs\session_20260327_162928_summary.json
    Mic dB  : enabled
 ============================================================
 
 ============================================================
 🚀 FSL Communication System — Server Started
-   Session ID : 20260325_001512
-   CSV log    : logs\session_20260325_001507.csv
+   Session ID : 20260327_162932
+   CSV log    : logs\session_20260327_162928.csv
 ============================================================
-Shared camera started on device index 1
+Shared camera started on device index 0
 🎤 Available audio devices:
    0 Microsoft Sound Mapper - Input, MME (2 in, 0 out)
->  1 Microphone (A4tech FHD 1080P PC, MME (2 in, 0 out)
-   2 Microphone Array (Realtek(R) Au, MME (2 in, 0 out)
+>  1 Microphone Array (Realtek(R) Au, MME (2 in, 0 out)
+   2 Microphone (DroidCam Audio), MME (2 in, 0 out)
    3 Microsoft Sound Mapper - Output, MME (0 in, 2 out)
 <  4 Speakers (Realtek(R) Audio), MME (0 in, 2 out)
-   5 Speakers (EShare Audio), MME (0 in, 2 out)
-   6 Primary Sound Capture Driver, Windows DirectSound (2 in, 0 out)
-   7 Microphone (A4tech FHD 1080P PC Camera), Windows DirectSound (2 in, 0 out)
-   8 Microphone Array (Realtek(R) Audio), Windows DirectSound (2 in, 0 out)
-   9 Primary Sound Driver, Windows DirectSound (0 in, 2 out)
-  10 Speakers (Realtek(R) Audio), Windows DirectSound (0 in, 2 out)
-  11 Speakers (EShare Audio), Windows DirectSound (0 in, 2 out)
-  12 Speakers (Realtek(R) Audio), Windows WASAPI (0 in, 2 out)
-  13 Speakers (EShare Audio), Windows WASAPI (0 in, 2 out)
-  14 Microphone (A4tech FHD 1080P PC Camera), Windows WASAPI (2 in, 0 out)
-  15 Microphone Array (Realtek(R) Audio), Windows WASAPI (2 in, 0 out)
-  16 Speakers (Nahimic Easy Surround), Windows WDM-KS (0 in, 8 out)
-  17 Stereo Mix (Realtek HD Audio Stereo input), Windows WDM-KS (2 in, 0 out)
-  18 Headphones 1 (Realtek HD Audio 2nd output with HAP), Windows WDM-KS (0 in, 2 out)
-  19 Headphones 2 (Realtek HD Audio 2nd output with HAP), Windows WDM-KS (0 in, 2 out)
-  20 PC Speaker (Realtek HD Audio 2nd output with HAP), Windows WDM-KS (2 in, 0 out)
-  21 Microphone Array (Realtek HD Audio Mic input), Windows WDM-KS (2 in, 0 out)
-  22 Mic in at front panel (black) (Mic in at front panel (black)), Windows WDM-KS (2 in, 0 out)
-  23 Speakers 1 (Realtek HD Audio output with HAP), Windows WDM-KS (0 in, 2 out)
-  24 Speakers 2 (Realtek HD Audio output with HAP), Windows WDM-KS (0 in, 2 out)
-  25 PC Speaker (Realtek HD Audio output with HAP), Windows WDM-KS (2 in, 0 out)
-  26 Speakers (), Windows WDM-KS (0 in, 2 out)
-  27 Microphone (A4tech FHD 1080P PC Camera), Windows WDM-KS (2 in, 0 out)
-  28 Speakers (Nahimic mirroring Wave Speaker), Windows WDM-KS (0 in, 2 out)
+   5 Primary Sound Capture Driver, Windows DirectSound (2 in, 0 out)
+   6 Microphone Array (Realtek(R) Audio), Windows DirectSound (2 in, 0 out)
+   7 Microphone (DroidCam Audio), Windows DirectSound (2 in, 0 out)
+   8 Primary Sound Driver, Windows DirectSound (0 in, 2 out)
+   9 Speakers (Realtek(R) Audio), Windows DirectSound (0 in, 2 out)
+  10 Speakers (Realtek(R) Audio), Windows WASAPI (0 in, 2 out)
+  11 Microphone (DroidCam Audio), Windows WASAPI (1 in, 0 out)
+  12 Microphone Array (Realtek(R) Audio), Windows WASAPI (2 in, 0 out)
+  13 Headphones (Realtek HD Audio 2nd output), Windows WDM-KS (0 in, 2 out)
+  14 Microphone Array (Realtek HD Audio Mic input), Windows WDM-KS (2 in, 0 out)
+  15 Speakers 1 (Realtek HD Audio output with SST), Windows WDM-KS (0 in, 2 out)
+  16 Speakers 2 (Realtek HD Audio output with SST), Windows WDM-KS (0 in, 2 out)
+  17 PC Speaker (Realtek HD Audio output with SST), Windows WDM-KS (2 in, 0 out)
+  18 Mic in at front panel (black) (Mic in at front panel (black)), Windows WDM-KS (2 in, 0 out)
+  19 Stereo Mix (Realtek HD Audio Stereo input), Windows WDM-KS (2 in, 0 out)
+  20 MIDI (Wave), Windows WDM-KS (2 in, 0 out)
+  21 Output (Wave), Windows WDM-KS (0 in, 2 out)
+  22 Speakers (Nahimic Easy Surround), Windows WDM-KS (0 in, 8 out)
+  23 Speakers (Nahimic mirroring Wave Speaker), Windows WDM-KS (0 in, 2 out)
 ✅ Using microphone device: system default
 ✅ Shared microphone started
 🔊 Loading faster-whisper tiny.en on cpu
-Client connected
-============================================================
-🚀 Initializing FSL Dynamic Recognition System
-============================================================
-✅ Loaded label mapping: 35 labels
-📂 Loading model from: C:\Users\Rain\Documents\GitHub\Echify-App\backend\models\lstm_dynamic_final\final_model_complete.pth
-📊 Model Info:
-   - Classes: 35
-   - Device:  cpu
-   - Test F1: 0.9873
-   - Architecture: hidden=128, layers=2, dropout=0.4, no attention
-✅ Initialization complete!
-============================================================
-
-Disconnected
-🔄 Gesture state reset
-INFO:     127.0.0.1:58590 - "GET /preview HTTP/1.1" 200 OK
-INFO:     127.0.0.1:54222 - "WebSocket /ws/fsl-dynamic" [accepted]
+INFO:     127.0.0.1:58718 - "GET /preview HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61049 - "WebSocket /ws/fsl-dynamic" [accepted]
 INFO:     connection open
-Client connected
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+
+📱 [DYNAMIC] Client connected: 127.0.0.1:61049
 ============================================================
 🚀 Initializing FSL Dynamic Recognition System
 ============================================================
 ✅ Loaded label mapping: 35 labels
-📂 Loading model from: C:\Users\Rain\Documents\GitHub\Echify-App\backend\models\lstm_dynamic_final\final_model_complete.pth
+📂 Loading model from: C:\Users\Mitch Lauren\Desktop\Legit Thesis\Echify-App\backend\models\lstm_dynamic_final\final_model_complete.pth
 📊 Model Info:
    - Classes: 35
    - Device:  cpu
@@ -87,4 +64,989 @@ Client connected
 ✅ Initialization complete!
 ============================================================
 
-INFO:     127.0.0.1:49669 - "GET /preview?t=1774368925912 HTTP/1.1" 200 OK
+📌 Model: {'status': 'ready', 'num_classes': 35, 'device': 'cpu', 'sequence_length': 30, 'segmentation': {'START_HAND_FRAMES': 4, 'END_NOHAND_FRAMES': 6, 'MIN_GESTURE_FRAMES': 12, 'COOLDOWN_SECONDS': 0.6}}
+[LOGGER] 🔗 Reconnect - flow=Sign→TTS client=127.0.0.1:61049
+
+=======================================================
+  🔍 LIVE STATUS LOG (prints only on change)
+  ⚫ = no hand   🟠 = hand seen   🟡 = collecting
+  ✅ = gesture predicted   💬 = sentence ready
+=======================================================
+
+📥 Frame #1 from 127.0.0.1:61049 | size=71883
+🖼 Decoded frame #1 | shape=(480, 640, 3)
+🧠 Result #1 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 1}
+  ⚫ [16:29:35] Waiting... (frame #1)
+📥 Frame #2 from 127.0.0.1:61049 | size=71767
+🖼 Decoded frame #2 | shape=(480, 640, 3)
+🧠 Result #2 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 2}
+📥 Frame #3 from 127.0.0.1:61049 | size=72171
+🖼 Decoded frame #3 | shape=(480, 640, 3)
+🧠 Result #3 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 3}
+  ⚫ [16:29:35] Waiting... (frame #3)
+📥 Frame #4 from 127.0.0.1:61049 | size=71663
+🖼 Decoded frame #4 | shape=(480, 640, 3)
+🧠 Result #4 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 4}
+📥 Frame #5 from 127.0.0.1:61049 | size=71663
+🖼 Decoded frame #5 | shape=(480, 640, 3)
+🧠 Result #5 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 5}
+  ⚫ [16:29:35] Waiting... (frame #6)
+  ⚫ [16:29:35] Waiting... (frame #9)
+  ⚫ [16:29:35] Waiting... (frame #12)
+  ⚫ [16:29:35] Waiting... (frame #15)
+  ⚫ [16:29:35] Waiting... (frame #18)
+  ⚫ [16:29:35] Waiting... (frame #21)
+  ⚫ [16:29:35] Waiting... (frame #24)
+  ⚫ [16:29:35] Waiting... (frame #27)
+📥 Frame #30 from 127.0.0.1:61049 | size=68811
+🖼 Decoded frame #30 | shape=(480, 640, 3)
+🧠 Result #30 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 1, 'consec_nohand': 0}
+  🟠 [16:29:36] HAND DETECTED — 1/2 needed
+  [FRAME    30]  inference=21.9ms (avg30)  server_total=35.4ms (avg30)  pred=Waiting...  ready=False
+  🟠 [16:29:36] HAND DETECTED — 2/2 needed
+  🟠 [16:29:36] HAND DETECTED — 3/2 needed
+  🟡 [16:29:36] COLLECTING... 1 frames
+  🟡 [16:29:36] COLLECTING... 3 frames
+  🟡 [16:29:36] COLLECTING... 6 frames
+  🟡 [16:29:36] COLLECTING... 9 frames
+  🟡 [16:29:36] COLLECTING... 12 frames
+  🟡 [16:29:36] COLLECTING... 15 frames
+  🟡 [16:29:36] COLLECTING... 18 frames
+  🟡 [16:29:37] COLLECTING... 21 frames
+  🟡 [16:29:37] COLLECTING... 24 frames
+  🟡 [16:29:37] COLLECTING... 27 frames
+📥 Frame #60 from 127.0.0.1:61049 | size=66883
+🖼 Decoded frame #60 | shape=(480, 640, 3)
+🧠 Result #60 | label=Collecting... | ready=False | debug={'collecting': True, 'frames_collected': 28, 'consec_hand': 31, 'consec_nohand': 0}
+  [FRAME    60]  inference=34.8ms (avg30)  server_total=38.0ms (avg30)  pred=Collecting...  ready=False
+  🟡 [16:29:37] COLLECTING... 30 frames
+  🟡 [16:29:37] COLLECTING... 33 frames
+
+  ✅ [16:29:37] PREDICTED → Hello (96%)
+[GESTURE] Hello | conf=95.6% | frames=0 | latency=171.0ms
+  ⚫ [16:29:37] Waiting... (frame #74)
+  ⚫ [16:29:37] Waiting... (frame #76)
+  ⚫ [16:29:38] Waiting... (frame #79)
+  ⚫ [16:29:38] Waiting... (frame #82)
+  ⚫ [16:29:38] Waiting... (frame #85)
+  ⚫ [16:29:38] Waiting... (frame #88)
+📥 Frame #90 from 127.0.0.1:61049 | size=71039
+🖼 Decoded frame #90 | shape=(480, 640, 3)
+🧠 Result #90 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 23}
+  [FRAME    90]  inference=28.1ms (avg30)  server_total=33.3ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [16:29:38] Waiting... (frame #91)
+  ⚫ [16:29:38] Waiting... (frame #94)
+  ⚫ [16:29:38] Waiting... (frame #97)
+  ⚫ [16:29:38] Waiting... (frame #100)
+  ⚫ [16:29:38] Waiting... (frame #103)
+  ⚫ [16:29:38] Waiting... (frame #106)
+  ⚫ [16:29:38] Waiting... (frame #109)
+  ⚫ [16:29:38] Waiting... (frame #112)
+  ⚫ [16:29:38] Waiting... (frame #115)
+  ⚫ [16:29:39] Waiting... (frame #118)
+
+  💬 [16:29:40] SENTENCE FINALIZED | -35.4 dBFS
+       Signs   : HELLO
+       English : "Hello!"
+       → Speaking through Pi speaker...
+
+Speaking: Hello!
+[TTS] "Hello!" | latency=0.0ms | dB=-35.4 dBFS
+📥 Frame #120 from 127.0.0.1:61049 | size=58063
+🖼 Decoded frame #120 | shape=(480, 640, 3)
+🧠 Result #120 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 53}
+  [FRAME   120]  inference=20.3ms (avg30)  server_total=98.9ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [16:29:42] Waiting... (frame #121)
+  ⚫ [16:29:45] Waiting... (frame #124)
+  ⚫ [16:29:45] Waiting... (frame #127)
+  ⚫ [16:29:45] Waiting... (frame #130)
+  ⚫ [16:29:45] Waiting... (frame #133)
+  ⚫ [16:29:45] Waiting... (frame #136)
+  ⚫ [16:29:45] Waiting... (frame #139)
+  ⚫ [16:29:45] Waiting... (frame #142)
+  ⚫ [16:29:45] Waiting... (frame #145)
+  ⚫ [16:29:45] Waiting... (frame #148)
+📥 Frame #150 from 127.0.0.1:61049 | size=65431
+🖼 Decoded frame #150 | shape=(480, 640, 3)
+🧠 Result #150 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 83}
+  [FRAME   150]  inference=21.9ms (avg30)  server_total=158.3ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [16:29:46] Waiting... (frame #151)
+  ⚫ [16:29:46] Waiting... (frame #154)
+  ⚫ [16:29:46] Waiting... (frame #157)
+  ⚫ [16:29:46] Waiting... (frame #160)
+  ⚫ [16:29:46] Waiting... (frame #163)
+  ⚫ [16:29:46] Waiting... (frame #166)
+  ⚫ [16:29:46] Waiting... (frame #169)
+  ⚫ [16:29:46] Waiting... (frame #172)
+  ⚫ [16:29:46] Waiting... (frame #175)
+  ⚫ [16:29:46] Waiting... (frame #178)
+📥 Frame #180 from 127.0.0.1:61049 | size=61323
+🖼 Decoded frame #180 | shape=(480, 640, 3)
+🧠 Result #180 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 1, 'consec_nohand': 0}
+  🟠 [16:29:46] HAND DETECTED — 1/2 needed
+  [FRAME   180]  inference=18.3ms (avg30)  server_total=33.4ms (avg30)  pred=Waiting...  ready=False
+  🟠 [16:29:47] HAND DETECTED — 2/2 needed
+  🟠 [16:29:47] HAND DETECTED — 3/2 needed
+  🟡 [16:29:47] COLLECTING... 1 frames
+  🟡 [16:29:47] COLLECTING... 3 frames
+  🟡 [16:29:47] COLLECTING... 6 frames
+  🟡 [16:29:47] COLLECTING... 9 frames
+  🟡 [16:29:47] COLLECTING... 12 frames
+  🟡 [16:29:47] COLLECTING... 15 frames
+  🟡 [16:29:47] COLLECTING... 18 frames
+  🟡 [16:29:47] COLLECTING... 21 frames
+  🟡 [16:29:48] COLLECTING... 24 frames
+📥 Frame #210 from 127.0.0.1:61049 | size=65179
+🖼 Decoded frame #210 | shape=(480, 640, 3)
+🧠 Result #210 | label=Collecting... | ready=False | debug={'collecting': True, 'frames_collected': 26, 'consec_hand': 0, 'consec_nohand': 2}
+  [FRAME   210]  inference=35.5ms (avg30)  server_total=40.1ms (avg30)  pred=Collecting...  ready=False
+INFO:     connection closed
+INFO:     127.0.0.1:56743 - "WebSocket /ws/stt-live" [accepted]
+INFO:     connection open
+
+  ✅ [16:29:48] PREDICTED → Good (67%)
+[GESTURE] Good | conf=67.3% | frames=0 | latency=31.0ms
+  ⚫ [16:29:48] Waiting... (frame #215)
+  ⚫ [16:29:48] Waiting... (frame #217)
+  ⚫ [16:29:48] Waiting... (frame #220)
+  ⚫ [16:29:48] Waiting... (frame #223)
+  ⚫ [16:29:48] Waiting... (frame #226)
+  ⚫ [16:29:48] Waiting... (frame #229)
+  ⚫ [16:29:48] Waiting... (frame #232)
+  ⚫ [16:29:48] Waiting... (frame #235)
+  ⚫ [16:29:48] Waiting... (frame #238)
+📥 Frame #240 from 127.0.0.1:61049 | size=64563
+🖼 Decoded frame #240 | shape=(480, 640, 3)
+🧠 Result #240 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 32}
+  [FRAME   240]  inference=20.4ms (avg30)  server_total=25.5ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [16:29:48] Waiting... (frame #241)
+  ⚫ [16:29:49] Waiting... (frame #244)
+  ⚫ [16:29:49] Waiting... (frame #247)
+  ⚫ [16:29:49] Waiting... (frame #250)
+  ⚫ [16:29:49] Waiting... (frame #253)
+  ⚫ [16:29:49] Waiting... (frame #256)
+  ⚫ [16:29:49] Waiting... (frame #259)
+  ⚫ [16:29:49] Waiting... (frame #262)
+  ⚫ [16:29:49] Waiting... (frame #265)
+  ⚫ [16:29:49] Waiting... (frame #268)
+📥 Frame #270 from 127.0.0.1:61049 | size=62215
+🖼 Decoded frame #270 | shape=(480, 640, 3)
+🧠 Result #270 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 62}
+  [FRAME   270]  inference=17.7ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [16:29:49] Waiting... (frame #271)
+  ⚫ [16:29:50] Waiting... (frame #274)
+  ⚫ [16:29:50] Waiting... (frame #277)
+  ⚫ [16:29:50] Waiting... (frame #280)
+  ⚫ [16:29:50] Waiting... (frame #283)
+
+  💬 [16:29:50] SENTENCE FINALIZED | -33.4 dBFS
+       Signs   : GOOD
+       English : "Good."
+       → Speaking through Pi speaker...
+
+Speaking: Good.
+[TTS] "Good." | latency=0.0ms | dB=-33.4 dBFS
+  ⚫ [16:29:50] Waiting... (frame #286)
+  ⚫ [16:29:50] Waiting... (frame #289)
+  ⚫ [16:29:50] Waiting... (frame #292)
+  ⚫ [16:29:50] Waiting... (frame #295)
+  ⚫ [16:29:50] Waiting... (frame #298)
+📥 Frame #300 from 127.0.0.1:61049 | size=54339
+🖼 Decoded frame #300 | shape=(480, 640, 3)
+🧠 Result #300 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 92}
+  [FRAME   300]  inference=20.5ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [16:29:50] Waiting... (frame #301)
+  ⚫ [16:29:51] Waiting... (frame #304)
+  🟠 [16:29:51] HAND DETECTED — 1/2 needed
+  🟠 [16:29:51] HAND DETECTED — 2/2 needed
+  🟠 [16:29:51] HAND DETECTED — 3/2 needed
+  🟡 [16:29:51] COLLECTING... 1 frames
+  🟡 [16:29:51] COLLECTING... 3 frames
+  🟡 [16:29:51] COLLECTING... 6 frames
+  🟡 [16:29:51] COLLECTING... 9 frames
+  🟡 [16:29:51] COLLECTING... 12 frames
+  🟡 [16:29:51] COLLECTING... 15 frames
+📥 Frame #330 from 127.0.0.1:61049 | size=61691
+🖼 Decoded frame #330 | shape=(480, 640, 3)
+🧠 Result #330 | label=Hello | ready=True | debug={}
+
+  ✅ [16:29:52] PREDICTED → Hello (91%)
+[GESTURE] Hello | conf=90.8% | frames=0 | latency=47.0ms
+  [FRAME   330]  inference=35.9ms (avg30)  server_total=37.5ms (avg30)  pred=Hello  ready=True
+  ⚫ [16:29:52] Waiting... (frame #331)
+  ⚫ [16:29:52] Waiting... (frame #333)
+  ⚫ [16:29:52] Waiting... (frame #336)
+  ⚫ [16:29:52] Waiting... (frame #339)
+  ⚫ [16:29:52] Waiting... (frame #342)
+  ⚫ [16:29:52] Waiting... (frame #345)
+  ⚫ [16:29:52] Waiting... (frame #348)
+  ⚫ [16:29:52] Waiting... (frame #351)
+  ⚫ [16:29:52] Waiting... (frame #354)
+  ⚫ [16:29:52] Waiting... (frame #357)
+📥 Frame #360 from 127.0.0.1:61049 | size=64559
+🖼 Decoded frame #360 | shape=(480, 640, 3)
+🧠 Result #360 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 36}
+  ⚫ [16:29:52] Waiting... (frame #360)
+  [FRAME   360]  inference=22.4ms (avg30)  server_total=28.6ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [16:29:53] Waiting... (frame #363)
+  🟠 [16:29:53] HAND DETECTED — 1/2 needed
+  🟠 [16:29:53] HAND DETECTED — 2/2 needed
+  🟠 [16:29:53] HAND DETECTED — 3/2 needed
+  🟡 [16:29:53] COLLECTING... 1 frames
+  🟡 [16:29:53] COLLECTING... 3 frames
+  🟡 [16:29:53] COLLECTING... 6 frames
+  🟡 [16:29:53] COLLECTING... 9 frames
+  🟡 [16:29:53] COLLECTING... 12 frames
+  🟡 [16:29:53] COLLECTING... 15 frames
+  🟡 [16:29:53] COLLECTING... 18 frames
+📥 Frame #390 from 127.0.0.1:61049 | size=64795
+🖼 Decoded frame #390 | shape=(480, 640, 3)
+🧠 Result #390 | label=Collecting... | ready=False | debug={'collecting': True, 'frames_collected': 19, 'consec_hand': 0, 'consec_nohand': 5}
+  [FRAME   390]  inference=33.8ms (avg30)  server_total=39.1ms (avg30)  pred=Collecting...  ready=False
+
+  ✅ [16:29:54] PREDICTED → I (95%)
+[GESTURE] I | conf=95.0% | frames=0 | latency=31.0ms
+  ⚫ [16:29:54] Waiting... (frame #392)
+  ⚫ [16:29:54] Waiting... (frame #394)
+  ⚫ [16:29:54] Waiting... (frame #397)
+  ⚫ [16:29:54] Waiting... (frame #400)
+  ⚫ [16:29:54] Waiting... (frame #403)
+  ⚫ [16:29:54] Waiting... (frame #406)
+  ⚫ [16:29:54] Waiting... (frame #409)
+  🟠 [16:29:54] HAND DETECTED — 1/2 needed
+  🟠 [16:29:54] HAND DETECTED — 2/2 needed
+  🟠 [16:29:54] HAND DETECTED — 3/2 needed
+  🟡 [16:29:55] COLLECTING... 1 frames
+  🟡 [16:29:55] COLLECTING... 3 frames
+  🟡 [16:29:55] COLLECTING... 6 frames
+📥 Frame #420 from 127.0.0.1:61049 | size=66131
+🖼 Decoded frame #420 | shape=(480, 640, 3)
+🧠 Result #420 | label=Collecting... | ready=False | debug={'collecting': True, 'frames_collected': 8, 'consec_hand': 11, 'consec_nohand': 0}
+  [FRAME   420]  inference=34.8ms (avg30)  server_total=39.6ms (avg30)  pred=Collecting...  ready=False
+  🟡 [16:29:55] COLLECTING... 9 frames
+  🟡 [16:29:55] COLLECTING... 12 frames
+  🟡 [16:29:55] COLLECTING... 15 frames
+  🟡 [16:29:55] COLLECTING... 18 frames
+  🟡 [16:29:55] COLLECTING... 21 frames
+  🟡 [16:29:55] COLLECTING... 24 frames
+  🟡 [16:29:56] COLLECTING... 27 frames
+
+  ✅ [16:29:56] PREDICTED → Like (81%)
+[GESTURE] Like | conf=80.7% | frames=0 | latency=32.0ms
+  ⚫ [16:29:56] Waiting... (frame #448)
+📥 Frame #450 from 127.0.0.1:61049 | size=63263
+🖼 Decoded frame #450 | shape=(480, 640, 3)
+🧠 Result #450 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 9}
+  ⚫ [16:29:56] Waiting... (frame #450)
+  [FRAME   450]  inference=31.8ms (avg30)  server_total=35.9ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [16:29:56] Waiting... (frame #453)
+  ⚫ [16:29:56] Waiting... (frame #456)
+  ⚫ [16:29:56] Waiting... (frame #459)
+  ⚫ [16:29:56] Waiting... (frame #462)
+  🟠 [16:29:56] HAND DETECTED — 1/2 needed
+  🟠 [16:29:56] HAND DETECTED — 2/2 needed
+  🟠 [16:29:56] HAND DETECTED — 3/2 needed
+  🟠 [16:29:56] HAND DETECTED — 4/2 needed
+  🟡 [16:29:56] COLLECTING... 1 frames
+  🟡 [16:29:56] COLLECTING... 3 frames
+  🟡 [16:29:57] COLLECTING... 6 frames
+  🟡 [16:29:57] COLLECTING... 9 frames
+  🟡 [16:29:57] COLLECTING... 12 frames
+📥 Frame #480 from 127.0.0.1:61049 | size=65687
+🖼 Decoded frame #480 | shape=(480, 640, 3)
+🧠 Result #480 | label=Collecting... | ready=False | debug={'collecting': True, 'frames_collected': 13, 'consec_hand': 17, 'consec_nohand': 0}
+  [FRAME   480]  inference=28.1ms (avg30)  server_total=32.3ms (avg30)  pred=Collecting...  ready=False
+  🟡 [16:29:57] COLLECTING... 15 frames
+  🟡 [16:29:57] COLLECTING... 18 frames
+  🟡 [16:29:57] COLLECTING... 21 frames
+
+  ✅ [16:29:57] PREDICTED → You (53%)
+[GESTURE] You | conf=52.6% | frames=0 | latency=31.0ms
+  ⚫ [16:29:57] Waiting... (frame #497)
+  ⚫ [16:29:57] Waiting... (frame #499)
+  ⚫ [16:29:58] Waiting... (frame #502)
+  ⚫ [16:29:58] Waiting... (frame #505)
+  ⚫ [16:29:58] Waiting... (frame #508)
+📥 Frame #510 from 127.0.0.1:61049 | size=60927
+🖼 Decoded frame #510 | shape=(480, 640, 3)
+🧠 Result #510 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 20}
+  [FRAME   510]  inference=25.5ms (avg30)  server_total=29.2ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [16:29:58] Waiting... (frame #511)
+  ⚫ [16:29:58] Waiting... (frame #514)
+  ⚫ [16:29:58] Waiting... (frame #517)
+  ⚫ [16:29:58] Waiting... (frame #520)
+  ⚫ [16:29:58] Waiting... (frame #523)
+  ⚫ [16:29:58] Waiting... (frame #526)
+  ⚫ [16:29:58] Waiting... (frame #529)
+  ⚫ [16:29:58] Waiting... (frame #532)
+  ⚫ [16:29:58] Waiting... (frame #535)
+  ⚫ [16:29:58] Waiting... (frame #538)
+📥 Frame #540 from 127.0.0.1:61049 | size=65359
+🖼 Decoded frame #540 | shape=(480, 640, 3)
+🧠 Result #540 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 50}
+  [FRAME   540]  inference=19.8ms (avg30)  server_total=22.9ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [16:29:58] Waiting... (frame #541)
+  ⚫ [16:29:58] Waiting... (frame #544)
+  ⚫ [16:29:59] Waiting... (frame #547)
+  ⚫ [16:29:59] Waiting... (frame #550)
+  ⚫ [16:29:59] Waiting... (frame #553)
+  ⚫ [16:29:59] Waiting... (frame #556)
+  ⚫ [16:29:59] Waiting... (frame #559)
+  ⚫ [16:29:59] Waiting... (frame #562)
+  ⚫ [16:29:59] Waiting... (frame #565)
+  ⚫ [16:29:59] Waiting... (frame #568)
+📥 Frame #570 from 127.0.0.1:61049 | size=65383
+🖼 Decoded frame #570 | shape=(480, 640, 3)
+🧠 Result #570 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 80}
+  [FRAME   570]  inference=19.8ms (avg30)  server_total=31.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [16:29:59] Waiting... (frame #571)
+
+  💬 [16:29:59] SENTENCE FINALIZED | -26.6 dBFS
+       Signs   : HELLO I LIKE YOU
+       English : "Hello. I like."
+       → Speaking through Pi speaker...
+
+Speaking: Hello. I like.
+[TTS] "Hello. I like." | latency=0.0ms | dB=-26.6 dBFS
+  ⚫ [16:29:59] Waiting... (frame #574)
+  ⚫ [16:30:00] Waiting... (frame #577)
+  ⚫ [16:30:00] Waiting... (frame #580)
+  ⚫ [16:30:00] Waiting... (frame #583)
+  ⚫ [16:30:00] Waiting... (frame #586)
+  ⚫ [16:30:00] Waiting... (frame #589)
+  ⚫ [16:30:00] Waiting... (frame #592)
+  ⚫ [16:30:00] Waiting... (frame #595)
+  ⚫ [16:30:00] Waiting... (frame #598)
+📥 Frame #600 from 127.0.0.1:61049 | size=67507
+🖼 Decoded frame #600 | shape=(480, 640, 3)
+🧠 Result #600 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 110}
+  [FRAME   600]  inference=17.1ms (avg30)  server_total=33.3ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [16:30:00] Waiting... (frame #601)
+  ⚫ [16:30:00] Waiting... (frame #604)
+  ⚫ [16:30:01] Waiting... (frame #607)
+  ⚫ [16:30:01] Waiting... (frame #610)
+  ⚫ [16:30:01] Waiting... (frame #613)
+  ⚫ [16:30:01] Waiting... (frame #616)
+  ⚫ [16:30:01] Waiting... (frame #619)
+  ⚫ [16:30:01] Waiting... (frame #622)
+  ⚫ [16:30:01] Waiting... (frame #625)
+  ⚫ [16:30:01] Waiting... (frame #628)
+📥 Frame #630 from 127.0.0.1:61049 | size=67847
+🖼 Decoded frame #630 | shape=(480, 640, 3)
+🧠 Result #630 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 140}
+  [FRAME   630]  inference=20.8ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [16:30:01] Waiting... (frame #631)
+  ⚫ [16:30:01] Waiting... (frame #634)
+  ⚫ [16:30:02] Waiting... (frame #637)
+  ⚫ [16:30:02] Waiting... (frame #640)
+  ⚫ [16:30:02] Waiting... (frame #643)
+  ⚫ [16:30:02] Waiting... (frame #646)
+  ⚫ [16:30:02] Waiting... (frame #649)
+  ⚫ [16:30:04] Waiting... (frame #652)
+  ⚫ [16:30:04] Waiting... (frame #655)
+  ⚫ [16:30:05] Waiting... (frame #658)
+📥 Frame #660 from 127.0.0.1:61049 | size=69783
+🖼 Decoded frame #660 | shape=(480, 640, 3)
+🧠 Result #660 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 170}
+  [FRAME   660]  inference=22.4ms (avg30)  server_total=109.4ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [16:30:05] Waiting... (frame #661)
+  ⚫ [16:30:05] Waiting... (frame #664)
+  ⚫ [16:30:05] Waiting... (frame #667)
+  ⚫ [16:30:05] Waiting... (frame #670)
+  ⚫ [16:30:05] Waiting... (frame #673)
+
+🔌 Disconnected: 127.0.0.1:61049 | frames=673 | gestures=6
+🔄 Gesture state reset
+
+  📡 Frame-level Stats (673 frames total)
+     Avg inference      : 25.20 ms
+     Avg server total   : 45.29 ms
+     P95 server total   : 47.00 ms
+     Avg gesture interval: 4000.00 ms
+🎤 Client connected to /ws/stt-live | 127.0.0.1:56743
+[LOGGER] 🔗 Reconnect - flow=STT client=127.0.0.1:56743
+🎙 STT start | env=quiet | client=127.0.0.1:56743
+🛑 STT stop | client=127.0.0.1:56743
+🧪 Recorded chunks: 33
+🧪 Audio samples  : 158400
+🧪 Max amplitude  : 1.0000
+🧪 Transcript: "Hello, hello!" | latency=1281.0ms | dBFS=-41.83
+[STT] "Hello, hello!" | env=quiet | latency=1281.0ms | dB=-41.8 dBFS
+INFO:     127.0.0.1:49668 - "GET /preview HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     127.0.0.1:54657 - "WebSocket /ws/fsl-dynamic" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     127.0.0.1:64025 - "WebSocket /ws/stt-live" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     127.0.0.1:62095 - "WebSocket /ws/fsl-dynamic" [accepted]
+INFO:     connection open
+🔌 Client disconnected from /ws/stt-live | 127.0.0.1:56743
+
+📱 [DYNAMIC] Client connected: 127.0.0.1:54657
+============================================================
+🚀 Initializing FSL Dynamic Recognition System
+============================================================
+✅ Loaded label mapping: 35 labels
+📂 Loading model from: C:\Users\Mitch Lauren\Desktop\Legit Thesis\Echify-App\backend\models\lstm_dynamic_final\final_model_complete.pth
+📊 Model Info:
+   - Classes: 35
+   - Device:  cpu
+   - Test F1: 0.9873
+   - Architecture: hidden=128, layers=2, dropout=0.4, no attention
+✅ Initialization complete!
+============================================================
+
+📌 Model: {'status': 'ready', 'num_classes': 35, 'device': 'cpu', 'sequence_length': 30, 'segmentation': {'START_HAND_FRAMES': 4, 'END_NOHAND_FRAMES': 6, 'MIN_GESTURE_FRAMES': 12, 'COOLDOWN_SECONDS': 0.6}}
+[LOGGER] 🔗 Reconnect - flow=Sign→TTS client=127.0.0.1:54657
+
+=======================================================
+  🔍 LIVE STATUS LOG (prints only on change)
+  ⚫ = no hand   🟠 = hand seen   🟡 = collecting
+  ✅ = gesture predicted   💬 = sentence ready
+=======================================================
+
+📥 Frame #1 from 127.0.0.1:54657 | size=59559
+🖼 Decoded frame #1 | shape=(480, 640, 3)
+🧠 Result #1 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 1}
+  ⚫ [16:30:12] Waiting... (frame #1)
+📥 Frame #2 from 127.0.0.1:54657 | size=59439
+🖼 Decoded frame #2 | shape=(480, 640, 3)
+🧠 Result #2 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 2}
+📥 Frame #3 from 127.0.0.1:54657 | size=58351
+🖼 Decoded frame #3 | shape=(480, 640, 3)
+🧠 Result #3 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 3}
+  ⚫ [16:30:13] Waiting... (frame #3)
+📥 Frame #4 from 127.0.0.1:54657 | size=63359
+🖼 Decoded frame #4 | shape=(480, 640, 3)
+🧠 Result #4 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 4}
+📥 Frame #5 from 127.0.0.1:54657 | size=62303
+🖼 Decoded frame #5 | shape=(480, 640, 3)
+🧠 Result #5 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 5}
+  ⚫ [16:30:15] Waiting... (frame #6)
+  ⚫ [16:30:18] Waiting... (frame #9)
+  ⚫ [16:30:18] Waiting... (frame #12)
+  ⚫ [16:30:18] Waiting... (frame #15)
+  ⚫ [16:30:18] Waiting... (frame #18)
+  ⚫ [16:30:18] Waiting... (frame #21)
+  ⚫ [16:30:18] Waiting... (frame #24)
+  ⚫ [16:30:18] Waiting... (frame #27)
+📥 Frame #30 from 127.0.0.1:54657 | size=67211
+🖼 Decoded frame #30 | shape=(480, 640, 3)
+🧠 Result #30 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 30}
+  ⚫ [16:30:18] Waiting... (frame #30)
+  [FRAME    30]  inference=21.9ms (avg30)  server_total=191.1ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [16:30:18] Waiting... (frame #33)
+  ⚫ [16:30:18] Waiting... (frame #36)
+  ⚫ [16:30:18] Waiting... (frame #39)
+  ⚫ [16:30:19] Waiting... (frame #42)
+  ⚫ [16:30:19] Waiting... (frame #45)
+  ⚫ [16:30:19] Waiting... (frame #48)
+  ⚫ [16:30:19] Waiting... (frame #51)
+  ⚫ [16:30:19] Waiting... (frame #54)
+
+🔌 Disconnected: 127.0.0.1:54657 | frames=55 | gestures=0
+🔄 Gesture state reset
+
+  📡 Frame-level Stats (55 frames total)
+     Avg inference      : 20.15 ms
+     Avg server total   : 120.94 ms
+     P95 server total   : 985.00 ms
+🎤 Client connected to /ws/stt-live | 127.0.0.1:64025
+[LOGGER] 🔗 Reconnect - flow=STT client=127.0.0.1:64025
+🎙 STT start | env=quiet | client=127.0.0.1:64025
+🛑 STT stop | client=127.0.0.1:64025
+🧪 Recorded chunks: 20
+🧪 Audio samples  : 96000
+🧪 Max amplitude  : 1.0000
+🧪 Transcript: "I know by Yang, it really..." | latency=360.0ms | dBFS=-30.54
+[STT] "I know by Yang, it really..." | env=quiet | latency=360.0ms | dB=-30.5 dBFS
+🔌 Client disconnected from /ws/stt-live | 127.0.0.1:64025
+
+📱 [DYNAMIC] Client connected: 127.0.0.1:62095
+============================================================
+🚀 Initializing FSL Dynamic Recognition System
+============================================================
+✅ Loaded label mapping: 35 labels
+📂 Loading model from: C:\Users\Mitch Lauren\Desktop\Legit Thesis\Echify-App\backend\models\lstm_dynamic_final\final_model_complete.pth
+📊 Model Info:
+   - Classes: 35
+   - Device:  cpu
+   - Test F1: 0.9873
+   - Architecture: hidden=128, layers=2, dropout=0.4, no attention
+✅ Initialization complete!
+============================================================
+
+📌 Model: {'status': 'ready', 'num_classes': 35, 'device': 'cpu', 'sequence_length': 30, 'segmentation': {'START_HAND_FRAMES': 4, 'END_NOHAND_FRAMES': 6, 'MIN_GESTURE_FRAMES': 12, 'COOLDOWN_SECONDS': 0.6}}
+[LOGGER] 🔗 Reconnect - flow=Sign→TTS client=127.0.0.1:62095
+
+=======================================================
+  🔍 LIVE STATUS LOG (prints only on change)
+  ⚫ = no hand   🟠 = hand seen   🟡 = collecting
+  ✅ = gesture predicted   💬 = sentence ready
+=======================================================
+
+INFO:     127.0.0.1:58431 - "GET /preview HTTP/1.1" 200 OK
+INFO:     connection closed
+📥 Frame #1 from 127.0.0.1:62095 | size=63303
+🖼 Decoded frame #1 | shape=(480, 640, 3)
+🧠 Result #1 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 1}
+  ⚫ [16:30:26] Waiting... (frame #1)
+📥 Frame #2 from 127.0.0.1:62095 | size=63151
+🖼 Decoded frame #2 | shape=(480, 640, 3)
+🧠 Result #2 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 2}
+📥 Frame #3 from 127.0.0.1:62095 | size=63419
+🖼 Decoded frame #3 | shape=(480, 640, 3)
+🧠 Result #3 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 3}
+  ⚫ [16:30:26] Waiting... (frame #3)
+📥 Frame #4 from 127.0.0.1:62095 | size=63419
+🖼 Decoded frame #4 | shape=(480, 640, 3)
+🧠 Result #4 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 4}
+📥 Frame #5 from 127.0.0.1:62095 | size=61215
+🖼 Decoded frame #5 | shape=(480, 640, 3)
+🧠 Result #5 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 5}
+  ⚫ [16:30:26] Waiting... (frame #6)
+  ⚫ [16:30:26] Waiting... (frame #9)
+  ⚫ [16:30:26] Waiting... (frame #12)
+  ⚫ [16:30:26] Waiting... (frame #15)
+
+🔌 Disconnected: 127.0.0.1:62095 | frames=17 | gestures=0
+🔄 Gesture state reset
+
+  📡 Frame-level Stats (17 frames total)
+     Avg inference      : 19.35 ms
+     Avg server total   : 39.06 ms
+     P95 server total   : 140.00 ms
+INFO:     127.0.0.1:59520 - "GET /preview HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51800 - "WebSocket /ws/fsl-dynamic" [accepted]
+INFO:     connection open
+INFO:     connection closed
+
+📱 [DYNAMIC] Client connected: 127.0.0.1:51800
+============================================================
+🚀 Initializing FSL Dynamic Recognition System
+============================================================
+✅ Loaded label mapping: 35 labels
+📂 Loading model from: C:\Users\Mitch Lauren\Desktop\Legit Thesis\Echify-App\backend\models\lstm_dynamic_final\final_model_complete.pth
+📊 Model Info:
+   - Classes: 35
+   - Device:  cpu
+   - Test F1: 0.9873
+   - Architecture: hidden=128, layers=2, dropout=0.4, no attention
+✅ Initialization complete!
+============================================================
+
+📌 Model: {'status': 'ready', 'num_classes': 35, 'device': 'cpu', 'sequence_length': 30, 'segmentation': {'START_HAND_FRAMES': 4, 'END_NOHAND_FRAMES': 6, 'MIN_GESTURE_FRAMES': 12, 'COOLDOWN_SECONDS': 0.6}}
+[LOGGER] 🔗 Reconnect - flow=Sign→TTS client=127.0.0.1:51800
+
+=======================================================
+  🔍 LIVE STATUS LOG (prints only on change)
+  ⚫ = no hand   🟠 = hand seen   🟡 = collecting
+  ✅ = gesture predicted   💬 = sentence ready
+=======================================================
+
+📥 Frame #1 from 127.0.0.1:51800 | size=62763
+🖼 Decoded frame #1 | shape=(480, 640, 3)
+🧠 Result #1 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 1}
+  ⚫ [16:30:27] Waiting... (frame #1)
+
+🔌 Disconnected: 127.0.0.1:51800 | frames=1 | gestures=0
+🔄 Gesture state reset
+INFO:     127.0.0.1:55643 - "GET /preview HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50147 - "GET /preview HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62938 - "GET /preview HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57534 - "WebSocket /ws/fsl-dynamic" [accepted]
+INFO:     connection open
+INFO:     connection closed
+
+📱 [DYNAMIC] Client connected: 127.0.0.1:57534
+============================================================
+🚀 Initializing FSL Dynamic Recognition System
+============================================================
+✅ Loaded label mapping: 35 labels
+📂 Loading model from: C:\Users\Mitch Lauren\Desktop\Legit Thesis\Echify-App\backend\models\lstm_dynamic_final\final_model_complete.pth
+📊 Model Info:
+   - Classes: 35
+   - Device:  cpu
+   - Test F1: 0.9873
+   - Architecture: hidden=128, layers=2, dropout=0.4, no attention
+✅ Initialization complete!
+============================================================
+
+📌 Model: {'status': 'ready', 'num_classes': 35, 'device': 'cpu', 'sequence_length': 30, 'segmentation': {'START_HAND_FRAMES': 4, 'END_NOHAND_FRAMES': 6, 'MIN_GESTURE_FRAMES': 12, 'COOLDOWN_SECONDS': 0.6}}
+[LOGGER] 🔗 Reconnect - flow=Sign→TTS client=127.0.0.1:57534
+
+=======================================================
+  🔍 LIVE STATUS LOG (prints only on change)
+  ⚫ = no hand   🟠 = hand seen   🟡 = collecting
+  ✅ = gesture predicted   💬 = sentence ready
+=======================================================
+
+📥 Frame #1 from 127.0.0.1:57534 | size=59163
+🖼 Decoded frame #1 | shape=(480, 640, 3)
+🧠 Result #1 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 1}
+  ⚫ [16:30:28] Waiting... (frame #1)
+📥 Frame #2 from 127.0.0.1:57534 | size=59163
+🖼 Decoded frame #2 | shape=(480, 640, 3)
+🧠 Result #2 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 2}
+📥 Frame #3 from 127.0.0.1:57534 | size=59239
+🖼 Decoded frame #3 | shape=(480, 640, 3)
+🧠 Result #3 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 3}
+  ⚫ [16:30:28] Waiting... (frame #3)
+📥 Frame #4 from 127.0.0.1:57534 | size=58923
+🖼 Decoded frame #4 | shape=(480, 640, 3)
+🧠 Result #4 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 4}
+📥 Frame #5 from 127.0.0.1:57534 | size=58923
+🖼 Decoded frame #5 | shape=(480, 640, 3)
+🧠 Result #5 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 5}
+  ⚫ [16:30:28] Waiting... (frame #6)
+  ⚫ [16:30:28] Waiting... (frame #9)
+  ⚫ [16:30:28] Waiting... (frame #12)
+  ⚫ [16:30:28] Waiting... (frame #15)
+  ⚫ [16:30:28] Waiting... (frame #18)
+  ⚫ [16:30:28] Waiting... (frame #21)
+  ⚫ [16:30:28] Waiting... (frame #24)
+  🟠 [16:30:28] HAND DETECTED — 1/2 needed
+  🟠 [16:30:28] HAND DETECTED — 2/2 needed
+  🟠 [16:30:29] HAND DETECTED — 3/2 needed
+  🟡 [16:30:29] COLLECTING... 1 frames
+📥 Frame #30 from 127.0.0.1:57534 | size=60335
+🖼 Decoded frame #30 | shape=(480, 640, 3)
+🧠 Result #30 | label=Collecting... | ready=False | debug={'collecting': True, 'frames_collected': 3, 'consec_hand': 6, 'consec_nohand': 0}
+  🟡 [16:30:29] COLLECTING... 3 frames
+  [FRAME    30]  inference=25.1ms (avg30)  server_total=35.9ms (avg30)  pred=Collecting...  ready=False
+  🟡 [16:30:29] COLLECTING... 6 frames
+  🟡 [16:30:29] COLLECTING... 9 frames
+  🟡 [16:30:29] COLLECTING... 12 frames
+  🟡 [16:30:29] COLLECTING... 15 frames
+  🟡 [16:30:29] COLLECTING... 18 frames
+  🟡 [16:30:29] COLLECTING... 21 frames
+
+  ✅ [16:30:30] PREDICTED → Hello (95%)
+[GESTURE] Hello | conf=95.1% | frames=0 | latency=47.0ms
+  ⚫ [16:30:30] Waiting... (frame #57)
+  ⚫ [16:30:30] Waiting... (frame #59)
+📥 Frame #60 from 127.0.0.1:57534 | size=60043
+🖼 Decoded frame #60 | shape=(480, 640, 3)
+🧠 Result #60 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 10}
+  [FRAME    60]  inference=35.4ms (avg30)  server_total=39.6ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [16:30:30] Waiting... (frame #62)
+  ⚫ [16:30:30] Waiting... (frame #65)
+  ⚫ [16:30:30] Waiting... (frame #68)
+  ⚫ [16:30:30] Waiting... (frame #71)
+  ⚫ [16:30:30] Waiting... (frame #74)
+  ⚫ [16:30:30] Waiting... (frame #77)
+  🟠 [16:30:31] HAND DETECTED — 1/2 needed
+  ⚫ [16:30:32] Waiting... (frame #81)
+  ⚫ [16:30:34] Waiting... (frame #83)
+
+  💬 [16:30:35] SENTENCE FINALIZED | -21.0 dBFS
+       Signs   : HELLO
+       English : "Hello!"
+       → Speaking through Pi speaker...
+
+Speaking: Hello!
+[TTS] "Hello!" | latency=16.0ms | dB=-21.0 dBFS
+  🟠 [16:30:35] HAND DETECTED — 1/2 needed
+  🟠 [16:30:35] HAND DETECTED — 2/2 needed
+  ⚫ [16:30:35] Waiting... (frame #87)
+  🟠 [16:30:35] HAND DETECTED — 1/2 needed
+  🟠 [16:30:36] HAND DETECTED — 2/2 needed
+📥 Frame #90 from 127.0.0.1:57534 | size=65543
+🖼 Decoded frame #90 | shape=(480, 640, 3)
+🧠 Result #90 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 1}
+  ⚫ [16:30:36] Waiting... (frame #90)
+  [FRAME    90]  inference=25.0ms (avg30)  server_total=191.7ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [16:30:36] Waiting... (frame #92)
+  ⚫ [16:30:36] Waiting... (frame #95)
+  ⚫ [16:30:36] Waiting... (frame #98)
+  ⚫ [16:30:36] Waiting... (frame #101)
+  ⚫ [16:30:36] Waiting... (frame #104)
+  ⚫ [16:30:37] Waiting... (frame #107)
+  ⚫ [16:30:37] Waiting... (frame #110)
+  ⚫ [16:30:37] Waiting... (frame #113)
+  ⚫ [16:30:37] Waiting... (frame #116)
+  ⚫ [16:30:37] Waiting... (frame #119)
+📥 Frame #120 from 127.0.0.1:57534 | size=64855
+🖼 Decoded frame #120 | shape=(480, 640, 3)
+🧠 Result #120 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 31}
+  [FRAME   120]  inference=21.9ms (avg30)  server_total=51.0ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [16:30:37] Waiting... (frame #122)
+  ⚫ [16:30:37] Waiting... (frame #125)
+  ⚫ [16:30:37] Waiting... (frame #128)
+  ⚫ [16:30:37] Waiting... (frame #131)
+  ⚫ [16:30:38] Waiting... (frame #134)
+
+🔌 Disconnected: 127.0.0.1:57534 | frames=134 | gestures=1
+🔄 Gesture state reset
+
+  📡 Frame-level Stats (134 frames total)
+     Avg inference      : 26.25 ms
+     Avg server total   : 75.07 ms
+     P95 server total   : 469.00 ms
+INFO:     127.0.0.1:64736 - "GET /preview HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51333 - "WebSocket /ws/fsl-dynamic" [accepted]
+INFO:     connection open
+INFO:     connection closed
+
+📱 [DYNAMIC] Client connected: 127.0.0.1:51333
+============================================================
+🚀 Initializing FSL Dynamic Recognition System
+============================================================
+✅ Loaded label mapping: 35 labels
+📂 Loading model from: C:\Users\Mitch Lauren\Desktop\Legit Thesis\Echify-App\backend\models\lstm_dynamic_final\final_model_complete.pth
+📊 Model Info:
+   - Classes: 35
+   - Device:  cpu
+   - Test F1: 0.9873
+   - Architecture: hidden=128, layers=2, dropout=0.4, no attention
+✅ Initialization complete!
+============================================================
+
+📌 Model: {'status': 'ready', 'num_classes': 35, 'device': 'cpu', 'sequence_length': 30, 'segmentation': {'START_HAND_FRAMES': 4, 'END_NOHAND_FRAMES': 6, 'MIN_GESTURE_FRAMES': 12, 'COOLDOWN_SECONDS': 0.6}}
+[LOGGER] 🔗 Reconnect - flow=Sign→TTS client=127.0.0.1:51333
+
+=======================================================
+  🔍 LIVE STATUS LOG (prints only on change)
+  ⚫ = no hand   🟠 = hand seen   🟡 = collecting
+  ✅ = gesture predicted   💬 = sentence ready
+=======================================================
+
+📥 Frame #1 from 127.0.0.1:51333 | size=63067
+🖼 Decoded frame #1 | shape=(480, 640, 3)
+🧠 Result #1 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 1}
+  ⚫ [16:30:38] Waiting... (frame #1)
+📥 Frame #2 from 127.0.0.1:51333 | size=62119
+🖼 Decoded frame #2 | shape=(480, 640, 3)
+🧠 Result #2 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 2}
+📥 Frame #3 from 127.0.0.1:51333 | size=64627
+🖼 Decoded frame #3 | shape=(480, 640, 3)
+🧠 Result #3 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 3}
+  ⚫ [16:30:38] Waiting... (frame #3)
+📥 Frame #4 from 127.0.0.1:51333 | size=64627
+🖼 Decoded frame #4 | shape=(480, 640, 3)
+🧠 Result #4 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 4}
+📥 Frame #5 from 127.0.0.1:51333 | size=63151
+🖼 Decoded frame #5 | shape=(480, 640, 3)
+🧠 Result #5 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 5}
+  ⚫ [16:30:38] Waiting... (frame #6)
+  ⚫ [16:30:38] Waiting... (frame #9)
+  ⚫ [16:30:38] Waiting... (frame #12)
+  ⚫ [16:30:38] Waiting... (frame #15)
+  ⚫ [16:30:39] Waiting... (frame #18)
+  ⚫ [16:30:39] Waiting... (frame #21)
+  ⚫ [16:30:39] Waiting... (frame #24)
+  ⚫ [16:30:39] Waiting... (frame #27)
+  🟠 [16:30:39] HAND DETECTED — 1/2 needed
+  🟠 [16:30:39] HAND DETECTED — 2/2 needed
+📥 Frame #30 from 127.0.0.1:51333 | size=64151
+🖼 Decoded frame #30 | shape=(480, 640, 3)
+🧠 Result #30 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 3, 'consec_nohand': 0}
+  🟠 [16:30:39] HAND DETECTED — 3/2 needed
+  [FRAME    30]  inference=19.8ms (avg30)  server_total=33.9ms (avg30)  pred=Waiting...  ready=False
+  🟡 [16:30:39] COLLECTING... 1 frames
+  🟡 [16:30:39] COLLECTING... 3 frames
+  🟡 [16:30:39] COLLECTING... 6 frames
+  🟡 [16:30:39] COLLECTING... 9 frames
+  ❌ [16:30:40] TOO SHORT — 0 frames
+  ⚫ [16:30:40] Waiting... (frame #48)
+  ⚫ [16:30:40] Waiting... (frame #50)
+  ⚫ [16:30:40] Waiting... (frame #53)
+  ⚫ [16:30:40] Waiting... (frame #56)
+  ⚫ [16:30:40] Waiting... (frame #59)
+📥 Frame #60 from 127.0.0.1:51333 | size=65183
+🖼 Decoded frame #60 | shape=(480, 640, 3)
+🧠 Result #60 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 19}
+  [FRAME    60]  inference=25.0ms (avg30)  server_total=31.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [16:30:40] Waiting... (frame #62)
+  ⚫ [16:30:40] Waiting... (frame #65)
+  ⚫ [16:30:40] Waiting... (frame #68)
+  ⚫ [16:30:40] Waiting... (frame #71)
+  🟠 [16:30:40] HAND DETECTED — 1/2 needed
+  🟠 [16:30:40] HAND DETECTED — 2/2 needed
+  🟠 [16:30:40] HAND DETECTED — 3/2 needed
+  🟡 [16:30:40] COLLECTING... 1 frames
+  🟡 [16:30:41] COLLECTING... 3 frames
+  🟡 [16:30:41] COLLECTING... 6 frames
+  🟡 [16:30:41] COLLECTING... 9 frames
+  🟡 [16:30:41] COLLECTING... 12 frames
+📥 Frame #90 from 127.0.0.1:51333 | size=62819
+🖼 Decoded frame #90 | shape=(480, 640, 3)
+🧠 Result #90 | label=Collecting... | ready=False | debug={'collecting': True, 'frames_collected': 15, 'consec_hand': 18, 'consec_nohand': 0}
+  🟡 [16:30:41] COLLECTING... 15 frames
+  [FRAME    90]  inference=31.2ms (avg30)  server_total=37.5ms (avg30)  pred=Collecting...  ready=False
+  🟡 [16:30:41] COLLECTING... 18 frames
+
+  ✅ [16:30:41] PREDICTED → Please (91%)
+[GESTURE] Please | conf=91.3% | frames=0 | latency=32.0ms
+  ⚫ [16:30:41] Waiting... (frame #102)
+  ⚫ [16:30:41] Waiting... (frame #104)
+  ⚫ [16:30:42] Waiting... (frame #107)
+  ⚫ [16:30:42] Waiting... (frame #110)
+  ⚫ [16:30:42] Waiting... (frame #113)
+  ⚫ [16:30:42] Waiting... (frame #116)
+  ⚫ [16:30:42] Waiting... (frame #119)
+📥 Frame #120 from 127.0.0.1:51333 | size=62135
+🖼 Decoded frame #120 | shape=(480, 640, 3)
+🧠 Result #120 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 25}
+  [FRAME   120]  inference=23.0ms (avg30)  server_total=28.6ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [16:30:42] Waiting... (frame #122)
+  ⚫ [16:30:42] Waiting... (frame #125)
+  ⚫ [16:30:42] Waiting... (frame #128)
+  ⚫ [16:30:42] Waiting... (frame #131)
+  ⚫ [16:30:42] Waiting... (frame #134)
+  ⚫ [16:30:42] Waiting... (frame #137)
+  ⚫ [16:30:43] Waiting... (frame #140)
+  ⚫ [16:30:43] Waiting... (frame #143)
+  ⚫ [16:30:43] Waiting... (frame #146)
+  🟠 [16:30:43] HAND DETECTED — 1/2 needed
+  🟠 [16:30:43] HAND DETECTED — 2/2 needed
+  🟠 [16:30:43] HAND DETECTED — 3/2 needed
+📥 Frame #150 from 127.0.0.1:51333 | size=63783
+🖼 Decoded frame #150 | shape=(480, 640, 3)
+🧠 Result #150 | label=Collecting... | ready=False | debug={'collecting': True, 'frames_collected': 1, 'consec_hand': 4, 'consec_nohand': 0}
+  🟡 [16:30:43] COLLECTING... 1 frames
+  [FRAME   150]  inference=21.3ms (avg30)  server_total=34.4ms (avg30)  pred=Collecting...  ready=False
+  🟡 [16:30:43] COLLECTING... 3 frames
+  🟡 [16:30:43] COLLECTING... 6 frames
+  🟡 [16:30:43] COLLECTING... 9 frames
+  🟡 [16:30:43] COLLECTING... 12 frames
+  🟡 [16:30:43] COLLECTING... 15 frames
+
+  ✅ [16:30:44] PREDICTED → Like (65%)
+[GESTURE] Like | conf=65.3% | frames=0 | latency=16.0ms
+  ⚫ [16:30:44] Waiting... (frame #172)
+  ⚫ [16:30:44] Waiting... (frame #174)
+  ⚫ [16:30:44] Waiting... (frame #177)
+📥 Frame #180 from 127.0.0.1:51333 | size=60711
+🖼 Decoded frame #180 | shape=(480, 640, 3)
+🧠 Result #180 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 15}
+  ⚫ [16:30:44] Waiting... (frame #180)
+  [FRAME   180]  inference=29.7ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [16:30:44] Waiting... (frame #183)
+  ⚫ [16:30:44] Waiting... (frame #186)
+  ⚫ [16:30:44] Waiting... (frame #189)
+  ⚫ [16:30:44] Waiting... (frame #192)
+  ⚫ [16:30:44] Waiting... (frame #195)
+  ⚫ [16:30:44] Waiting... (frame #198)
+  ⚫ [16:30:45] Waiting... (frame #201)
+  ⚫ [16:30:45] Waiting... (frame #204)
+  ⚫ [16:30:45] Waiting... (frame #207)
+📥 Frame #210 from 127.0.0.1:51333 | size=58895
+🖼 Decoded frame #210 | shape=(480, 640, 3)
+🧠 Result #210 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 45}
+  ⚫ [16:30:45] Waiting... (frame #210)
+  [FRAME   210]  inference=18.2ms (avg30)  server_total=31.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [16:30:45] Waiting... (frame #213)
+  ⚫ [16:30:45] Waiting... (frame #216)
+  ⚫ [16:30:45] Waiting... (frame #219)
+  ⚫ [16:30:45] Waiting... (frame #222)
+  ⚫ [16:30:45] Waiting... (frame #225)
+  ⚫ [16:30:45] Waiting... (frame #228)
+  ⚫ [16:30:46] Waiting... (frame #231)
+  ⚫ [16:30:46] Waiting... (frame #234)
+  ⚫ [16:30:46] Waiting... (frame #237)
+
+  💬 [16:30:46] SENTENCE FINALIZED | -55.6 dBFS
+       Signs   : PLEASE LIKE
+       English : "Please. I like."
+       → Speaking through Pi speaker...
+
+Speaking: Please. I like.
+[TTS] "Please. I like." | latency=0.0ms | dB=-55.6 dBFS
+📥 Frame #240 from 127.0.0.1:51333 | size=60683
+🖼 Decoded frame #240 | shape=(480, 640, 3)
+🧠 Result #240 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 75}
+  ⚫ [16:30:46] Waiting... (frame #240)
+  [FRAME   240]  inference=21.4ms (avg30)  server_total=33.9ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [16:30:46] Waiting... (frame #243)
+  ⚫ [16:30:46] Waiting... (frame #246)
+  ⚫ [16:30:46] Waiting... (frame #249)
+  ⚫ [16:30:46] Waiting... (frame #252)
+  ⚫ [16:30:46] Waiting... (frame #255)
+  ⚫ [16:30:46] Waiting... (frame #258)
+  ⚫ [16:30:47] Waiting... (frame #261)
+  ⚫ [16:30:47] Waiting... (frame #264)
+  ⚫ [16:30:47] Waiting... (frame #267)
+📥 Frame #270 from 127.0.0.1:51333 | size=60303
+🖼 Decoded frame #270 | shape=(480, 640, 3)
+🧠 Result #270 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 105}
+  ⚫ [16:30:47] Waiting... (frame #270)
+  [FRAME   270]  inference=21.9ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [16:30:48] Waiting... (frame #273)
+  ⚫ [16:30:50] Waiting... (frame #276)
+  ⚫ [16:30:50] Waiting... (frame #279)
+  ⚫ [16:30:50] Waiting... (frame #282)
+  ⚫ [16:30:50] Waiting... (frame #285)
+  ⚫ [16:30:50] Waiting... (frame #288)
+  ⚫ [16:30:50] Waiting... (frame #291)
+  ⚫ [16:30:50] Waiting... (frame #294)
+  ⚫ [16:30:50] Waiting... (frame #297)
+📥 Frame #300 from 127.0.0.1:51333 | size=63151
+🖼 Decoded frame #300 | shape=(480, 640, 3)
+🧠 Result #300 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 135}
+  ⚫ [16:30:50] Waiting... (frame #300)
+  [FRAME   300]  inference=23.5ms (avg30)  server_total=114.1ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [16:30:50] Waiting... (frame #303)
+  ⚫ [16:30:50] Waiting... (frame #306)
+  ⚫ [16:30:51] Waiting... (frame #309)
+  ⚫ [16:30:51] Waiting... (frame #312)
+  ⚫ [16:30:51] Waiting... (frame #315)
+  ⚫ [16:30:51] Waiting... (frame #318)
+  ⚫ [16:30:51] Waiting... (frame #321)
+  ⚫ [16:30:51] Waiting... (frame #324)
+  ⚫ [16:30:51] Waiting... (frame #327)
+📥 Frame #330 from 127.0.0.1:51333 | size=64119
+🖼 Decoded frame #330 | shape=(480, 640, 3)
+🧠 Result #330 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 165}
+  ⚫ [16:30:51] Waiting... (frame #330)
+  [FRAME   330]  inference=19.8ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [16:30:51] Waiting... (frame #333)
+  ⚫ [16:30:51] Waiting... (frame #336)
+  ⚫ [16:30:52] Waiting... (frame #339)
+
+🔌 Disconnected: 127.0.0.1:51333 | frames=339 | gestures=2
+🔄 Gesture state reset
+
+  📡 Frame-level Stats (339 frames total)
+     Avg inference      : 23.09 ms
+     Avg server total   : 40.22 ms
+     P95 server total   : 47.00 ms
+     Avg gesture interval: 2281.00 ms
+INFO:     127.0.0.1:49692 - "GET /preview HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58512 - "WebSocket /ws/fsl-dynamic" [accepted]
+INFO:     connection open
+INFO:     connection closed
+
+📱 [DYNAMIC] Client connected: 127.0.0.1:58512
+============================================================
+🚀 Initializing FSL Dynamic Recognition System
+============================================================
+✅ Loaded label mapping: 35 labels
+📂 Loading model from: C:\Users\Mitch Lauren\Desktop\Legit Thesis\Echify-App\backend\models\lstm_dynamic_final\final_model_complete.pth
+📊 Model Info:
+   - Classes: 35
+   - Device:  cpu
+   - Test F1: 0.9873
+   - Architecture: hidden=128, layers=2, dropout=0.4, no attention
+✅ Initialization complete!
+============================================================
+
+📌 Model: {'status': 'ready', 'num_classes': 35, 'device': 'cpu', 'sequence_length': 30, 'segmentation': {'START_HAND_FRAMES': 4, 'END_NOHAND_FRAMES': 6, 'MIN_GESTURE_FRAMES': 12, 'COOLDOWN_SECONDS': 0.6}}
+[LOGGER] 🔗 Reconnect - flow=Sign→TTS client=127.0.0.1:58512
+
+=======================================================
+  🔍 LIVE STATUS LOG (prints only on change)
+  ⚫ = no hand   🟠 = hand seen   🟡 = collecting
+  ✅ = gesture predicted   💬 = sentence ready
+=======================================================
+
+
+🔌 Disconnected: 127.0.0.1:58512 | frames=0 | gestures=0
+🔄 Gesture state reset
+INFO:     127.0.0.1:55813 - "GET /preview HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59189 - "WebSocket /ws/fsl-dynamic" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     Shutting down

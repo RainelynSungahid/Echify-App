@@ -1,2 +1,18 @@
-::1 - - [25/Mar/2026 00:15:22] "GET / HTTP/1.1" 200 -
-::1 - - [25/Mar/2026 00:15:22] "GET /_expo/static/js/web/entry-fea0e3dfc5c7133e14c1d80247108960.js HTTP/1.1" 200 -
+::1 - - [27/Mar/2026 16:29:32] "GET / HTTP/1.1" 200 -
+::1 - - [27/Mar/2026 16:29:32] "GET /_expo/static/js/web/entry-6622c67783929ac210ae8f6377a6df54.js HTTP/1.1" 200 -
+::1 - - [27/Mar/2026 16:30:26] "GET / HTTP/1.1" 304 -
+::1 - - [27/Mar/2026 16:30:26] "GET /_expo/static/js/web/entry-6622c67783929ac210ae8f6377a6df54.js HTTP/1.1" 304 -
+::1 - - [27/Mar/2026 16:30:27] "GET /favicon.ico HTTP/1.1" 200 -
+::1 - - [27/Mar/2026 16:30:27] "GET / HTTP/1.1" 304 -
+::1 - - [27/Mar/2026 16:30:27] "GET / HTTP/1.1" 304 -
+::1 - - [27/Mar/2026 16:30:27] "GET / HTTP/1.1" 304 -
+::1 - - [27/Mar/2026 16:30:38] "GET / HTTP/1.1" 304 -
+::1 - - [27/Mar/2026 16:30:38] "GET /_expo/static/js/web/entry-6622c67783929ac210ae8f6377a6df54.js HTTP/1.1" 304 -
+::1 - - [27/Mar/2026 16:30:38] "GET /favicon.ico HTTP/1.1" 304 -
+::1 - - [27/Mar/2026 16:30:52] "GET / HTTP/1.1" 304 -
+::1 - - [27/Mar/2026 16:30:52] "GET /_expo/static/js/web/entry-6622c67783929ac210ae8f6377a6df54.js HTTP/1.1" 304 -
+::1 - - [27/Mar/2026 16:30:52] "GET /favicon.ico HTTP/1.1" 304 -
+::1 - - [27/Mar/2026 16:30:52] "GET / HTTP/1.1" 304 -
+Serving HTTP on :: port 3000 (http://[::]:3000/) ...
+
+Keyboard interrupt received, exiting.
