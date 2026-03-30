@@ -56,9 +56,9 @@ class SentenceBuilder:
             return None
 
         # skip immediate consecutive duplicates
-        if self.tokens and self.tokens[-1] == token:
-            self.last_token_time = now
-            return None
+        # if self.tokens and self.tokens[-1] == token:
+        #     self.last_token_time = now
+        #     return None
 
         self.tokens.append(token)
         self.last_token_time = now
@@ -112,142 +112,12 @@ class SentenceBuilder:
         if not toks:
             return ""
         
-        # Create token set for easy checking
+        # --- NEW LOGIC: Only use exact fixes if we have a small, unique set of words ---
+        # This allows repeats like MORNING MORNING to skip the "Exact Match" 
+        # and go to the fallback where they stay repeated.
         token_set = set(toks)
         
-        # Single object (like FRIEND, FAMILY, HOME)
-        if len(token_set) == 1 and next(iter(token_set)) in self.objects:
-            return next(iter(token_set)).capitalize()
-
-        # ── EXACT PATTERN MATCHING ──
-        # These patterns ONLY match if the signed words are EXACTLY these (order doesn't matter)
-        
-        # Single word responses
-        if token_set == {"YES"}:
-            return "Yes."
-        if token_set == {"NO"}:
-            return "No."
-        if token_set == {"GOOD"}:
-            return "Good."
-        if token_set == {"OKAY"}:
-            return "Okay."
-        if token_set == {"SORRY"}:
-            return "Sorry."
-        if token_set == {"THANKS"}:
-            return "Thanks."
-        if token_set == {"GOODBYE"}:
-            return "Goodbye!"
-        if token_set == {"HELLO"}:
-            return "Hello!"
-        
-        # Two word combinations
-        if token_set == {"YES", "GOOD"}:
-            return "Yes, good."
-        if token_set == {"GOOD", "MORNING"}:
-            return "Good morning!"
-        if token_set == {"THANK", "YOU"}:
-            return "Thank you."
-        
-        # Eating patterns (EXACT matches only)
-        if token_set == {"YES", "PLEASE", "I", "WANT", "EAT"}:
-            return "Yes, please. I want to eat."
-        if token_set == {"I", "WANT", "EAT", "PLEASE"}:
-            return "Please, I want to eat."
-        if token_set == {"I", "WANT", "EAT"}:
-            return "I want to eat."
-        if token_set == {"SORRY", "WHERE", "EAT"}:
-            return "Sorry, where can I eat?"
-        if token_set == {"WHERE", "EAT"}:
-            return "Where can I eat?"
-        
-        # Help patterns
-        if token_set == {"YES", "PLEASE", "YOU", "GO", "ME", "HOME"}:
-            return "Yes, please help me go home."
-        if token_set == {"YOU", "GO", "ME", "HOME"}:
-            return "Please help me go home."
-        if token_set == {"HELP", "ME"}:
-            return "Help me."
-        if token_set == {"PLEASE", "HELP", "ME"}:
-            return "Please help me."
-        
-        # Family/love patterns
-        if token_set == {"I", "LOVE", "FAMILY"}:
-            return "I love my family."
-        if token_set == {"YES", "I", "LOVE", "FAMILY"}:
-            return "Yes, I love my family."
-        
-        # Sleep patterns
-        if token_set == {"I", "WANT", "SLEEP"}:
-            return "I want to sleep."
-        if token_set == {"YES", "I", "WANT", "SLEEP"}:
-            return "Yes, I want to sleep."
-        
-        # Location patterns
-        if token_set == {"I", "FROM", "HERE"}:
-            return "I'm from here."
-        if token_set == {"WHERE", "HOME"}:
-            return "Where is my home?"
-        
-        # Goodbye patterns
-        if token_set == {"LOVE", "YOU", "GOODBYE"}:
-            return "I love you. Goodbye!"
-
-        # ── CUSTOM DATASET FIXES ──
-
-        # 1. GOOD MORNING WHAT NAME
-        if token_set == {"GOOD", "MORNING", "WHAT", "NAME"}:
-            return "Good morning. What is your name?"
-
-        # 2. WHO ME FRIEND
-        if token_set == {"WHO", "ME", "FRIEND"}:
-            return "Who is my friend?"
-
-        # 3. NO ME FAMILY
-        if token_set == {"NO", "ME", "FAMILY"}:
-            return "No. My family."
-
-        # 4. YES I LOVE ME FAMILY
-        if token_set == {"YES", "I", "LOVE", "ME", "FAMILY"}:
-            return "Yes. I love my family."
-
-        # 5. OKAY GOOD
-        if token_set == {"OKAY", "GOOD"}:
-            return "Okay, good."
-
-        # 6. YES WHAT YOU UNDERSTAND
-        if token_set == {"YES", "WHAT", "YOU", "UNDERSTAND"}:
-            return "Yes. What did you understand?"
-
-        # 7. I WANT HELP YOU
-        if token_set == {"I", "WANT", "HELP", "YOU"}:
-            return "I want to help you."
-
-        # 8. PLEASE THANKS NO
-        if token_set == {"PLEASE", "THANKS", "NO"}:
-            return "Please, don't say thanks."
-
-        # 9. THANKS FRIEND
-        if token_set == {"THANKS", "FRIEND"}:
-            return "Thanks, friend."
-
-        # 10. I WANT GO HOME
-        if token_set == {"I", "WANT", "GO", "HOME"}:
-            return "I want to go home."
-
-        # 11. I NO KNOW PLEASE GO ME
-        if token_set == {"I", "NO", "KNOW", "PLEASE", "GO", "ME"}:
-            return "I do not know. Please go with me."
-        
-        if "WHAT" in token_set and "NAME" in token_set:
-            return "Good morning. What is your name?" if "MORNING" in token_set else "What is your name?"
-        # ── FALLBACK: Intelligent construction (ONLY uses signed words) ──
-        return self.intelligent_construct(toks, token_set)
- 
-    # ─────────────────────────────────────────
-    # Intelligent Sentence Construction
-    # ─────────────────────────────────────────
-    def intelligent_construct(self, toks: List[str], token_set: Set[str]) -> str:
-        # 1. Phrase Mapping (Good Morning, Good Afternoon)
+        # 1. HANDLE GREETING/PHRASE PAIRING
         processed_toks = []
         skip_next = False
         for i in range(len(toks)):
@@ -259,131 +129,48 @@ class SentenceBuilder:
                 skip_next = True
             else: processed_toks.append(toks[i])
 
-        # 2. Lead-ins (Priority: HELLO first, then others)
-        lead_ins = []
-        if "HELLO" in processed_toks: lead_ins.append("Hello")
+        # 2. EXACT PATTERN MATCHING (ONLY if words aren't intentionally repeated)
+        # If the number of tokens is much larger than the set, user is repeating for emphasis.
+        if len(toks) == len(token_set):
+            # Politeness / Single Words
+            if token_set == {"YES"}: return "Yes."
+            if token_set == {"NO"}: return "No."
+            if token_set == {"GOOD"}: return "Good."
+            if token_set == {"OKAY"}: return "Okay."
+            if token_set == {"SORRY"}: return "Sorry."
+            if token_set == {"THANKS"}: return "Thank you."
+            if token_set == {"GOODBYE"}: return "Goodbye!"
+            if token_set == {"HELLO"}: return "Hello!"
+            if token_set == {"YES", "GOOD"}: return "Yes, good."
+            if token_set == {"THANK", "YOU"}: return "Thank you."
+            
+            # Custom Dataset Fixes
+            if token_set == {"WHAT", "NAME"} or token_set == {"WHAT", "YOU", "NAME"}: return "What is your name?"
+            if token_set == {"WHERE", "YOU", "FROM"} or token_set == {"WHERE", "FROM"}: return "Where are you from?"
+            if token_set == {"YES", "I", "FROM", "HERE"}: return "Yes, I'm from here."
+            if token_set == {"HOW", "YOU", "TODAY"}: return "How are you today?"
+            if token_set == {"WHO", "ME", "FRIEND"} or token_set == {"WHO", "I","FRIEND"}: return "Who is my friend?"
+            if token_set == {"NO", "ME", "FAMILY"} or token_set == {"NO", "I", "FAMILY"}: return "No. My family."
+            if token_set == {"I", "LOVE", "ME", "FAMILY"} or token_set == {"I", "LOVE", "FAMILY"}: return "I love my family."
+            if token_set == {"WHY", "YOU", "HERE"}: return "Why are you here?"
+            if token_set == {"I", "WANT", "EAT"}: return "I want to eat."
+            if token_set == {"WHAT", "YOU", "LIKE"}: return "What do you like?"
+            if token_set == {"OKAY", "GOOD"}: return "Okay, good."
+            if token_set == {"WHAT", "YOU", "UNDERSTAND"}: return "What did you understand?"
+            if token_set == {"I", "WANT", "HELP", "YOU"}: return "I want to help you."
+            if token_set == {"PLEASE", "THANKS", "NO"}: return "Please, don't say thanks."
+            if token_set == {"THANKS", "FRIEND"}: return "Thanks, friend."
+            if token_set == {"I", "WANT", "GO", "HOME"}: return "I want to go home."
+            if token_set == {"I", "NO", "KNOW"}: return "I do not know."
+            if token_set == {"PLEASE", "GO", "ME"}: return "Please go with me."
+            if token_set == {"I", "WANT", "SLEEP"}: return "I want to sleep."
+
+        # 3. FINAL FALLBACK (Strict formatting, preserves repeats)
+        # We don't filter lead-ins here so that repeated greetings stay repeated
+        result = " ".join(processed_toks).lower().capitalize()
         
-        special_leads = {"GOOD MORNING", "GOOD AFTERNOON", "YES", "NO", "SORRY", "PLEASE", "OKAY", "THANKS", "GOODBYE"}
-        for t in processed_toks:
-            if t in special_leads or t in self.greetings:
-                if t != "HELLO" and t.title() not in lead_ins:
-                    lead_ins.append(t.title())
-        
-        # 3. Core Content
-        core_toks = [t for t in processed_toks if t not in special_leads 
-                     and t not in self.greetings and t != "HELLO"]
-        
-        # 4. Clause Splitting (e.g., HELP ME | WANT GO HOME)
-        clauses = []
-        current_clause = []
-        for t in core_toks:
-            # Split if we see a new primary action or a question word
-            if current_clause and (t in {"HELP", "WANT", "GO", "UNDERSTAND"} or t in self.questions):
-                if any(v in self.verbs or v in self.questions for v in current_clause):
-                    clauses.append(current_clause)
-                    current_clause = []
-            current_clause.append(t)
-        if current_clause: clauses.append(current_clause)
-
-        # 5. Process Clauses
-        final_sentences = []
-        for clause in clauses:
-            q_word = next((t for t in clause if t in self.questions), None)
-            subj = next((t for t in clause if t in self.subjects), None)
-            if subj == "ME": subj = "I" # Treat ME as I in subject position
+        if not result.endswith((".", "!", "?")):
+            result += "."
             
-            # Verb Priority (LIKE, WANT, UNDERSTAND before EAT, GO)
-            raw_verbs = [t for t in clause if t in self.verbs]
-            priority = {"LIKE", "WANT", "LOVE", "NEED", "UNDERSTAND", "KNOW"}
-            v_list = [v for v in raw_verbs if v in priority] + [v for v in raw_verbs if v not in priority]
-            
-            objs = [t for t in clause if t not in self.subjects and t not in self.verbs and t not in self.questions]
-            
-            # NEGATION CHECK: If "NO" was in lead-ins and we have "KNOW" or "UNDERSTAND"
-            is_negated = "NO" in token_set and any(v in {"KNOW", "UNDERSTAND"} for v in v_list)
-
-            clause_str = ""
-            # A. HELP Request
-            if "HELP" in clause:
-                clause_str = "can you help me"
-            # B. Question Word Present
-            elif q_word:
-                q_parts = [q_word.title()]
-                conn = "do" if v_list else ("are" if subj == "YOU" else "is")
-                if subj: q_parts.extend([conn, subj.lower()])
-                if v_list:
-                    v_str = v_list[0].lower()
-                    if len(v_list) > 1: v_str += f" to {' and '.join([v.lower() for v in v_list[1:]])}"
-                    q_parts.append(v_str)
-                q_parts.extend([o.lower() for o in objs])
-                clause_str = " ".join(q_parts)
-            # C. Standard Statement
-            else:
-                parts = []
-                # Use "I'm" for "I GOOD" or "I GO EAT"
-                if subj == "I" and (not v_list or "GO" in v_list):
-                    parts.append("I'm")
-                elif subj:
-                    parts.append(subj.title() if subj != "I" else "I")
-                elif not subj and v_list: parts.append("I") # Default subject
-                
-                if v_list:
-                    main_v = v_list[0].lower()
-                    if is_negated: main_v = f"do not {main_v}"
-                    
-                    if "GO" in v_list and len(v_list) > 1:
-                        others = [v.lower() for v in v_list if v != "GO"]
-                        parts.append(f"going to {' and '.join(others)}")
-                    else:
-                        main_v_conj = self._conjugate_verb(v_list[0], subj if subj else "I")
-                        if is_negated: main_v_conj = f"do not {v_list[0].lower()}"
-                        if len(v_list) > 1:
-                            parts.append(f"{main_v_conj} to {' and '.join([v.lower() for v in v_list[1:]])}")
-                        else: parts.append(main_v_conj)
-                
-                parts.extend([o.lower() for o in objs])
-                clause_str = " ".join(parts)
-
-            # Punctuation
-            punc = "?" if (q_word or "HELP" in clause) else "."
-            final_sentences.append(clause_str.strip().capitalize() + punc)
-
-        # 6. Final Construction
-        lead_str = ", ".join(lead_ins)
-        if lead_str:
-            # If lead-ins exist, add them as a separate introductory sentence/phrase
-            lead_str += "."
-            
-        return (lead_str + " " + " ".join(final_sentences)).strip().replace("..", ".")
+        return result.replace("..", ".")
     
-    def _conjugate_verb(self, verb: str, subject: str) -> str:
-        """Conjugate verb based on subject with support for continuous 'ing' for certain actions"""
-        # If we are using the "I'm" contraction (handled in intelligent_construct), 
-        # some verbs sound better as gerunds.
-        use_ing = (subject == "I")
-        
-        mapping = {
-            "WANT": "want" if subject == "I" else "wants",
-            "LOVE": "love" if subject == "I" else "loves",
-            "LIKE": "like" if subject == "I" else "likes",
-            "NEED": "need" if subject == "I" else "needs",
-            "KNOW": "know" if subject == "I" else "knows",
-            "UNDERSTAND": "understand" if subject == "I" else "understands",
-            "EAT": "eating" if use_ing else ("eat" if subject == "I" else "eats"),
-            "SLEEP": "sleeping" if use_ing else ("sleep" if subject == "I" else "sleeps"),
-            "GO": "going" if use_ing else ("go" if subject == "I" else "goes"),
-            "HELP": "helping" if use_ing else ("help" if subject == "I" else "helps"),
-        }
-        return mapping.get(verb, verb.lower())
-    
-    def _to_gerund(self, verb: str) -> str:
-        """Convert verb to gerund (-ing form)"""
-        gerund_map = {
-            "EAT": "eating",
-            "SLEEP": "sleeping",
-            "GO": "going",
-            "HELP": "helping",
-            "LIKE": "liking",
-            "LOVE": "loving",
-        }
-        return gerund_map.get(verb, verb.lower() + "ing")

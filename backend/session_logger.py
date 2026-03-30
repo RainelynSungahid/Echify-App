@@ -8,8 +8,8 @@ ONE CSV FOR THE ENTIRE PI SESSION (boot → shutdown).
 The CSV is opened once when the server starts and is appended to for ALL
 subsequent WebSocket connections and flows:
 
-  Flow A - Sign → TTS  : GESTURE + TTS rows  (ws_fsl_dynamic_server.py)
-  Flow B - STT         : STT rows             (ws_stt_live.py)
+  Flow A — Sign → TTS  : GESTURE + TTS rows  (ws_fsl_dynamic_server.py)
+  Flow B — STT         : STT rows             (ws_stt_live.py)
   SOS                  : SOS rows             (main.py  /sos/trigger)
 
 Every WebSocket reconnect just appends rows to the SAME file.
@@ -21,7 +21,7 @@ Usage:
     from session_logger import global_logger
 
     global_logger.start()                          # called once in lifespan startup
-    global_logger.log_reconnect("Sign-TTS", cid)  # each WS connect
+    global_logger.log_reconnect("Sign→TTS", cid)  # each WS connect
     global_logger.log_gesture(...)
     global_logger.log_tts(...)
     global_logger.log_stt(...)
@@ -44,7 +44,7 @@ import atexit
 from datetime import datetime
 from pathlib import Path
 from threading import Lock
-from typing import Optional
+from typing import Optional, List, Tuple
 
 # ── Optional: WER ─────────────────────────────────────────────────────────────
 try:
@@ -52,7 +52,7 @@ try:
     WER_AVAILABLE = True
 except ImportError:
     WER_AVAILABLE = False
-    print("WARNING:  jiwer not installed - WER disabled. Run: pip install jiwer")
+    print("⚠️  jiwer not installed — WER disabled. Run: pip install jiwer")
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -88,9 +88,9 @@ def get_mic_dbfs(shared_mic) -> Optional[float]:
 
 class SessionLogger:
     """
-    Persistent logger - ONE CSV file for the Pi's entire runtime.
+    Persistent logger — ONE CSV file for the Pi's entire runtime.
 
-    All WebSocket connections (Sign-TTS and STT) share the same instance
+    All WebSocket connections (Sign→TTS and STT) share the same instance
     via the module-level `global_logger` singleton at the bottom of this file.
     """
 
@@ -107,11 +107,18 @@ class SessionLogger:
         "timestamp",
         "datetime",
 
-        # Sign → TTS flow
-        "predicted_label",
+        # Sign → TTS flow (TOP-3 predictions)
+        "predicted_label",           # Top 1 prediction
         "ground_truth",
         "is_correct",
-        "confidence",
+        "confidence",                # Top 1 confidence (softmax)
+        
+        # Top 2 and Top 3 predictions
+        "top2_label",
+        "top2_confidence",
+        "top3_label",
+        "top3_confidence",
+        
         "frames_collected",
         "inference_time_ms",
 
@@ -142,7 +149,7 @@ class SessionLogger:
         self.log_dir.mkdir(parents=True, exist_ok=True)
         self.shared_mic = shared_mic
 
-        # Filename is fixed at boot - never changes across reconnects
+        # Filename is fixed at boot — never changes across reconnects
         boot_ts            = datetime.now().strftime("%Y%m%d_%H%M%S")
         self._csv_path     = self.log_dir / f"session_{boot_ts}.csv"
         self._summary_path = self.log_dir / f"session_{boot_ts}_summary.json"
@@ -153,7 +160,7 @@ class SessionLogger:
         self._closed        = False
         self._boot_time     = time.monotonic()
 
-        # Aggregates - accumulate across ALL connections for the full summary
+        # Aggregates — accumulate across ALL connections for the full summary
         self._gesture_events: list = []
         self._tts_events:     list = []
         self._stt_events:     list = []
@@ -170,7 +177,7 @@ class SessionLogger:
     def start(self):
         """
         Open the CSV and write the BOOT row.
-        Idempotent - safe to call multiple times (only opens once).
+        Idempotent — safe to call multiple times (only opens once).
         Called once from main.py lifespan startup.
         """
         if self._started:
@@ -201,7 +208,7 @@ class SessionLogger:
         Lets you slice the CSV into individual connections in post-processing.
 
         Args:
-            flow      : "Sign-TTS" or "STT"
+            flow      : "Sign→TTS" or "STT"
             client_id : e.g. "192.168.1.5:50123"
         """
         self._ensure_started()
@@ -209,7 +216,7 @@ class SessionLogger:
             "event_type": self.EVENT_RECONNECT,
             "notes": f"RECONNECT flow={flow} client={client_id}",
         })
-        print(f"[LOGGER] 🔗 Reconnect - flow={flow} client={client_id}")
+        print(f"[LOGGER] 🔗 Reconnect — flow={flow} client={client_id}")
 
     def close(self):
         """
@@ -251,10 +258,24 @@ class SessionLogger:
         confidence: float,
         frames_collected: int,
         inference_time_ms: float,
+        top_predictions: Optional[List[Tuple[str, float]]] = None,
         ground_truth: str = None,
         notes: str = "",
     ):
-        """Log a single FSL gesture recognition event (Sign → TTS flow)."""
+        """
+        Log a single FSL gesture recognition event (Sign → TTS flow).
+        
+        Args:
+            predicted_label   : Top 1 prediction (label)
+            confidence        : Top 1 confidence (softmax probability)
+            frames_collected  : Number of frames in this gesture
+            inference_time_ms : Inference latency in milliseconds
+            top_predictions   : List of (label, confidence) tuples for top 3.
+                                Format: [(label1, conf1), (label2, conf2), (label3, conf3)]
+                                If None, only top-1 is logged.
+            ground_truth      : Ground truth label (optional, for accuracy)
+            notes             : Free-text notes
+        """
         self._ensure_started()
 
         is_correct = None
@@ -263,12 +284,30 @@ class SessionLogger:
                 predicted_label.strip().upper() == ground_truth.strip().upper()
             )
 
+        # Extract top 2 and top 3 from top_predictions list
+        top2_label = ""
+        top2_conf = ""
+        top3_label = ""
+        top3_conf = ""
+        
+        if top_predictions and len(top_predictions) >= 2:
+            top2_label = top_predictions[1][0]
+            top2_conf = f"{top_predictions[1][1]:.4f}"
+        
+        if top_predictions and len(top_predictions) >= 3:
+            top3_label = top_predictions[2][0]
+            top3_conf = f"{top_predictions[2][1]:.4f}"
+
         row = {
             "event_type":        self.EVENT_GESTURE,
             "predicted_label":   predicted_label,
             "ground_truth":      ground_truth or "",
             "is_correct":        "" if is_correct is None else str(is_correct),
             "confidence":        f"{confidence:.4f}",
+            "top2_label":        top2_label,
+            "top2_confidence":   top2_conf,
+            "top3_label":        top3_label,
+            "top3_confidence":   top3_conf,
             "frames_collected":  frames_collected,
             "inference_time_ms": f"{inference_time_ms:.2f}",
             "notes":             notes,
@@ -276,21 +315,28 @@ class SessionLogger:
         self._write_row(row)
 
         self._gesture_events.append({
-            "predicted":    predicted_label,
-            "ground_truth": ground_truth,
-            "is_correct":   is_correct,
-            "confidence":   confidence,
-            "frames":       frames_collected,
-            "inference_ms": inference_time_ms,
+            "predicted":       predicted_label,
+            "ground_truth":    ground_truth,
+            "is_correct":      is_correct,
+            "confidence":      confidence,
+            "top_predictions": top_predictions,
+            "frames":          frames_collected,
+            "inference_ms":    inference_time_ms,
         })
 
         correct_str = ""
         if is_correct is not None:
             correct_str = " ✅" if is_correct else " ❌"
+        
+        # Enhanced print with top-3
+        top3_str = ""
+        if top_predictions and len(top_predictions) >= 3:
+            top3_str = f" | Top3: {top_predictions[0][0]}({top_predictions[0][1]:.1%}), {top_predictions[1][0]}({top_predictions[1][1]:.1%}), {top_predictions[2][0]}({top_predictions[2][1]:.1%})"
+        
         print(
             f"[GESTURE] {predicted_label}{correct_str} | "
             f"conf={confidence:.1%} | frames={frames_collected} | "
-            f"latency={inference_time_ms:.1f}ms"
+            f"latency={inference_time_ms:.1f}ms{top3_str}"
         )
 
     def log_tts(
@@ -473,12 +519,24 @@ class SessionLogger:
         inf_times   = [e["inference_ms"] for e in self._gesture_events]
         confidences = [e["confidence"]   for e in self._gesture_events]
         frames_list = [e["frames"]       for e in self._gesture_events]
+        
+        # Top-3 accuracy: check if ground truth is in top 3
+        top3_correct = []
+        for e in with_truth:
+            if e["top_predictions"] and len(e["top_predictions"]) >= 3:
+                gt = e["ground_truth"].strip().upper() if e["ground_truth"] else ""
+                top3_labels = [pred[0].strip().upper() for pred in e["top_predictions"][:3]]
+                if gt in top3_labels:
+                    top3_correct.append(e)
+        
+        top3_accuracy = len(top3_correct) / len(with_truth) if with_truth else None
 
         gesture_summary = {
             "total_predictions":    len(self._gesture_events),
             "evaluated_with_truth": len(with_truth),
             "correct":              len(correct),
             "accuracy_percent":     round(accuracy * 100, 2) if accuracy is not None else "N/A",
+            "top3_accuracy_percent": round(top3_accuracy * 100, 2) if top3_accuracy is not None else "N/A",
             "inference_latency_ms": {
                 "mean":   round(self._safe_avg(inf_times), 2),
                 "median": round(self._safe_median(inf_times), 2),
@@ -591,7 +649,8 @@ class SessionLogger:
 
         print(f"\n  🤟 Gesture Recognition  [Sign → TTS]")
         print(f"     Total predictions : {g['total_predictions']}")
-        print(f"     Accuracy          : {g['accuracy_percent']}%")
+        print(f"     Top-1 Accuracy    : {g['accuracy_percent']}%")
+        print(f"     Top-3 Accuracy    : {g['top3_accuracy_percent']}%")
         print(f"     Avg inference     : {g['inference_latency_ms']['mean']}ms")
         print(f"     P95 inference     : {g['inference_latency_ms']['p95']}ms")
         print(f"     Avg confidence    : {g['confidence']['mean']:.1%}")
@@ -630,7 +689,7 @@ class SessionLogger:
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# Global singleton - import this in ALL server files
+# Global singleton — import this in ALL server files
 # ─────────────────────────────────────────────────────────────────────────────
 
 # SharedMic is wired in by main.py after it imports shared_mic itself.

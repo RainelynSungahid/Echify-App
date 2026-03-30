@@ -77,7 +77,6 @@ def _decode_frame_sync(frame_b64: str):
         print(f"❌ Frame decode error: {e}")
         return None
 
-
 @router.websocket("/ws/fsl-dynamic")
 async def fsl_dynamic_endpoint(websocket: WebSocket):
     global _inference_busy
@@ -254,6 +253,12 @@ async def fsl_dynamic_endpoint(websocket: WebSocket):
                 label = result.get("top1_label", "UNKNOWN")
                 conf  = result.get("top1_conf", 0.0)
 
+                top3_labels = result.get("top3_labels", [])
+                top3_confs  = result.get("top3_confs", [])
+
+                # Combine into [(label, confidence), ...]
+                top3 = list(zip(top3_labels, top3_confs))
+                
                 now_ts = time.monotonic()
                 if last_gesture_time is not None:
                     gesture_intervals.append((now_ts - last_gesture_time) * 1000)
@@ -265,6 +270,7 @@ async def fsl_dynamic_endpoint(websocket: WebSocket):
                     confidence=conf,
                     frames_collected=frames_in_seg,
                     inference_time_ms=inference_ms,
+                    top_predictions=top3,  # ✅ THIS IS THE MISSING PART
                     ground_truth=None,
                     notes=f"frame_no={frame_count}|client={client_id}"
                 )
