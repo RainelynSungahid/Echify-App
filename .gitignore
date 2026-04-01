@@ -1,6 +1,7 @@
 /node_modules
 *.ts
 /venv
+
 *.pyc
 *.csv
 *.json
@@ -23,3 +24,4 @@ backend/src/camera/__pycache__/shared_camera.cpython-310.pyc
 backend/src/routes/__pycache__/preview.cpython-310.pyc
 backend/src/tts/__pycache__/tts_engine.cpython-310.pyc
 backend/src/tts/__pycache__/tts_engine.cpython-310.pyc
+
