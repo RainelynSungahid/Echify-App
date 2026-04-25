@@ -1,11 +1,11 @@
-#shared_camera.py
+# shared_camera.py
 import cv2
 import threading
 import time
 
 
 class SharedCamera:
-    def __init__(self, device=1):  # 0 = default laptop webcam
+    def __init__(self, device=0):  # 0 = default laptop webcam
         self.device = device
         self.cap = None
         self.frame = None
@@ -23,7 +23,8 @@ class SharedCamera:
             if self.cap.isOpened():
                 break
 
-            print(f"Warning: Camera open failed on device {self.device}, retry {attempt + 1}/{retries}")
+            print(
+                f"Warning: Camera open failed on device {self.device}, retry {attempt + 1}/{retries}")
             time.sleep(1)
 
         if self.cap is None or not self.cap.isOpened():
@@ -60,4 +61,4 @@ class SharedCamera:
         print("Shared camera stopped")
 
 
-shared_camera = SharedCamera(1)  # 0 = default laptop webcam
+shared_camera = SharedCamera(0)  # 0 = default laptop webcam

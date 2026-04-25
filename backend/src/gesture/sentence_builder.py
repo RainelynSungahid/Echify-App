@@ -19,25 +19,16 @@ class SentenceBuilder:
             "UNDERSTAND", "KNOW", "LIKE", "LOVE", "NEED"
         }
 
-        self.dataset_words = {
-            "HELLO", "PLEASE", "THANKS", "SORRY", "GOODBYE", "MORNING", "AFTERNOON",
-            "WANT", "HELP", "GO", "EAT", "SLEEP", "UNDERSTAND", "KNOW", "LIKE", "LOVE", "NEED",
-            "HOW", "WHAT", "WHERE", "WHY", "WHO",
-            "I", "YOU", "ME", "FRIEND", "FAMILY",
-            "YES", "NO", "OKAY", "GOOD", "BAD",
-            "TODAY",
-            "HOME", "HERE", "FROM",
-            "NAME", "FOOD", "GOOD MORNING", "GOOD AFTERNOON"
-        }
-
         self.standalone_phrases = {
-            "HELLO", "GOODBYE", "THANKS", "SORRY", "YES", "NO", "OKAY", "GOOD",
+            "HELLO", "GOODBYE", "THANKS", "SORRY",
+            "YES", "NO", "OKAY", "GOOD",
             "GOOD MORNING", "GOOD AFTERNOON"
         }
 
         self.ignore_tokens = {
             "WAITING", "COLLECTING...", "BUFFERING...", "UNKNOWN",
-            "WAITING...", "SIGNING...", "TOO SHORT / IGNORED", "", "COLLECTING..."
+            "WAITING...", "SIGNING...", "TOO SHORT / IGNORED",
+            "", "COLLECTING..."
         }
 
         self.word_map = {
@@ -81,6 +72,9 @@ class SentenceBuilder:
             "GOOD AFTERNOON": "good afternoon",
         }
 
+    # ------------------------------------------------------------
+    # Token collection
+    # ------------------------------------------------------------
     def add_token(self, token: str) -> Optional[Tuple[str, str]]:
         now = time.time()
         token = token.strip().upper()
@@ -88,10 +82,7 @@ class SentenceBuilder:
         if token in self.ignore_tokens:
             return None
 
-        if self.tokens and self.tokens[-1] == token:
-            self.last_token_time = now
-            return None
-
+        # Allows repeated words like HELLO HELLO HELLO
         self.tokens.append(token)
         self.last_token_time = now
 
@@ -131,6 +122,9 @@ class SentenceBuilder:
         self.pause_start_time = None
         self.last_token_time = None
 
+    # ------------------------------------------------------------
+    # Main expansion
+    # ------------------------------------------------------------
     def expand(self, raw: str) -> str:
         toks = [t for t in raw.upper().split() if t]
         if not toks:
@@ -141,7 +135,8 @@ class SentenceBuilder:
 
         rendered = []
         for i, chunk in enumerate(chunks):
-            out = self._render_single_chunk(chunk, is_last=(i == len(chunks) - 1))
+            out = self._render_single_chunk(
+                chunk, is_last=(i == len(chunks) - 1))
             if out:
                 rendered.append(out)
 
@@ -150,6 +145,7 @@ class SentenceBuilder:
     def _merge_phrases(self, toks: List[str]) -> List[str]:
         merged = []
         i = 0
+
         while i < len(toks):
             if toks[i] == "GOOD" and i + 1 < len(toks) and toks[i + 1] in {"MORNING", "AFTERNOON"}:
                 merged.append(f"GOOD {toks[i + 1]}")
@@ -157,8 +153,12 @@ class SentenceBuilder:
             else:
                 merged.append(toks[i])
                 i += 1
+
         return merged
 
+    # ------------------------------------------------------------
+    # Chunk splitting
+    # ------------------------------------------------------------
     def _split_into_chunks(self, toks: List[str]) -> List[List[str]]:
         if not toks:
             return []
@@ -208,7 +208,7 @@ class SentenceBuilder:
         if chunk[0] in self.question_words and len(chunk) >= 2:
             return True
 
-        if token_set in [
+        known_patterns = [
             {"I", "NO", "KNOW"},
             {"NO", "KNOW"},
             {"I", "FROM", "HERE"},
@@ -218,7 +218,10 @@ class SentenceBuilder:
             {"I", "LOVE", "YOU"},
             {"LOVE", "YOU"},
             {"I", "LOVE", "FAMILY"},
+            {"I", "LOVE", "ME", "FAMILY"},
             {"LOVE", "FAMILY"},
+            {"LOVE", "ME", "FAMILY"},
+            {"ME", "NAME"},
             {"I", "WANT", "HELP"},
             {"WANT", "HELP"},
             {"I", "WANT", "HELP", "YOU"},
@@ -231,7 +234,9 @@ class SentenceBuilder:
             {"I", "WANT", "GO", "HOME"},
             {"WANT", "GO", "HOME"},
             {"GO", "HOME"},
-        ]:
+        ]
+
+        if token_set in known_patterns:
             return True
 
         return len(chunk) >= 3
@@ -241,6 +246,7 @@ class SentenceBuilder:
             return []
 
         merged: List[List[str]] = []
+
         for chunk in chunks:
             if not merged:
                 merged.append(chunk)
@@ -254,8 +260,16 @@ class SentenceBuilder:
         return merged
 
     def _is_weak_chunk(self, chunk: List[str]) -> bool:
-        return bool(chunk) and len(chunk) == 1 and chunk[0] not in self.standalone_phrases and chunk[0] not in self.question_words
+        return (
+            bool(chunk)
+            and len(chunk) == 1
+            and chunk[0] not in self.standalone_phrases
+            and chunk[0] not in self.question_words
+        )
 
+    # ------------------------------------------------------------
+    # Rendering
+    # ------------------------------------------------------------
     def _render_single_chunk(self, chunk: List[str], is_last: bool = False) -> str:
         exact = self._render_exact(chunk, is_last=is_last)
         if exact:
@@ -270,27 +284,31 @@ class SentenceBuilder:
     def _render_exact(self, chunk: List[str], is_last: bool = False) -> Optional[str]:
         token_set = set(chunk)
 
-        if chunk == ["HELLO"]:
-            return "Hello!"
-        if chunk == ["GOODBYE"]:
-            return "Goodbye!"
+        # Repeated standalone words
+        if all(tok == "HELLO" for tok in chunk):
+            return " ".join(["Hello!"] * len(chunk))
+        if all(tok == "GOODBYE" for tok in chunk):
+            return " ".join(["Goodbye!"] * len(chunk))
+        if all(tok == "THANKS" for tok in chunk):
+            return " ".join(["Thank you."] * len(chunk))
+        if all(tok == "SORRY" for tok in chunk):
+            return " ".join(["Sorry."] * len(chunk))
+        if all(tok == "YES" for tok in chunk):
+            return " ".join(["Yes."] * len(chunk))
+        if all(tok == "NO" for tok in chunk):
+            return " ".join(["No."] * len(chunk))
+        if all(tok == "OKAY" for tok in chunk):
+            return " ".join(["Okay."] * len(chunk))
+        if all(tok == "GOOD" for tok in chunk):
+            return " ".join(["Good."] * len(chunk))
+
+        # Standalone
         if chunk == ["GOOD MORNING"]:
             return "Good morning!"
         if chunk == ["GOOD AFTERNOON"]:
             return "Good afternoon!"
-        if chunk == ["THANKS"]:
-            return "Thank you."
-        if chunk == ["SORRY"]:
-            return "Sorry."
-        if chunk == ["YES"]:
-            return "Yes."
-        if chunk == ["NO"]:
-            return "No."
-        if chunk == ["OKAY"]:
-            return "Okay?" if is_last else "Okay."
-        if chunk == ["GOOD"]:
-            return "Good."
 
+        # Questions
         if token_set == {"WHAT", "NAME"} or token_set == {"WHAT", "YOU", "NAME"}:
             return "What is your name?"
         if token_set == {"WHERE", "FROM"} or token_set == {"WHERE", "YOU", "FROM"}:
@@ -306,6 +324,15 @@ class SentenceBuilder:
         if token_set == {"WHAT", "UNDERSTAND"} or token_set == {"WHAT", "YOU", "UNDERSTAND"}:
             return "What did you understand?"
 
+        # ME -> MY cases
+        if token_set == {"ME", "NAME"}:
+            return "My name."
+        if token_set == {"I", "LOVE", "ME", "FAMILY"}:
+            return "I love my family."
+        if token_set == {"LOVE", "ME", "FAMILY"}:
+            return "Love my family."
+
+        # Statements
         if token_set == {"I", "NO", "KNOW"}:
             return "I do not know."
         if token_set == {"NO", "KNOW"}:
@@ -354,6 +381,7 @@ class SentenceBuilder:
         if token_set == {"GO", "HOME"}:
             return "Go home."
 
+        # YES-prefixed statements
         if token_set == {"YES", "I", "WANT", "SLEEP"}:
             return "Yes. I want to sleep."
         if token_set == {"YES", "WANT", "SLEEP"}:
@@ -374,7 +402,8 @@ class SentenceBuilder:
             return "Yes. I want to help you."
         if token_set == {"YES", "WANT", "HELP", "YOU"}:
             return "Yes. Want to help you."
-
+        if token_set == {"YES", "I", "LOVE", "ME", "FAMILY"}:
+            return "Yes. I love my family."
         if token_set == {"YES", "I", "FROM", "HERE"}:
             return "Yes, I'm from here."
         if token_set == {"I", "FROM", "HERE"}:
@@ -392,8 +421,12 @@ class SentenceBuilder:
             ({"WHERE", "FROM"}, "Where are you from?"),
             ({"WHY", "YOU", "HERE"}, "Why are you here?"),
             ({"WHY", "HERE"}, "Why are you here?"),
+            ({"WHO", "ME", "FRIEND"}, "Who is my friend?"),
             ({"HOW", "YOU", "TODAY"}, "How are you today?"),
             ({"HOW", "YOU"}, "How are you?"),
+            ({"ME", "NAME"}, "My name."),
+            ({"I", "LOVE", "ME", "FAMILY"}, "I love my family."),
+            ({"LOVE", "ME", "FAMILY"}, "Love my family."),
             ({"I", "NO", "KNOW"}, "I do not know."),
             ({"NO", "KNOW"}, "Do not know."),
             ({"PLEASE", "GO", "ME"}, "Please go with me."),
@@ -420,7 +453,8 @@ class SentenceBuilder:
         best_score = 0.0
 
         for expected_set, output in candidates:
-            score = self._grammar_similarity_score(token_set, expected_set, output)
+            score = self._grammar_similarity_score(
+                token_set, expected_set, output)
             if score > best_score:
                 best_score = score
                 best_output = output
@@ -442,15 +476,22 @@ class SentenceBuilder:
             score += 0.08
         if "WANT" in chunk_set and "want" in output.lower():
             score += 0.08
+        if "ME" in chunk_set and "my" in output.lower():
+            score += 0.08
 
         return score
 
+    # ------------------------------------------------------------
+    # Strict grammar fallback
+    # ------------------------------------------------------------
     def _grammar_fallback_strict(self, chunk: List[str], is_last: bool = False) -> str:
         if not chunk:
             return ""
 
         if chunk[0] in self.question_words:
-            return self._literal_render(chunk, force_question=True)
+            transformed = self._reorder_without_adding_dataset_words(chunk)
+            text = " ".join(transformed).capitalize()
+            return text + "?"
 
         token_set = set(chunk)
         yes_prefix = "YES" in token_set
@@ -485,6 +526,7 @@ class SentenceBuilder:
 
         token_set = set(chunk)
 
+        # Specific safe transforms
         if token_set == {"LOVE", "YOU"}:
             return ["love", "you"]
         if token_set == {"I", "LOVE", "YOU"} or chunk == ["LOVE", "I", "YOU"]:
@@ -497,6 +539,7 @@ class SentenceBuilder:
 
         if token_set == {"GO", "ME"}:
             return ["go", "with", "me"]
+
         if token_set == {"WANT", "SLEEP"}:
             return ["want", "to", "sleep"]
         if token_set == {"I", "WANT", "SLEEP"}:
@@ -523,6 +566,7 @@ class SentenceBuilder:
         if token_set == {"I", "WANT", "HELP", "YOU"}:
             return ["I", "want", "to", "help", "you"]
 
+        # General subject-verb-object reorder
         subject = None
         verb = None
         remainder = []
@@ -537,15 +581,27 @@ class SentenceBuilder:
 
         if subject and verb:
             if verb == "want" and remainder:
-                return [subject, "want"] + remainder
-            return [subject, verb] + remainder
-
-        if verb and remainder:
+                base = [subject, "want"] + remainder
+            else:
+                base = [subject, verb] + remainder
+        elif verb and remainder:
             if verb == "want":
-                return ["want"] + remainder
-            return [verb] + remainder
+                base = ["want"] + remainder
+            else:
+                base = [verb] + remainder
+        else:
+            base = [self.word_map.get(tok, tok.lower()) for tok in chunk]
 
-        return [self.word_map.get(tok, tok.lower()) for tok in chunk]
+        # ME -> MY when before a noun-like word
+        converted = []
+        for i, word in enumerate(base):
+            if word == "me" and i + 1 < len(base):
+                next_word = base[i + 1]
+                if next_word in {"name", "family", "friend", "home", "food"}:
+                    word = "my"
+            converted.append(word)
+
+        return converted
 
     def _literal_render(self, chunk: List[str], force_question: bool = False) -> str:
         words = [self.word_map.get(tok, tok.lower()) for tok in chunk]
