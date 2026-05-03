@@ -4,25 +4,34 @@ import sys
 def speak(text: str):
     if not text or not text.strip():
         return
+    
 
     def _run():
         try:
             print(f"Speaking: {text}")
             if sys.platform == "win32":
-                # Use Windows built-in TTS (no install needed)
                 import subprocess
                 subprocess.run(
                     ["powershell", "-Command",
-                     f'Add-Type -AssemblyName System.Speech; '
-                     f'$s = New-Object System.Speech.Synthesis.SpeechSynthesizer; '
-                     f'$s.Speak("{text}")'],
+                    f'Add-Type -AssemblyName System.Speech; '
+                    f'$s = New-Object System.Speech.Synthesis.SpeechSynthesizer; '
+                    f'$s.Rate = -2; '   # ← was 0, now slower (-10 is slowest)
+                    f'$s.Volume = 100; '       # Volume: 0–100
+                    f'$s.SelectVoiceByHints([System.Speech.Synthesis.VoiceGender]::Female); '  # Female voice (sounds clearer)
+                    f'$s.Speak("{text}")'],
                     check=False,
                     capture_output=True
                 )
             else:
                 # Pi/Linux: use espeak
-                import subprocess
-                subprocess.run(["espeak", text], check=False)
+                subprocess.run([
+                    "espeak",
+                    "-v", "en-us",
+                    "-s", "100",     # ← was 130, now slower
+                    "-p", "50",
+                    "-a", "200",
+                    text
+                ], check=False)
         except Exception as e:
             print(f"TTS error: {e}")
 

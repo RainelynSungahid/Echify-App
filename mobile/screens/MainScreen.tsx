@@ -50,12 +50,12 @@ export default function MainScreen() {
     Animated.parallel([
       Animated.timing(sentenceFade, {
         toValue: 1,
-        duration: 380,
+        duration: 200,
         useNativeDriver: true,
       }),
       Animated.timing(sentenceSlide, {
         toValue: 0,
-        duration: 380,
+        duration: 200,
         useNativeDriver: true,
       }),
     ]).start();
@@ -64,7 +64,7 @@ export default function MainScreen() {
   const animateSentenceOut = (onDone: () => void) => {
     Animated.timing(sentenceOut, {
       toValue: 0,
-      duration: 500,
+      duration: 480,
       useNativeDriver: true,
     }).start(onDone);
   };
