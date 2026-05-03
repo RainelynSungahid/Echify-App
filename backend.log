@@ -1,20 +1,96 @@
-INFO:     Started server process [27780]
+INFO:     Started server process [22928]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
 INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+ > tts_models/en/ljspeech/tacotron2-DDC is already downloaded.
+ > vocoder_models/en/ljspeech/hifigan_v2 is already downloaded.
+ > Using model: Tacotron2
+ > Setting up Audio Processor...
+ | > sample_rate:22050
+ | > resample:False
+ | > num_mels:80
+ | > log_func:np.log
+ | > min_level_db:-100
+ | > frame_shift_ms:None
+ | > frame_length_ms:None
+ | > ref_level_db:20
+ | > fft_size:1024
+ | > power:1.5
+ | > preemphasis:0.0
+ | > griffin_lim_iters:60
+ | > signal_norm:False
+ | > symmetric_norm:True
+ | > mel_fmin:0
+ | > mel_fmax:8000.0
+ | > pitch_fmin:1.0
+ | > pitch_fmax:640.0
+ | > spec_gain:1.0
+ | > stft_pad_mode:reflect
+ | > max_norm:4.0
+ | > clip_norm:True
+ | > do_trim_silence:True
+ | > trim_db:60
+ | > do_sound_norm:False
+ | > do_amp_to_db_linear:True
+ | > do_amp_to_db_mel:True
+ | > do_rms_norm:False
+ | > db_level:None
+ | > stats_path:None
+ | > base:2.718281828459045
+ | > hop_length:256
+ | > win_length:1024
+ > Model's reduction rate `r` is set to: 1
+ > Vocoder Model: hifigan
+ > Setting up Audio Processor...
+ | > sample_rate:22050
+ | > resample:False
+ | > num_mels:80
+ | > log_func:np.log
+ | > min_level_db:-100
+ | > frame_shift_ms:None
+ | > frame_length_ms:None
+ | > ref_level_db:20
+ | > fft_size:1024
+ | > power:1.5
+ | > preemphasis:0.0
+ | > griffin_lim_iters:60
+ | > signal_norm:False
+ | > symmetric_norm:True
+ | > mel_fmin:0
+ | > mel_fmax:8000.0
+ | > pitch_fmin:1.0
+ | > pitch_fmax:640.0
+ | > spec_gain:1.0
+ | > stft_pad_mode:reflect
+ | > max_norm:4.0
+ | > clip_norm:True
+ | > do_trim_silence:False
+ | > trim_db:60
+ | > do_sound_norm:False
+ | > do_amp_to_db_linear:True
+ | > do_amp_to_db_mel:True
+ | > do_rms_norm:False
+ | > db_level:None
+ | > stats_path:None
+ | > base:2.718281828459045
+ | > hop_length:256
+ | > win_length:1024
+ > Generator Model: hifigan_generator
+ > Discriminator Model: hifigan_discriminator
+Removing weight norm...
 🔊 Loading faster-whisper small.en on cpu
 
 ============================================================
 📋 SESSION LOGGER STARTED  (one CSV for entire Pi session)
-   CSV     : logs\session_20260503_224017.csv
-   Summary : logs\session_20260503_224017_summary.json
+   CSV     : logs\session_20260504_014815.csv
+   Summary : logs\session_20260504_014815_summary.json
    Mic dB  : enabled
 ============================================================
 
 ============================================================
 🚀 FSL Communication System — Server Started
-   Session ID : 20260503_224025
-   CSV log    : logs\session_20260503_224017.csv
+   Session ID : 20260504_014817
+   CSV log    : logs\session_20260504_014815.csv
 ============================================================
 Shared camera started on device index 0
 🎤 Available audio devices:
@@ -43,17 +119,3438 @@ Shared camera started on device index 0
 ✅ Using microphone device: system default
 ✅ Shared microphone started
 🔊 Loading faster-whisper tiny.en on cpu
-INFO:     127.0.0.1:52758 - "GET /preview HTTP/1.1" 200 OK
-INFO:     127.0.0.1:62056 - "WebSocket /ws/fsl-dynamic" [accepted]
+INFO:     127.0.0.1:51731 - "GET /preview HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57999 - "WebSocket /ws/fsl-dynamic" [accepted]
 INFO:     connection open
 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
-INFO:     connection closed
-INFO:     127.0.0.1:52332 - "WebSocket /ws/stt-live" [accepted]
-INFO:     connection open
-INFO:     connection closed
-INFO:     127.0.0.1:55139 - "WebSocket /ws/fsl-dynamic" [accepted]
-INFO:     connection open
-INFO:     connection closed
-INFO:     127.0.0.1:56049 - "WebSocket /ws/stt-live" [accepted]
-INFO:     connection open
+
+📱 [DYNAMIC] Client connected: 127.0.0.1:57999
+============================================================
+🚀 Initializing FSL Dynamic Recognition System
+============================================================
+✅ Loaded label mapping: 35 labels
+📂 Loading model from: D:\THESIS-SMS\Echify-App\backend\models\lstm_dynamic_final\final_model_complete.pth
+📊 Model Info:
+   - Classes: 35
+   - Device:  cpu
+   - Test F1: 0.9873
+   - Architecture: hidden=128, layers=2, dropout=0.4, no attention
+✅ Initialization complete!
+============================================================
+
+📌 Model: {'status': 'ready', 'num_classes': 35, 'device': 'cpu', 'sequence_length': 30, 'segmentation': {'START_HAND_FRAMES': 4, 'END_NOHAND_FRAMES': 6, 'MIN_GESTURE_FRAMES': 12, 'COOLDOWN_SECONDS': 0.6}}
+[LOGGER] 🔗 Reconnect — flow=Sign→TTS client=127.0.0.1:57999
+
+=======================================================
+  🔍 LIVE STATUS LOG (prints only on change)
+  ⚫ = no hand   🟠 = hand seen   🟡 = collecting
+  ✅ = gesture predicted   💬 = sentence ready
+=======================================================
+
+📥 Frame #1 from 127.0.0.1:57999 | size=29955
+🖼 Decoded frame #1 | shape=(480, 640, 3)
+🧠 Result #1 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 1, 'hands_detected': False}
+  ⚫ [01:48:42] Waiting... (frame #1)
+📥 Frame #2 from 127.0.0.1:57999 | size=29955
+🖼 Decoded frame #2 | shape=(480, 640, 3)
+🧠 Result #2 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 2, 'hands_detected': False}
+📥 Frame #3 from 127.0.0.1:57999 | size=29955
+🖼 Decoded frame #3 | shape=(480, 640, 3)
+🧠 Result #3 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 3, 'hands_detected': False}
+  ⚫ [01:48:42] Waiting... (frame #3)
+📥 Frame #4 from 127.0.0.1:57999 | size=30107
+🖼 Decoded frame #4 | shape=(480, 640, 3)
+🧠 Result #4 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 4, 'hands_detected': False}
+📥 Frame #5 from 127.0.0.1:57999 | size=30107
+🖼 Decoded frame #5 | shape=(480, 640, 3)
+🧠 Result #5 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 5, 'hands_detected': False}
+  ⚫ [01:48:43] Waiting... (frame #6)
+  ⚫ [01:48:43] Waiting... (frame #9)
+  ⚫ [01:48:43] Waiting... (frame #12)
+  ⚫ [01:48:43] Waiting... (frame #15)
+  ⚫ [01:48:43] Waiting... (frame #18)
+  ⚫ [01:48:43] Waiting... (frame #21)
+  ⚫ [01:48:43] Waiting... (frame #24)
+  ⚫ [01:48:43] Waiting... (frame #27)
+📥 Frame #30 from 127.0.0.1:57999 | size=30323
+🖼 Decoded frame #30 | shape=(480, 640, 3)
+🧠 Result #30 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 30, 'hands_detected': False}
+  ⚫ [01:48:43] Waiting... (frame #30)
+  [FRAME    30]  inference=13.6ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:48:43] Waiting... (frame #33)
+  ⚫ [01:48:44] Waiting... (frame #36)
+  ⚫ [01:48:44] Waiting... (frame #39)
+  ⚫ [01:48:44] Waiting... (frame #42)
+  ⚫ [01:48:44] Waiting... (frame #45)
+  ⚫ [01:48:44] Waiting... (frame #48)
+  ⚫ [01:48:44] Waiting... (frame #51)
+  ⚫ [01:48:44] Waiting... (frame #54)
+  ⚫ [01:48:44] Waiting... (frame #57)
+📥 Frame #60 from 127.0.0.1:57999 | size=31239
+🖼 Decoded frame #60 | shape=(480, 640, 3)
+🧠 Result #60 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 60, 'hands_detected': False}
+  ⚫ [01:48:44] Waiting... (frame #60)
+  [FRAME    60]  inference=12.0ms (avg30)  server_total=33.3ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:48:44] Waiting... (frame #63)
+  🟠 [01:48:44] HAND DETECTED — 1/2 needed
+  🟠 [01:48:45] HAND DETECTED — 2/2 needed
+  🟠 [01:48:45] HAND DETECTED — 3/2 needed
+  🟡 [01:48:45] COLLECTING... 1 frames
+  🟡 [01:48:45] COLLECTING... 3 frames
+  🟡 [01:48:45] COLLECTING... 6 frames
+  🟡 [01:48:45] COLLECTING... 9 frames
+  🟡 [01:48:45] COLLECTING... 12 frames
+  🟡 [01:48:45] COLLECTING... 15 frames
+  🟡 [01:48:45] COLLECTING... 18 frames
+  🟡 [01:48:45] COLLECTING... 21 frames
+📥 Frame #90 from 127.0.0.1:57999 | size=35103
+🖼 Decoded frame #90 | shape=(480, 640, 3)
+🧠 Result #90 | label=Collecting... | ready=False | debug={'collecting': True, 'frames_collected': 24, 'consec_hand': 27, 'consec_nohand': 0, 'hands_detected': True}
+  🟡 [01:48:45] COLLECTING... 24 frames
+  [FRAME    90]  inference=23.4ms (avg30)  server_total=33.3ms (avg30)  pred=Collecting...  ready=False
+
+  ✅ [01:48:46] PREDICTED → Hello (95%)
+[GESTURE] Hello | conf=95.0% | frames=0 | latency=31.0ms | Top3: Hello(95.0%), Goodbye(0.3%), Who(0.2%)
+  ⚫ [01:48:46] Waiting... (frame #97)
+  ⚫ [01:48:46] Waiting... (frame #99)
+  ⚫ [01:48:46] Waiting... (frame #102)
+  ⚫ [01:48:46] Waiting... (frame #105)
+  ⚫ [01:48:46] Waiting... (frame #108)
+  ⚫ [01:48:46] Waiting... (frame #111)
+  ⚫ [01:48:46] Waiting... (frame #114)
+  ⚫ [01:48:46] Waiting... (frame #117)
+📥 Frame #120 from 127.0.0.1:57999 | size=29791
+🖼 Decoded frame #120 | shape=(480, 640, 3)
+🧠 Result #120 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 30, 'hands_detected': False}
+  ⚫ [01:48:46] Waiting... (frame #120)
+  [FRAME   120]  inference=13.1ms (avg30)  server_total=32.3ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:48:46] Waiting... (frame #123)
+  ⚫ [01:48:47] Waiting... (frame #126)
+  ⚫ [01:48:47] Waiting... (frame #129)
+  ⚫ [01:48:47] Waiting... (frame #132)
+  ⚫ [01:48:47] Waiting... (frame #135)
+  ⚫ [01:48:47] Waiting... (frame #138)
+  ⚫ [01:48:47] Waiting... (frame #141)
+  ⚫ [01:48:47] Waiting... (frame #144)
+  ⚫ [01:48:47] Waiting... (frame #147)
+📥 Frame #150 from 127.0.0.1:57999 | size=30387
+🖼 Decoded frame #150 | shape=(480, 640, 3)
+🧠 Result #150 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 60, 'hands_detected': False}
+  ⚫ [01:48:47] Waiting... (frame #150)
+  [FRAME   150]  inference=12.5ms (avg30)  server_total=33.3ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:48:47] Waiting... (frame #153)
+  ⚫ [01:48:48] Waiting... (frame #156)
+
+  💬 [01:48:48] SENTENCE FINALIZED | -47.8 dBFS
+       Signs   : HELLO
+       English : "Hello!"
+       → Speaking through Pi speaker...
+
+🔊 Speaking (Coqui): Hello!
+ > Text splitted to sentences.
+['Hello!']
+[TTS] "Hello!" | latency=16.0ms | dB=-47.8 dBFS
+  ⚫ [01:48:48] Waiting... (frame #159)
+  ⚫ [01:48:48] Waiting... (frame #162)
+ > Processing time: 0.19822192192077637
+ > Real-time factor: 0.1917014639628561
+  ⚫ [01:48:48] Waiting... (frame #165)
+  ⚫ [01:48:48] Waiting... (frame #168)
+  ⚫ [01:48:48] Waiting... (frame #171)
+  ⚫ [01:48:48] Waiting... (frame #174)
+  ⚫ [01:48:48] Waiting... (frame #177)
+📥 Frame #180 from 127.0.0.1:57999 | size=30075
+🖼 Decoded frame #180 | shape=(480, 640, 3)
+🧠 Result #180 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 90, 'hands_detected': False}
+  ⚫ [01:48:48] Waiting... (frame #180)
+  [FRAME   180]  inference=16.7ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:48:48] Waiting... (frame #183)
+  ⚫ [01:48:48] Waiting... (frame #186)
+  ⚫ [01:48:49] Waiting... (frame #189)
+  ⚫ [01:48:49] Waiting... (frame #192)
+  ⚫ [01:48:49] Waiting... (frame #195)
+  ⚫ [01:48:49] Waiting... (frame #198)
+  ⚫ [01:48:49] Waiting... (frame #201)
+  ⚫ [01:48:49] Waiting... (frame #204)
+  ⚫ [01:48:49] Waiting... (frame #207)
+📥 Frame #210 from 127.0.0.1:57999 | size=30191
+🖼 Decoded frame #210 | shape=(480, 640, 3)
+🧠 Result #210 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 120, 'hands_detected': False}
+  ⚫ [01:48:49] Waiting... (frame #210)
+  [FRAME   210]  inference=12.4ms (avg30)  server_total=33.3ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:48:49] Waiting... (frame #213)
+  ⚫ [01:48:49] Waiting... (frame #216)
+  ⚫ [01:48:50] Waiting... (frame #219)
+  ⚫ [01:48:50] Waiting... (frame #222)
+  ⚫ [01:48:50] Waiting... (frame #225)
+  ⚫ [01:48:50] Waiting... (frame #228)
+  ⚫ [01:48:50] Waiting... (frame #231)
+  ⚫ [01:48:50] Waiting... (frame #234)
+  ⚫ [01:48:50] Waiting... (frame #237)
+📥 Frame #240 from 127.0.0.1:57999 | size=30007
+🖼 Decoded frame #240 | shape=(480, 640, 3)
+🧠 Result #240 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 150, 'hands_detected': False}
+  ⚫ [01:48:50] Waiting... (frame #240)
+  [FRAME   240]  inference=14.1ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:48:50] Waiting... (frame #243)
+  ⚫ [01:48:50] Waiting... (frame #246)
+  ⚫ [01:48:51] Waiting... (frame #249)
+  ⚫ [01:48:51] Waiting... (frame #252)
+  ⚫ [01:48:51] Waiting... (frame #255)
+  ⚫ [01:48:51] Waiting... (frame #258)
+  ⚫ [01:48:51] Waiting... (frame #261)
+  ⚫ [01:48:51] Waiting... (frame #264)
+  ⚫ [01:48:51] Waiting... (frame #267)
+📥 Frame #270 from 127.0.0.1:57999 | size=29999
+🖼 Decoded frame #270 | shape=(480, 640, 3)
+🧠 Result #270 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 180, 'hands_detected': False}
+  ⚫ [01:48:51] Waiting... (frame #270)
+  [FRAME   270]  inference=13.1ms (avg30)  server_total=33.3ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:48:51] Waiting... (frame #273)
+  ⚫ [01:48:51] Waiting... (frame #276)
+  ⚫ [01:48:52] Waiting... (frame #279)
+  ⚫ [01:48:52] Waiting... (frame #282)
+  ⚫ [01:48:52] Waiting... (frame #285)
+  ⚫ [01:48:52] Waiting... (frame #288)
+  ⚫ [01:48:52] Waiting... (frame #291)
+  ⚫ [01:48:52] Waiting... (frame #294)
+  ⚫ [01:48:52] Waiting... (frame #297)
+📥 Frame #300 from 127.0.0.1:57999 | size=30407
+🖼 Decoded frame #300 | shape=(480, 640, 3)
+🧠 Result #300 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 210, 'hands_detected': False}
+  ⚫ [01:48:52] Waiting... (frame #300)
+  [FRAME   300]  inference=15.1ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:48:52] Waiting... (frame #303)
+  ⚫ [01:48:52] Waiting... (frame #306)
+  🟠 [01:48:53] HAND DETECTED — 1/2 needed
+  🟠 [01:48:53] HAND DETECTED — 2/2 needed
+  🟠 [01:48:53] HAND DETECTED — 3/2 needed
+  🟡 [01:48:53] COLLECTING... 1 frames
+  🟡 [01:48:53] COLLECTING... 3 frames
+  🟡 [01:48:53] COLLECTING... 6 frames
+  🟡 [01:48:53] COLLECTING... 9 frames
+  🟡 [01:48:53] COLLECTING... 12 frames
+  🟡 [01:48:53] COLLECTING... 15 frames
+📥 Frame #330 from 127.0.0.1:57999 | size=33407
+🖼 Decoded frame #330 | shape=(480, 640, 3)
+🧠 Result #330 | label=Collecting... | ready=False | debug={'collecting': True, 'frames_collected': 16, 'consec_hand': 6, 'consec_nohand': 0, 'hands_detected': True}
+  [FRAME   330]  inference=24.0ms (avg30)  server_total=32.8ms (avg30)  pred=Collecting...  ready=False
+  🟡 [01:48:53] COLLECTING... 18 frames
+  🟡 [01:48:53] COLLECTING... 21 frames
+  🟡 [01:48:54] COLLECTING... 24 frames
+  🟡 [01:48:54] COLLECTING... 27 frames
+
+  ✅ [01:48:54] PREDICTED → Thanks (81%)
+[GESTURE] Thanks | conf=80.7% | frames=0 | latency=16.0ms | Top3: Thanks(80.7%), Know(1.8%), Home(1.1%)
+  ⚫ [01:48:54] Waiting... (frame #348)
+  ⚫ [01:48:54] Waiting... (frame #350)
+  ⚫ [01:48:54] Waiting... (frame #353)
+  ⚫ [01:48:54] Waiting... (frame #356)
+  ⚫ [01:48:54] Waiting... (frame #359)
+📥 Frame #360 from 127.0.0.1:57999 | size=29787
+🖼 Decoded frame #360 | shape=(480, 640, 3)
+🧠 Result #360 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 19, 'hands_detected': False}
+  [FRAME   360]  inference=17.7ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:48:54] Waiting... (frame #362)
+  ⚫ [01:48:54] Waiting... (frame #365)
+  ⚫ [01:48:55] Waiting... (frame #368)
+  ⚫ [01:48:55] Waiting... (frame #371)
+  ⚫ [01:48:55] Waiting... (frame #374)
+  ⚫ [01:48:55] Waiting... (frame #377)
+  ⚫ [01:48:55] Waiting... (frame #380)
+  ⚫ [01:48:55] Waiting... (frame #383)
+  ⚫ [01:48:55] Waiting... (frame #386)
+  ⚫ [01:48:55] Waiting... (frame #389)
+📥 Frame #390 from 127.0.0.1:57999 | size=30259
+🖼 Decoded frame #390 | shape=(480, 640, 3)
+🧠 Result #390 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 49, 'hands_detected': False}
+  [FRAME   390]  inference=13.0ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:48:55] Waiting... (frame #392)
+  ⚫ [01:48:55] Waiting... (frame #395)
+  ⚫ [01:48:55] Waiting... (frame #398)
+  ⚫ [01:48:56] Waiting... (frame #401)
+  ⚫ [01:48:56] Waiting... (frame #404)
+  ⚫ [01:48:56] Waiting... (frame #407)
+
+  💬 [01:48:56] SENTENCE FINALIZED | -41.4 dBFS
+       Signs   : THANKS
+       English : "Thank you."
+       → Speaking through Pi speaker...
+
+🔊 Speaking (Coqui): Thank you.
+ > Text splitted to sentences.
+['Thank you.']
+[TTS] "Thank you." | latency=0.0ms | dB=-41.4 dBFS
+  ⚫ [01:48:56] Waiting... (frame #410)
+  ⚫ [01:48:56] Waiting... (frame #413)
+ > Processing time: 0.21933937072753906
+ > Real-time factor: 0.18510537065761773
+  ⚫ [01:48:56] Waiting... (frame #416)
+  ⚫ [01:48:56] Waiting... (frame #419)
+📥 Frame #420 from 127.0.0.1:57999 | size=30231
+🖼 Decoded frame #420 | shape=(480, 640, 3)
+🧠 Result #420 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 79, 'hands_detected': False}
+  [FRAME   420]  inference=15.6ms (avg30)  server_total=33.9ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:48:56] Waiting... (frame #422)
+  ⚫ [01:48:56] Waiting... (frame #425)
+  ⚫ [01:48:56] Waiting... (frame #428)
+  ⚫ [01:48:57] Waiting... (frame #431)
+  ⚫ [01:48:57] Waiting... (frame #434)
+  ⚫ [01:48:57] Waiting... (frame #437)
+  ⚫ [01:48:57] Waiting... (frame #440)
+  ⚫ [01:48:57] Waiting... (frame #443)
+  ⚫ [01:48:57] Waiting... (frame #446)
+  ⚫ [01:48:57] Waiting... (frame #449)
+📥 Frame #450 from 127.0.0.1:57999 | size=30275
+🖼 Decoded frame #450 | shape=(480, 640, 3)
+🧠 Result #450 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 109, 'hands_detected': False}
+  [FRAME   450]  inference=13.5ms (avg30)  server_total=32.3ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:48:57] Waiting... (frame #452)
+  ⚫ [01:48:57] Waiting... (frame #455)
+  ⚫ [01:48:57] Waiting... (frame #458)
+  ⚫ [01:48:58] Waiting... (frame #461)
+  ⚫ [01:48:58] Waiting... (frame #464)
+  ⚫ [01:48:58] Waiting... (frame #467)
+  ⚫ [01:48:58] Waiting... (frame #470)
+  ⚫ [01:48:58] Waiting... (frame #473)
+  ⚫ [01:48:58] Waiting... (frame #476)
+  ⚫ [01:48:58] Waiting... (frame #479)
+📥 Frame #480 from 127.0.0.1:57999 | size=29731
+🖼 Decoded frame #480 | shape=(480, 640, 3)
+🧠 Result #480 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 139, 'hands_detected': False}
+  [FRAME   480]  inference=13.5ms (avg30)  server_total=33.3ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:48:58] Waiting... (frame #482)
+  ⚫ [01:48:58] Waiting... (frame #485)
+  ⚫ [01:48:58] Waiting... (frame #488)
+  ⚫ [01:48:59] Waiting... (frame #491)
+  ⚫ [01:48:59] Waiting... (frame #494)
+  ⚫ [01:48:59] Waiting... (frame #497)
+  ⚫ [01:48:59] Waiting... (frame #500)
+  ⚫ [01:48:59] Waiting... (frame #503)
+  ⚫ [01:48:59] Waiting... (frame #506)
+  ⚫ [01:48:59] Waiting... (frame #509)
+📥 Frame #510 from 127.0.0.1:57999 | size=28879
+🖼 Decoded frame #510 | shape=(480, 640, 3)
+🧠 Result #510 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 169, 'hands_detected': False}
+  [FRAME   510]  inference=12.0ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:48:59] Waiting... (frame #512)
+  ⚫ [01:48:59] Waiting... (frame #515)
+  ⚫ [01:48:59] Waiting... (frame #518)
+  ⚫ [01:49:00] Waiting... (frame #521)
+  ⚫ [01:49:00] Waiting... (frame #524)
+  ⚫ [01:49:00] Waiting... (frame #527)
+  ⚫ [01:49:00] Waiting... (frame #530)
+  ⚫ [01:49:00] Waiting... (frame #533)
+  ⚫ [01:49:00] Waiting... (frame #536)
+  ⚫ [01:49:00] Waiting... (frame #539)
+📥 Frame #540 from 127.0.0.1:57999 | size=29143
+🖼 Decoded frame #540 | shape=(480, 640, 3)
+🧠 Result #540 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 199, 'hands_detected': False}
+  [FRAME   540]  inference=11.9ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:49:00] Waiting... (frame #542)
+  ⚫ [01:49:00] Waiting... (frame #545)
+  ⚫ [01:49:00] Waiting... (frame #548)
+  ⚫ [01:49:01] Waiting... (frame #551)
+  ⚫ [01:49:01] Waiting... (frame #554)
+  ⚫ [01:49:01] Waiting... (frame #557)
+  ⚫ [01:49:01] Waiting... (frame #560)
+  ⚫ [01:49:01] Waiting... (frame #563)
+  ⚫ [01:49:01] Waiting... (frame #566)
+  ⚫ [01:49:01] Waiting... (frame #569)
+📥 Frame #570 from 127.0.0.1:57999 | size=27527
+🖼 Decoded frame #570 | shape=(480, 640, 3)
+🧠 Result #570 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 229, 'hands_detected': False}
+  [FRAME   570]  inference=12.0ms (avg30)  server_total=33.3ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:49:01] Waiting... (frame #572)
+  ⚫ [01:49:01] Waiting... (frame #575)
+  ⚫ [01:49:01] Waiting... (frame #578)
+  ⚫ [01:49:02] Waiting... (frame #581)
+  ⚫ [01:49:02] Waiting... (frame #584)
+  ⚫ [01:49:02] Waiting... (frame #587)
+  ⚫ [01:49:02] Waiting... (frame #590)
+  ⚫ [01:49:02] Waiting... (frame #593)
+  ⚫ [01:49:02] Waiting... (frame #596)
+  ⚫ [01:49:02] Waiting... (frame #599)
+📥 Frame #600 from 127.0.0.1:57999 | size=24991
+🖼 Decoded frame #600 | shape=(480, 640, 3)
+🧠 Result #600 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 259, 'hands_detected': False}
+  [FRAME   600]  inference=13.0ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:49:02] Waiting... (frame #602)
+  ⚫ [01:49:02] Waiting... (frame #605)
+  ⚫ [01:49:02] Waiting... (frame #608)
+  ⚫ [01:49:03] Waiting... (frame #611)
+  ⚫ [01:49:03] Waiting... (frame #614)
+  ⚫ [01:49:03] Waiting... (frame #617)
+  ⚫ [01:49:03] Waiting... (frame #620)
+  ⚫ [01:49:03] Waiting... (frame #623)
+  ⚫ [01:49:03] Waiting... (frame #626)
+  ⚫ [01:49:03] Waiting... (frame #629)
+📥 Frame #630 from 127.0.0.1:57999 | size=30275
+🖼 Decoded frame #630 | shape=(480, 640, 3)
+🧠 Result #630 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 289, 'hands_detected': False}
+  [FRAME   630]  inference=11.4ms (avg30)  server_total=33.3ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:49:03] Waiting... (frame #632)
+  ⚫ [01:49:03] Waiting... (frame #635)
+  🟠 [01:49:03] HAND DETECTED — 1/2 needed
+  🟠 [01:49:03] HAND DETECTED — 2/2 needed
+  ⚫ [01:49:03] Waiting... (frame #639)
+  ⚫ [01:49:04] Waiting... (frame #641)
+  ⚫ [01:49:04] Waiting... (frame #644)
+  ⚫ [01:49:04] Waiting... (frame #647)
+  ⚫ [01:49:04] Waiting... (frame #650)
+  ⚫ [01:49:04] Waiting... (frame #653)
+  🟠 [01:49:04] HAND DETECTED — 1/2 needed
+  🟠 [01:49:04] HAND DETECTED — 2/2 needed
+  ⚫ [01:49:04] Waiting... (frame #657)
+  ⚫ [01:49:04] Waiting... (frame #659)
+📥 Frame #660 from 127.0.0.1:57999 | size=31183
+🖼 Decoded frame #660 | shape=(480, 640, 3)
+🧠 Result #660 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 4, 'hands_detected': False}
+  [FRAME   660]  inference=19.8ms (avg30)  server_total=32.3ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:49:04] Waiting... (frame #662)
+  ⚫ [01:49:04] Waiting... (frame #665)
+  ⚫ [01:49:04] Waiting... (frame #668)
+  ⚫ [01:49:05] Waiting... (frame #671)
+  ⚫ [01:49:05] Waiting... (frame #674)
+  ⚫ [01:49:05] Waiting... (frame #677)
+  ⚫ [01:49:05] Waiting... (frame #680)
+  ⚫ [01:49:05] Waiting... (frame #683)
+  ⚫ [01:49:05] Waiting... (frame #686)
+  ⚫ [01:49:05] Waiting... (frame #689)
+📥 Frame #690 from 127.0.0.1:57999 | size=30887
+🖼 Decoded frame #690 | shape=(480, 640, 3)
+🧠 Result #690 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 34, 'hands_detected': False}
+  [FRAME   690]  inference=13.5ms (avg30)  server_total=33.3ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:49:05] Waiting... (frame #692)
+  ⚫ [01:49:05] Waiting... (frame #695)
+  ⚫ [01:49:05] Waiting... (frame #698)
+  ⚫ [01:49:05] Waiting... (frame #701)
+  ⚫ [01:49:06] Waiting... (frame #704)
+  ⚫ [01:49:06] Waiting... (frame #707)
+  ⚫ [01:49:06] Waiting... (frame #710)
+  ⚫ [01:49:06] Waiting... (frame #713)
+  ⚫ [01:49:06] Waiting... (frame #716)
+  ⚫ [01:49:06] Waiting... (frame #719)
+📥 Frame #720 from 127.0.0.1:57999 | size=30755
+🖼 Decoded frame #720 | shape=(480, 640, 3)
+🧠 Result #720 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 64, 'hands_detected': False}
+  [FRAME   720]  inference=14.0ms (avg30)  server_total=33.3ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:49:06] Waiting... (frame #722)
+  ⚫ [01:49:06] Waiting... (frame #725)
+  ⚫ [01:49:06] Waiting... (frame #728)
+  ⚫ [01:49:06] Waiting... (frame #731)
+  ⚫ [01:49:07] Waiting... (frame #734)
+  ⚫ [01:49:07] Waiting... (frame #737)
+  ⚫ [01:49:07] Waiting... (frame #740)
+  ⚫ [01:49:07] Waiting... (frame #743)
+  ⚫ [01:49:07] Waiting... (frame #746)
+  ⚫ [01:49:07] Waiting... (frame #749)
+📥 Frame #750 from 127.0.0.1:57999 | size=32507
+🖼 Decoded frame #750 | shape=(480, 640, 3)
+🧠 Result #750 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 94, 'hands_detected': False}
+  [FRAME   750]  inference=11.4ms (avg30)  server_total=33.3ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:49:07] Waiting... (frame #752)
+  🟠 [01:49:07] HAND DETECTED — 1/2 needed
+  🟠 [01:49:07] HAND DETECTED — 2/2 needed
+  🟠 [01:49:07] HAND DETECTED — 3/2 needed
+  🟡 [01:49:07] COLLECTING... 1 frames
+  🟡 [01:49:07] COLLECTING... 3 frames
+  🟡 [01:49:08] COLLECTING... 6 frames
+  🟡 [01:49:08] COLLECTING... 9 frames
+  🟡 [01:49:08] COLLECTING... 12 frames
+  🟡 [01:49:08] COLLECTING... 15 frames
+  🟡 [01:49:08] COLLECTING... 18 frames
+  🟡 [01:49:08] COLLECTING... 21 frames
+📥 Frame #780 from 127.0.0.1:57999 | size=32287
+🖼 Decoded frame #780 | shape=(480, 640, 3)
+🧠 Result #780 | label=Collecting... | ready=False | debug={'collecting': True, 'frames_collected': 23, 'consec_hand': 26, 'consec_nohand': 0, 'hands_detected': True}
+  [FRAME   780]  inference=23.5ms (avg30)  server_total=32.8ms (avg30)  pred=Collecting...  ready=False
+
+  ✅ [01:49:08] PREDICTED → Okay (88%)
+[GESTURE] Okay | conf=88.4% | frames=0 | latency=15.0ms | Top3: Okay(88.4%), No(1.6%), Understand(0.8%)
+  ⚫ [01:49:08] Waiting... (frame #787)
+  ⚫ [01:49:08] Waiting... (frame #789)
+  ⚫ [01:49:09] Waiting... (frame #792)
+  ⚫ [01:49:09] Waiting... (frame #795)
+  ⚫ [01:49:09] Waiting... (frame #798)
+  ⚫ [01:49:09] Waiting... (frame #801)
+  ⚫ [01:49:09] Waiting... (frame #804)
+  ⚫ [01:49:09] Waiting... (frame #807)
+📥 Frame #810 from 127.0.0.1:57999 | size=31715
+🖼 Decoded frame #810 | shape=(480, 640, 3)
+🧠 Result #810 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 30, 'hands_detected': False}
+  ⚫ [01:49:09] Waiting... (frame #810)
+  [FRAME   810]  inference=14.5ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:49:09] Waiting... (frame #813)
+  ⚫ [01:49:09] Waiting... (frame #816)
+  ⚫ [01:49:09] Waiting... (frame #819)
+  ⚫ [01:49:09] Waiting... (frame #822)
+  ⚫ [01:49:10] Waiting... (frame #825)
+  ⚫ [01:49:10] Waiting... (frame #828)
+  ⚫ [01:49:10] Waiting... (frame #831)
+  ⚫ [01:49:10] Waiting... (frame #834)
+  ⚫ [01:49:10] Waiting... (frame #837)
+📥 Frame #840 from 127.0.0.1:57999 | size=31883
+🖼 Decoded frame #840 | shape=(480, 640, 3)
+🧠 Result #840 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 60, 'hands_detected': False}
+  ⚫ [01:49:10] Waiting... (frame #840)
+  [FRAME   840]  inference=12.6ms (avg30)  server_total=33.3ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:49:10] Waiting... (frame #843)
+  ⚫ [01:49:10] Waiting... (frame #846)
+  ⚫ [01:49:10] Waiting... (frame #849)
+
+  💬 [01:49:10] SENTENCE FINALIZED | -32.4 dBFS
+       Signs   : OKAY
+       English : "Okay."
+       → Speaking through Pi speaker...
+
+🔊 Speaking (Coqui): Okay.
+ > Text splitted to sentences.
+['Okay.']
+[TTS] "Okay." | latency=0.0ms | dB=-32.4 dBFS
+  ⚫ [01:49:10] Waiting... (frame #852)
+  ⚫ [01:49:11] Waiting... (frame #855)
+ > Processing time: 0.24724149703979492
+ > Real-time factor: 0.2026946389696415
+  ⚫ [01:49:11] Waiting... (frame #858)
+  ⚫ [01:49:11] Waiting... (frame #861)
+  ⚫ [01:49:11] Waiting... (frame #864)
+  ⚫ [01:49:11] Waiting... (frame #867)
+📥 Frame #870 from 127.0.0.1:57999 | size=31695
+🖼 Decoded frame #870 | shape=(480, 640, 3)
+🧠 Result #870 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 90, 'hands_detected': False}
+  ⚫ [01:49:11] Waiting... (frame #870)
+  [FRAME   870]  inference=16.6ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:49:11] Waiting... (frame #873)
+  ⚫ [01:49:11] Waiting... (frame #876)
+  ⚫ [01:49:11] Waiting... (frame #879)
+  ⚫ [01:49:11] Waiting... (frame #882)
+  ⚫ [01:49:12] Waiting... (frame #885)
+  ⚫ [01:49:12] Waiting... (frame #888)
+  ⚫ [01:49:12] Waiting... (frame #891)
+  ⚫ [01:49:12] Waiting... (frame #894)
+  ⚫ [01:49:12] Waiting... (frame #897)
+📥 Frame #900 from 127.0.0.1:57999 | size=31215
+🖼 Decoded frame #900 | shape=(480, 640, 3)
+🧠 Result #900 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 120, 'hands_detected': False}
+  ⚫ [01:49:12] Waiting... (frame #900)
+  [FRAME   900]  inference=14.0ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:49:12] Waiting... (frame #903)
+  ⚫ [01:49:12] Waiting... (frame #906)
+  ⚫ [01:49:12] Waiting... (frame #909)
+  ⚫ [01:49:12] Waiting... (frame #912)
+  ⚫ [01:49:13] Waiting... (frame #915)
+  ⚫ [01:49:13] Waiting... (frame #918)
+  ⚫ [01:49:13] Waiting... (frame #921)
+  ⚫ [01:49:13] Waiting... (frame #924)
+  ⚫ [01:49:13] Waiting... (frame #927)
+📥 Frame #930 from 127.0.0.1:57999 | size=35695
+🖼 Decoded frame #930 | shape=(480, 640, 3)
+🧠 Result #930 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 150, 'hands_detected': False}
+  ⚫ [01:49:13] Waiting... (frame #930)
+  [FRAME   930]  inference=12.0ms (avg30)  server_total=33.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:49:13] Waiting... (frame #933)
+  ⚫ [01:49:13] Waiting... (frame #936)
+  ⚫ [01:49:13] Waiting... (frame #939)
+  ⚫ [01:49:13] Waiting... (frame #942)
+  ⚫ [01:49:14] Waiting... (frame #945)
+  ⚫ [01:49:14] Waiting... (frame #948)
+  ⚫ [01:49:14] Waiting... (frame #951)
+  ⚫ [01:49:14] Waiting... (frame #954)
+  ⚫ [01:49:14] Waiting... (frame #957)
+  🟠 [01:49:14] HAND DETECTED — 1/2 needed
+  🟠 [01:49:14] HAND DETECTED — 2/2 needed
+📥 Frame #960 from 127.0.0.1:57999 | size=36319
+🖼 Decoded frame #960 | shape=(480, 640, 3)
+🧠 Result #960 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 3, 'consec_nohand': 0, 'hands_detected': True}
+  🟠 [01:49:14] HAND DETECTED — 3/2 needed
+  [FRAME   960]  inference=15.6ms (avg30)  server_total=32.3ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:49:14] Waiting... (frame #961)
+  ⚫ [01:49:14] Waiting... (frame #963)
+  🟠 [01:49:14] HAND DETECTED — 1/2 needed
+  🟠 [01:49:14] HAND DETECTED — 2/2 needed
+  🟠 [01:49:14] HAND DETECTED — 3/2 needed
+  🟡 [01:49:14] COLLECTING... 1 frames
+  🟡 [01:49:14] COLLECTING... 3 frames
+  🟡 [01:49:15] COLLECTING... 6 frames
+  🟡 [01:49:15] COLLECTING... 9 frames
+  ❌ [01:49:15] TOO SHORT — 0 frames
+  🟠 [01:49:15] HAND DETECTED — 1/2 needed
+  🟠 [01:49:15] HAND DETECTED — 2/2 needed
+  🟠 [01:49:15] HAND DETECTED — 3/2 needed
+📥 Frame #990 from 127.0.0.1:57999 | size=36787
+🖼 Decoded frame #990 | shape=(480, 640, 3)
+🧠 Result #990 | label=Collecting... | ready=False | debug={'collecting': True, 'frames_collected': 1, 'consec_hand': 4, 'consec_nohand': 0, 'hands_detected': True}
+  🟡 [01:49:15] COLLECTING... 1 frames
+  [FRAME   990]  inference=23.9ms (avg30)  server_total=33.3ms (avg30)  pred=Collecting...  ready=False
+  ❌ [01:49:15] TOO SHORT — 0 frames
+  ⚫ [01:49:15] Waiting... (frame #997)
+  ⚫ [01:49:15] Waiting... (frame #999)
+  ⚫ [01:49:15] Waiting... (frame #1002)
+  ⚫ [01:49:16] Waiting... (frame #1005)
+  ⚫ [01:49:16] Waiting... (frame #1008)
+  ⚫ [01:49:16] Waiting... (frame #1011)
+  ⚫ [01:49:16] Waiting... (frame #1014)
+  ⚫ [01:49:16] Waiting... (frame #1017)
+📥 Frame #1020 from 127.0.0.1:57999 | size=36035
+🖼 Decoded frame #1020 | shape=(480, 640, 3)
+🧠 Result #1020 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 30, 'hands_detected': False}
+  ⚫ [01:49:16] Waiting... (frame #1020)
+  [FRAME  1020]  inference=14.6ms (avg30)  server_total=32.3ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:49:16] Waiting... (frame #1023)
+  ⚫ [01:49:16] Waiting... (frame #1026)
+  ⚫ [01:49:16] Waiting... (frame #1029)
+  ⚫ [01:49:16] Waiting... (frame #1032)
+  ⚫ [01:49:17] Waiting... (frame #1035)
+  ⚫ [01:49:17] Waiting... (frame #1038)
+  ⚫ [01:49:17] Waiting... (frame #1041)
+  ⚫ [01:49:17] Waiting... (frame #1044)
+  ⚫ [01:49:17] Waiting... (frame #1047)
+📥 Frame #1050 from 127.0.0.1:57999 | size=35599
+🖼 Decoded frame #1050 | shape=(480, 640, 3)
+🧠 Result #1050 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 60, 'hands_detected': False}
+  ⚫ [01:49:17] Waiting... (frame #1050)
+  [FRAME  1050]  inference=12.0ms (avg30)  server_total=33.3ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:49:17] Waiting... (frame #1053)
+  ⚫ [01:49:17] Waiting... (frame #1056)
+  ⚫ [01:49:17] Waiting... (frame #1059)
+  🟠 [01:49:17] HAND DETECTED — 1/2 needed
+  🟠 [01:49:17] HAND DETECTED — 2/2 needed
+  🟠 [01:49:17] HAND DETECTED — 3/2 needed
+  ⚫ [01:49:17] Waiting... (frame #1064)
+  ⚫ [01:49:18] Waiting... (frame #1066)
+  ⚫ [01:49:18] Waiting... (frame #1069)
+  🟠 [01:49:18] HAND DETECTED — 1/2 needed
+  🟠 [01:49:18] HAND DETECTED — 2/2 needed
+  ⚫ [01:49:18] Waiting... (frame #1073)
+  🟠 [01:49:18] HAND DETECTED — 1/2 needed
+  🟠 [01:49:18] HAND DETECTED — 2/2 needed
+  🟠 [01:49:18] HAND DETECTED — 3/2 needed
+  🟡 [01:49:18] COLLECTING... 1 frames
+📥 Frame #1080 from 127.0.0.1:57999 | size=35591
+🖼 Decoded frame #1080 | shape=(480, 640, 3)
+🧠 Result #1080 | label=Collecting... | ready=False | debug={'collecting': True, 'frames_collected': 1, 'consec_hand': 0, 'consec_nohand': 2, 'hands_detected': False}
+  [FRAME  1080]  inference=20.8ms (avg30)  server_total=32.8ms (avg30)  pred=Collecting...  ready=False
+  ❌ [01:49:18] TOO SHORT — 0 frames
+  ⚫ [01:49:18] Waiting... (frame #1085)
+  ⚫ [01:49:18] Waiting... (frame #1087)
+  ⚫ [01:49:18] Waiting... (frame #1090)
+  ⚫ [01:49:18] Waiting... (frame #1093)
+  🟠 [01:49:18] HAND DETECTED — 1/2 needed
+  🟠 [01:49:19] HAND DETECTED — 2/2 needed
+  🟠 [01:49:19] HAND DETECTED — 3/2 needed
+  🟡 [01:49:19] COLLECTING... 1 frames
+  ❌ [01:49:19] TOO SHORT — 0 frames
+  ⚫ [01:49:19] Waiting... (frame #1104)
+  ⚫ [01:49:19] Waiting... (frame #1106)
+  🟠 [01:49:19] HAND DETECTED — 1/2 needed
+📥 Frame #1110 from 127.0.0.1:57999 | size=36087
+🖼 Decoded frame #1110 | shape=(480, 640, 3)
+🧠 Result #1110 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 2, 'consec_nohand': 0, 'hands_detected': True}
+  🟠 [01:49:19] HAND DETECTED — 2/2 needed
+  [FRAME  1110]  inference=26.0ms (avg30)  server_total=33.3ms (avg30)  pred=Waiting...  ready=False
+  🟠 [01:49:19] HAND DETECTED — 3/2 needed
+  🟡 [01:49:19] COLLECTING... 1 frames
+  🟡 [01:49:19] COLLECTING... 3 frames
+  🟡 [01:49:19] COLLECTING... 6 frames
+  🟡 [01:49:19] COLLECTING... 9 frames
+  🟡 [01:49:19] COLLECTING... 12 frames
+  🟡 [01:49:20] COLLECTING... 15 frames
+  🟡 [01:49:20] COLLECTING... 18 frames
+  🟡 [01:49:20] COLLECTING... 21 frames
+  🟡 [01:49:20] COLLECTING... 24 frames
+  🟡 [01:49:20] COLLECTING... 27 frames
+📥 Frame #1140 from 127.0.0.1:57999 | size=35607
+🖼 Decoded frame #1140 | shape=(480, 640, 3)
+🧠 Result #1140 | label=Collecting... | ready=False | debug={'collecting': True, 'frames_collected': 29, 'consec_hand': 32, 'consec_nohand': 0, 'hands_detected': True}
+  [FRAME  1140]  inference=26.6ms (avg30)  server_total=32.8ms (avg30)  pred=Collecting...  ready=False
+  🟡 [01:49:20] COLLECTING... 30 frames
+  🟡 [01:49:20] COLLECTING... 33 frames
+
+  ✅ [01:49:20] PREDICTED → What (88%)
+[GESTURE] What | conf=88.5% | frames=0 | latency=31.0ms | Top3: What(88.5%), No(1.2%), Yes(0.8%)
+  ⚫ [01:49:20] Waiting... (frame #1151)
+  ⚫ [01:49:20] Waiting... (frame #1153)
+  ⚫ [01:49:21] Waiting... (frame #1156)
+  ⚫ [01:49:21] Waiting... (frame #1159)
+  ⚫ [01:49:21] Waiting... (frame #1162)
+  ⚫ [01:49:21] Waiting... (frame #1165)
+  ⚫ [01:49:21] Waiting... (frame #1168)
+📥 Frame #1170 from 127.0.0.1:57999 | size=35403
+🖼 Decoded frame #1170 | shape=(480, 640, 3)
+🧠 Result #1170 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 26, 'hands_detected': False}
+  [FRAME  1170]  inference=17.7ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:49:21] Waiting... (frame #1171)
+  ⚫ [01:49:21] Waiting... (frame #1174)
+  ⚫ [01:49:21] Waiting... (frame #1177)
+  ⚫ [01:49:21] Waiting... (frame #1180)
+  ⚫ [01:49:21] Waiting... (frame #1183)
+  🟠 [01:49:21] HAND DETECTED — 1/2 needed
+  🟠 [01:49:22] HAND DETECTED — 2/2 needed
+  🟠 [01:49:22] HAND DETECTED — 3/2 needed
+  🟡 [01:49:22] COLLECTING... 1 frames
+  🟡 [01:49:22] COLLECTING... 3 frames
+  🟡 [01:49:22] COLLECTING... 6 frames
+  🟡 [01:49:22] COLLECTING... 9 frames
+  🟡 [01:49:22] COLLECTING... 12 frames
+📥 Frame #1200 from 127.0.0.1:57999 | size=36299
+🖼 Decoded frame #1200 | shape=(480, 640, 3)
+🧠 Result #1200 | label=Collecting... | ready=False | debug={'collecting': True, 'frames_collected': 13, 'consec_hand': 16, 'consec_nohand': 0, 'hands_detected': True}
+  [FRAME  1200]  inference=19.2ms (avg30)  server_total=33.3ms (avg30)  pred=Collecting...  ready=False
+  🟡 [01:49:22] COLLECTING... 15 frames
+  🟡 [01:49:22] COLLECTING... 18 frames
+  🟡 [01:49:22] COLLECTING... 21 frames
+  🟡 [01:49:22] COLLECTING... 24 frames
+  🟡 [01:49:22] COLLECTING... 27 frames
+  🟡 [01:49:23] COLLECTING... 30 frames
+  🟡 [01:49:23] COLLECTING... 33 frames
+
+  ✅ [01:49:23] PREDICTED → What (77%)
+[GESTURE] What | conf=77.2% | frames=0 | latency=16.0ms | Top3: What(77.2%), No(3.8%), Yes(1.5%)
+  ⚫ [01:49:23] Waiting... (frame #1227)
+  ⚫ [01:49:23] Waiting... (frame #1229)
+📥 Frame #1230 from 127.0.0.1:57999 | size=34999
+🖼 Decoded frame #1230 | shape=(480, 640, 3)
+🧠 Result #1230 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 10, 'hands_detected': False}
+  [FRAME  1230]  inference=20.9ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:49:23] Waiting... (frame #1232)
+  ⚫ [01:49:23] Waiting... (frame #1235)
+  ⚫ [01:49:23] Waiting... (frame #1238)
+  ⚫ [01:49:23] Waiting... (frame #1241)
+  ⚫ [01:49:23] Waiting... (frame #1244)
+  ⚫ [01:49:24] Waiting... (frame #1247)
+  ⚫ [01:49:24] Waiting... (frame #1250)
+  ⚫ [01:49:24] Waiting... (frame #1253)
+  ⚫ [01:49:24] Waiting... (frame #1256)
+  ⚫ [01:49:24] Waiting... (frame #1259)
+📥 Frame #1260 from 127.0.0.1:57999 | size=35059
+🖼 Decoded frame #1260 | shape=(480, 640, 3)
+🧠 Result #1260 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 40, 'hands_detected': False}
+  [FRAME  1260]  inference=10.8ms (avg30)  server_total=33.3ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:49:24] Waiting... (frame #1262)
+  ⚫ [01:49:24] Waiting... (frame #1265)
+  ⚫ [01:49:24] Waiting... (frame #1268)
+  ⚫ [01:49:24] Waiting... (frame #1271)
+  ⚫ [01:49:24] Waiting... (frame #1274)
+  🟠 [01:49:24] HAND DETECTED — 1/2 needed
+  🟠 [01:49:25] HAND DETECTED — 2/2 needed
+  🟠 [01:49:25] HAND DETECTED — 3/2 needed
+  🟡 [01:49:25] COLLECTING... 1 frames
+  🟡 [01:49:25] COLLECTING... 3 frames
+  🟡 [01:49:25] COLLECTING... 6 frames
+  🟡 [01:49:25] COLLECTING... 9 frames
+📥 Frame #1290 from 127.0.0.1:57999 | size=35539
+🖼 Decoded frame #1290 | shape=(480, 640, 3)
+🧠 Result #1290 | label=Collecting... | ready=False | debug={'collecting': True, 'frames_collected': 12, 'consec_hand': 15, 'consec_nohand': 0, 'hands_detected': True}
+  🟡 [01:49:25] COLLECTING... 12 frames
+  [FRAME  1290]  inference=20.8ms (avg30)  server_total=32.8ms (avg30)  pred=Collecting...  ready=False
+  🟡 [01:49:25] COLLECTING... 15 frames
+  🟡 [01:49:25] COLLECTING... 18 frames
+  🟡 [01:49:25] COLLECTING... 21 frames
+  🟡 [01:49:25] COLLECTING... 24 frames
+
+  ✅ [01:49:26] PREDICTED → Yes (94%)
+[GESTURE] Yes | conf=93.6% | frames=0 | latency=16.0ms | Top3: Yes(93.6%), Go(0.3%), Hello(0.3%)
+  ⚫ [01:49:26] Waiting... (frame #1309)
+  ⚫ [01:49:26] Waiting... (frame #1311)
+  ⚫ [01:49:26] Waiting... (frame #1314)
+  ⚫ [01:49:26] Waiting... (frame #1317)
+📥 Frame #1320 from 127.0.0.1:57999 | size=34135
+🖼 Decoded frame #1320 | shape=(480, 640, 3)
+🧠 Result #1320 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 18, 'hands_detected': False}
+  ⚫ [01:49:26] Waiting... (frame #1320)
+  [FRAME  1320]  inference=19.2ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:49:26] Waiting... (frame #1323)
+  ⚫ [01:49:26] Waiting... (frame #1326)
+  ⚫ [01:49:26] Waiting... (frame #1329)
+  ⚫ [01:49:26] Waiting... (frame #1332)
+  ⚫ [01:49:26] Waiting... (frame #1335)
+  ⚫ [01:49:27] Waiting... (frame #1338)
+  ⚫ [01:49:27] Waiting... (frame #1341)
+  ⚫ [01:49:27] Waiting... (frame #1344)
+  ⚫ [01:49:27] Waiting... (frame #1347)
+📥 Frame #1350 from 127.0.0.1:57999 | size=34471
+🖼 Decoded frame #1350 | shape=(480, 640, 3)
+🧠 Result #1350 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 48, 'hands_detected': False}
+  ⚫ [01:49:27] Waiting... (frame #1350)
+  [FRAME  1350]  inference=11.5ms (avg30)  server_total=33.3ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:49:27] Waiting... (frame #1353)
+  🟠 [01:49:27] HAND DETECTED — 1/2 needed
+  🟠 [01:49:27] HAND DETECTED — 2/2 needed
+  🟠 [01:49:27] HAND DETECTED — 3/2 needed
+  🟡 [01:49:27] COLLECTING... 1 frames
+  🟡 [01:49:27] COLLECTING... 3 frames
+  🟡 [01:49:27] COLLECTING... 6 frames
+  🟡 [01:49:27] COLLECTING... 9 frames
+  🟡 [01:49:28] COLLECTING... 12 frames
+  🟡 [01:49:28] COLLECTING... 15 frames
+  🟡 [01:49:28] COLLECTING... 18 frames
+  🟡 [01:49:28] COLLECTING... 21 frames
+📥 Frame #1380 from 127.0.0.1:57999 | size=35895
+🖼 Decoded frame #1380 | shape=(480, 640, 3)
+🧠 Result #1380 | label=Collecting... | ready=False | debug={'collecting': True, 'frames_collected': 24, 'consec_hand': 27, 'consec_nohand': 0, 'hands_detected': True}
+  🟡 [01:49:28] COLLECTING... 24 frames
+  [FRAME  1380]  inference=21.9ms (avg30)  server_total=32.8ms (avg30)  pred=Collecting...  ready=False
+
+  ✅ [01:49:28] PREDICTED → What (83%)
+[GESTURE] What | conf=83.1% | frames=0 | latency=15.0ms | Top3: What(83.1%), No(2.3%), Yes(1.0%)
+  ⚫ [01:49:28] Waiting... (frame #1388)
+  ⚫ [01:49:28] Waiting... (frame #1390)
+  ⚫ [01:49:28] Waiting... (frame #1393)
+  ⚫ [01:49:28] Waiting... (frame #1396)
+  ⚫ [01:49:29] Waiting... (frame #1399)
+  ⚫ [01:49:29] Waiting... (frame #1402)
+  ⚫ [01:49:29] Waiting... (frame #1405)
+  ⚫ [01:49:29] Waiting... (frame #1408)
+📥 Frame #1410 from 127.0.0.1:57999 | size=32915
+🖼 Decoded frame #1410 | shape=(480, 640, 3)
+🧠 Result #1410 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 29, 'hands_detected': False}
+  [FRAME  1410]  inference=13.5ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:49:29] Waiting... (frame #1411)
+  ⚫ [01:49:29] Waiting... (frame #1414)
+  ⚫ [01:49:29] Waiting... (frame #1417)
+  ⚫ [01:49:29] Waiting... (frame #1420)
+  ⚫ [01:49:29] Waiting... (frame #1423)
+  ⚫ [01:49:29] Waiting... (frame #1426)
+  🟠 [01:49:29] HAND DETECTED — 1/2 needed
+  🟠 [01:49:29] HAND DETECTED — 2/2 needed
+  🟠 [01:49:30] HAND DETECTED — 3/2 needed
+  🟡 [01:49:30] COLLECTING... 1 frames
+  🟡 [01:49:30] COLLECTING... 3 frames
+  🟡 [01:49:30] COLLECTING... 6 frames
+  🟡 [01:49:30] COLLECTING... 9 frames
+📥 Frame #1440 from 127.0.0.1:57999 | size=34455
+🖼 Decoded frame #1440 | shape=(480, 640, 3)
+🧠 Result #1440 | label=Collecting... | ready=False | debug={'collecting': True, 'frames_collected': 11, 'consec_hand': 14, 'consec_nohand': 0, 'hands_detected': True}
+  [FRAME  1440]  inference=21.4ms (avg30)  server_total=33.3ms (avg30)  pred=Collecting...  ready=False
+  🟡 [01:49:30] COLLECTING... 12 frames
+  🟡 [01:49:30] COLLECTING... 15 frames
+
+  ✅ [01:49:30] PREDICTED → Me (86%)
+[GESTURE] Me | conf=85.8% | frames=0 | latency=16.0ms | Top3: Me(85.8%), Please(3.8%), Morning(0.7%)
+  ⚫ [01:49:30] Waiting... (frame #1451)
+  ⚫ [01:49:30] Waiting... (frame #1453)
+  ⚫ [01:49:30] Waiting... (frame #1456)
+  ⚫ [01:49:31] Waiting... (frame #1459)
+  ⚫ [01:49:31] Waiting... (frame #1462)
+  ⚫ [01:49:31] Waiting... (frame #1465)
+  ⚫ [01:49:31] Waiting... (frame #1468)
+📥 Frame #1470 from 127.0.0.1:57999 | size=35355
+🖼 Decoded frame #1470 | shape=(480, 640, 3)
+🧠 Result #1470 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 26, 'hands_detected': False}
+  [FRAME  1470]  inference=15.2ms (avg30)  server_total=32.3ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:49:31] Waiting... (frame #1471)
+  ⚫ [01:49:31] Waiting... (frame #1474)
+  ⚫ [01:49:31] Waiting... (frame #1477)
+  ⚫ [01:49:31] Waiting... (frame #1480)
+  ⚫ [01:49:31] Waiting... (frame #1483)
+  ⚫ [01:49:31] Waiting... (frame #1486)
+  ⚫ [01:49:31] Waiting... (frame #1489)
+  ⚫ [01:49:32] Waiting... (frame #1492)
+  ⚫ [01:49:32] Waiting... (frame #1495)
+  ⚫ [01:49:32] Waiting... (frame #1498)
+📥 Frame #1500 from 127.0.0.1:57999 | size=35427
+🖼 Decoded frame #1500 | shape=(480, 640, 3)
+🧠 Result #1500 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 56, 'hands_detected': False}
+  [FRAME  1500]  inference=13.5ms (avg30)  server_total=33.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:49:32] Waiting... (frame #1501)
+  ⚫ [01:49:32] Waiting... (frame #1504)
+  ⚫ [01:49:32] Waiting... (frame #1507)
+  ⚫ [01:49:32] Waiting... (frame #1510)
+  ⚫ [01:49:32] Waiting... (frame #1513)
+
+  💬 [01:49:32] SENTENCE FINALIZED | -21.2 dBFS
+       Signs   : WHAT WHAT YES WHAT ME
+       English : "What what? Yes. What me?"
+       → Speaking through Pi speaker...
+
+🔊 Speaking (Coqui): What what? Yes. What me?
+ > Text splitted to sentences.
+['What what?', 'Yes.', 'What me?']
+[TTS] "What what? Yes. What me?" | latency=15.0ms | dB=-21.2 dBFS
+  ⚫ [01:49:32] Waiting... (frame #1516)
+  ⚫ [01:49:33] Waiting... (frame #1519)
+  ⚫ [01:49:33] Waiting... (frame #1522)
+  ⚫ [01:49:33] Waiting... (frame #1525)
+  ⚫ [01:49:33] Waiting... (frame #1528)
+📥 Frame #1530 from 127.0.0.1:57999 | size=35471
+🖼 Decoded frame #1530 | shape=(480, 640, 3)
+🧠 Result #1530 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 86, 'hands_detected': False}
+  [FRAME  1530]  inference=23.0ms (avg30)  server_total=33.3ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:49:33] Waiting... (frame #1531)
+  ⚫ [01:49:33] Waiting... (frame #1534)
+  ⚫ [01:49:33] Waiting... (frame #1537)
+  ⚫ [01:49:33] Waiting... (frame #1540)
+  ⚫ [01:49:33] Waiting... (frame #1543)
+  ⚫ [01:49:33] Waiting... (frame #1546)
+  ⚫ [01:49:33] Waiting... (frame #1549)
+  ⚫ [01:49:34] Waiting... (frame #1552)
+  ⚫ [01:49:34] Waiting... (frame #1555)
+ > Processing time: 1.5174858570098877
+ > Real-time factor: 0.22108945942401434
+  ⚫ [01:49:34] Waiting... (frame #1558)
+📥 Frame #1560 from 127.0.0.1:57999 | size=35623
+🖼 Decoded frame #1560 | shape=(480, 640, 3)
+🧠 Result #1560 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 116, 'hands_detected': False}
+  [FRAME  1560]  inference=24.5ms (avg30)  server_total=33.3ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:49:34] Waiting... (frame #1561)
+  ⚫ [01:49:34] Waiting... (frame #1564)
+  ⚫ [01:49:34] Waiting... (frame #1567)
+  ⚫ [01:49:34] Waiting... (frame #1570)
+  ⚫ [01:49:34] Waiting... (frame #1573)
+  ⚫ [01:49:34] Waiting... (frame #1576)
+  ⚫ [01:49:34] Waiting... (frame #1579)
+  ⚫ [01:49:35] Waiting... (frame #1582)
+  ⚫ [01:49:35] Waiting... (frame #1585)
+  ⚫ [01:49:35] Waiting... (frame #1588)
+📥 Frame #1590 from 127.0.0.1:57999 | size=35199
+🖼 Decoded frame #1590 | shape=(480, 640, 3)
+🧠 Result #1590 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 146, 'hands_detected': False}
+  [FRAME  1590]  inference=13.0ms (avg30)  server_total=32.3ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:49:35] Waiting... (frame #1591)
+  ⚫ [01:49:35] Waiting... (frame #1594)
+  ⚫ [01:49:35] Waiting... (frame #1597)
+  ⚫ [01:49:35] Waiting... (frame #1600)
+  ⚫ [01:49:35] Waiting... (frame #1603)
+  ⚫ [01:49:35] Waiting... (frame #1606)
+  ⚫ [01:49:35] Waiting... (frame #1609)
+  ⚫ [01:49:36] Waiting... (frame #1612)
+  ⚫ [01:49:36] Waiting... (frame #1615)
+  ⚫ [01:49:36] Waiting... (frame #1618)
+📥 Frame #1620 from 127.0.0.1:57999 | size=35651
+🖼 Decoded frame #1620 | shape=(480, 640, 3)
+🧠 Result #1620 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 176, 'hands_detected': False}
+  [FRAME  1620]  inference=13.1ms (avg30)  server_total=32.3ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:49:36] Waiting... (frame #1621)
+  ⚫ [01:49:36] Waiting... (frame #1624)
+  ⚫ [01:49:36] Waiting... (frame #1627)
+  ⚫ [01:49:36] Waiting... (frame #1630)
+  ⚫ [01:49:36] Waiting... (frame #1633)
+  ⚫ [01:49:36] Waiting... (frame #1636)
+  ⚫ [01:49:36] Waiting... (frame #1639)
+  ⚫ [01:49:37] Waiting... (frame #1642)
+  ⚫ [01:49:37] Waiting... (frame #1645)
+  ⚫ [01:49:37] Waiting... (frame #1648)
+📥 Frame #1650 from 127.0.0.1:57999 | size=35283
+🖼 Decoded frame #1650 | shape=(480, 640, 3)
+🧠 Result #1650 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 206, 'hands_detected': False}
+  [FRAME  1650]  inference=14.6ms (avg30)  server_total=33.3ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:49:37] Waiting... (frame #1651)
+  ⚫ [01:49:37] Waiting... (frame #1654)
+  ⚫ [01:49:37] Waiting... (frame #1657)
+  ⚫ [01:49:37] Waiting... (frame #1660)
+  ⚫ [01:49:37] Waiting... (frame #1663)
+  ⚫ [01:49:37] Waiting... (frame #1666)
+  ⚫ [01:49:37] Waiting... (frame #1669)
+  ⚫ [01:49:38] Waiting... (frame #1672)
+  ⚫ [01:49:38] Waiting... (frame #1675)
+  ⚫ [01:49:38] Waiting... (frame #1678)
+📥 Frame #1680 from 127.0.0.1:57999 | size=34867
+🖼 Decoded frame #1680 | shape=(480, 640, 3)
+🧠 Result #1680 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 236, 'hands_detected': False}
+  [FRAME  1680]  inference=20.3ms (avg30)  server_total=33.3ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:49:38] Waiting... (frame #1681)
+  ⚫ [01:49:38] Waiting... (frame #1684)
+  ⚫ [01:49:38] Waiting... (frame #1687)
+  ⚫ [01:49:38] Waiting... (frame #1690)
+  ⚫ [01:49:38] Waiting... (frame #1693)
+  ⚫ [01:49:38] Waiting... (frame #1696)
+  ⚫ [01:49:38] Waiting... (frame #1699)
+  ⚫ [01:49:39] Waiting... (frame #1702)
+  ⚫ [01:49:39] Waiting... (frame #1705)
+  ⚫ [01:49:39] Waiting... (frame #1708)
+📥 Frame #1710 from 127.0.0.1:57999 | size=34055
+🖼 Decoded frame #1710 | shape=(480, 640, 3)
+🧠 Result #1710 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 266, 'hands_detected': False}
+  [FRAME  1710]  inference=15.1ms (avg30)  server_total=32.3ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:49:39] Waiting... (frame #1711)
+  ⚫ [01:49:39] Waiting... (frame #1714)
+  ⚫ [01:49:39] Waiting... (frame #1717)
+  ⚫ [01:49:39] Waiting... (frame #1720)
+  ⚫ [01:49:39] Waiting... (frame #1723)
+  ⚫ [01:49:39] Waiting... (frame #1726)
+  ⚫ [01:49:39] Waiting... (frame #1729)
+  ⚫ [01:49:40] Waiting... (frame #1732)
+  ⚫ [01:49:40] Waiting... (frame #1735)
+  ⚫ [01:49:40] Waiting... (frame #1738)
+📥 Frame #1740 from 127.0.0.1:57999 | size=33299
+🖼 Decoded frame #1740 | shape=(480, 640, 3)
+🧠 Result #1740 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 296, 'hands_detected': False}
+  [FRAME  1740]  inference=13.0ms (avg30)  server_total=33.3ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:49:40] Waiting... (frame #1741)
+  ⚫ [01:49:40] Waiting... (frame #1744)
+  ⚫ [01:49:40] Waiting... (frame #1747)
+  ⚫ [01:49:40] Waiting... (frame #1750)
+  ⚫ [01:49:40] Waiting... (frame #1753)
+  ⚫ [01:49:40] Waiting... (frame #1756)
+  ⚫ [01:49:40] Waiting... (frame #1759)
+  ⚫ [01:49:41] Waiting... (frame #1762)
+  ⚫ [01:49:41] Waiting... (frame #1765)
+  ⚫ [01:49:41] Waiting... (frame #1768)
+📥 Frame #1770 from 127.0.0.1:57999 | size=33427
+🖼 Decoded frame #1770 | shape=(480, 640, 3)
+🧠 Result #1770 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 326, 'hands_detected': False}
+  [FRAME  1770]  inference=11.9ms (avg30)  server_total=33.3ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:49:41] Waiting... (frame #1771)
+  ⚫ [01:49:41] Waiting... (frame #1774)
+  ⚫ [01:49:41] Waiting... (frame #1777)
+  ⚫ [01:49:41] Waiting... (frame #1780)
+  ⚫ [01:49:41] Waiting... (frame #1783)
+  ⚫ [01:49:41] Waiting... (frame #1786)
+  ⚫ [01:49:41] Waiting... (frame #1789)
+  ⚫ [01:49:41] Waiting... (frame #1792)
+  ⚫ [01:49:42] Waiting... (frame #1795)
+  ⚫ [01:49:42] Waiting... (frame #1798)
+📥 Frame #1800 from 127.0.0.1:57999 | size=33979
+🖼 Decoded frame #1800 | shape=(480, 640, 3)
+🧠 Result #1800 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 356, 'hands_detected': False}
+  [FRAME  1800]  inference=15.6ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:49:42] Waiting... (frame #1801)
+  ⚫ [01:49:42] Waiting... (frame #1804)
+  ⚫ [01:49:42] Waiting... (frame #1807)
+  ⚫ [01:49:42] Waiting... (frame #1810)
+  ⚫ [01:49:42] Waiting... (frame #1813)
+  ⚫ [01:49:42] Waiting... (frame #1816)
+  ⚫ [01:49:42] Waiting... (frame #1819)
+  ⚫ [01:49:42] Waiting... (frame #1822)
+  ⚫ [01:49:43] Waiting... (frame #1825)
+  ⚫ [01:49:43] Waiting... (frame #1828)
+📥 Frame #1830 from 127.0.0.1:57999 | size=34711
+🖼 Decoded frame #1830 | shape=(480, 640, 3)
+🧠 Result #1830 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 386, 'hands_detected': False}
+  [FRAME  1830]  inference=15.2ms (avg30)  server_total=32.3ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:49:43] Waiting... (frame #1831)
+  ⚫ [01:49:43] Waiting... (frame #1834)
+  ⚫ [01:49:43] Waiting... (frame #1837)
+  ⚫ [01:49:43] Waiting... (frame #1840)
+  ⚫ [01:49:43] Waiting... (frame #1843)
+  ⚫ [01:49:43] Waiting... (frame #1846)
+  ⚫ [01:49:43] Waiting... (frame #1849)
+  ⚫ [01:49:43] Waiting... (frame #1852)
+  ⚫ [01:49:44] Waiting... (frame #1855)
+  ⚫ [01:49:44] Waiting... (frame #1858)
+📥 Frame #1860 from 127.0.0.1:57999 | size=34091
+🖼 Decoded frame #1860 | shape=(480, 640, 3)
+🧠 Result #1860 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 416, 'hands_detected': False}
+  [FRAME  1860]  inference=14.0ms (avg30)  server_total=33.3ms (avg30)  pred=Waiting...  ready=False
+  🟠 [01:49:44] HAND DETECTED — 1/2 needed
+  🟠 [01:49:44] HAND DETECTED — 2/2 needed
+  🟠 [01:49:44] HAND DETECTED — 3/2 needed
+  🟡 [01:49:44] COLLECTING... 1 frames
+  🟡 [01:49:44] COLLECTING... 3 frames
+  ❌ [01:49:44] TOO SHORT — 0 frames
+  🟠 [01:49:44] HAND DETECTED — 1/2 needed
+  🟠 [01:49:44] HAND DETECTED — 2/2 needed
+  🟠 [01:49:44] HAND DETECTED — 3/2 needed
+  🟡 [01:49:44] COLLECTING... 1 frames
+  🟡 [01:49:45] COLLECTING... 3 frames
+  🟡 [01:49:45] COLLECTING... 6 frames
+📥 Frame #1890 from 127.0.0.1:57999 | size=34423
+🖼 Decoded frame #1890 | shape=(480, 640, 3)
+🧠 Result #1890 | label=Collecting... | ready=False | debug={'collecting': True, 'frames_collected': 9, 'consec_hand': 1, 'consec_nohand': 0, 'hands_detected': True}
+  🟡 [01:49:45] COLLECTING... 9 frames
+  [FRAME  1890]  inference=22.4ms (avg30)  server_total=33.3ms (avg30)  pred=Collecting...  ready=False
+  🟡 [01:49:45] COLLECTING... 12 frames
+
+  ✅ [01:49:45] PREDICTED → No (88%)
+[GESTURE] No | conf=88.3% | frames=0 | latency=32.0ms | Top3: No(88.3%), Okay(1.6%), What(0.7%)
+  ⚫ [01:49:45] Waiting... (frame #1902)
+  ⚫ [01:49:45] Waiting... (frame #1904)
+  ⚫ [01:49:45] Waiting... (frame #1907)
+  ⚫ [01:49:45] Waiting... (frame #1910)
+  ⚫ [01:49:45] Waiting... (frame #1913)
+  ⚫ [01:49:46] Waiting... (frame #1916)
+  ⚫ [01:49:46] Waiting... (frame #1919)
+📥 Frame #1920 from 127.0.0.1:57999 | size=32447
+🖼 Decoded frame #1920 | shape=(480, 640, 3)
+🧠 Result #1920 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 25, 'hands_detected': False}
+  [FRAME  1920]  inference=19.8ms (avg30)  server_total=32.3ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:49:46] Waiting... (frame #1922)
+  ⚫ [01:49:46] Waiting... (frame #1925)
+  ⚫ [01:49:46] Waiting... (frame #1928)
+  ⚫ [01:49:46] Waiting... (frame #1931)
+  ⚫ [01:49:46] Waiting... (frame #1934)
+  ⚫ [01:49:46] Waiting... (frame #1937)
+  ⚫ [01:49:46] Waiting... (frame #1940)
+  ⚫ [01:49:46] Waiting... (frame #1943)
+  ⚫ [01:49:47] Waiting... (frame #1946)
+  ⚫ [01:49:47] Waiting... (frame #1949)
+📥 Frame #1950 from 127.0.0.1:57999 | size=33543
+🖼 Decoded frame #1950 | shape=(480, 640, 3)
+🧠 Result #1950 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 55, 'hands_detected': False}
+  [FRAME  1950]  inference=12.4ms (avg30)  server_total=33.3ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:49:47] Waiting... (frame #1952)
+  ⚫ [01:49:47] Waiting... (frame #1955)
+  ⚫ [01:49:47] Waiting... (frame #1958)
+  ⚫ [01:49:47] Waiting... (frame #1961)
+  ⚫ [01:49:47] Waiting... (frame #1964)
+
+  💬 [01:49:47] SENTENCE FINALIZED | -48.0 dBFS
+       Signs   : NO
+       English : "No."
+       → Speaking through Pi speaker...
+
+🔊 Speaking (Coqui): No.
+ > Text splitted to sentences.
+['No.']
+[TTS] "No." | latency=0.0ms | dB=-48.0 dBFS
+  ⚫ [01:49:47] Waiting... (frame #1967)
+ > Processing time: 0.18296408653259277
+ > Real-time factor: 0.17498083397135974
+  ⚫ [01:49:47] Waiting... (frame #1970)
+  ⚫ [01:49:48] Waiting... (frame #1973)
+  ⚫ [01:49:48] Waiting... (frame #1976)
+  ⚫ [01:49:48] Waiting... (frame #1979)
+📥 Frame #1980 from 127.0.0.1:57999 | size=33771
+🖼 Decoded frame #1980 | shape=(480, 640, 3)
+🧠 Result #1980 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 85, 'hands_detected': False}
+  [FRAME  1980]  inference=18.8ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:49:48] Waiting... (frame #1982)
+  ⚫ [01:49:48] Waiting... (frame #1985)
+  ⚫ [01:49:48] Waiting... (frame #1988)
+  ⚫ [01:49:48] Waiting... (frame #1991)
+  ⚫ [01:49:48] Waiting... (frame #1994)
+  ⚫ [01:49:48] Waiting... (frame #1997)
+  ⚫ [01:49:48] Waiting... (frame #2000)
+  ⚫ [01:49:48] Waiting... (frame #2003)
+  ⚫ [01:49:49] Waiting... (frame #2006)
+  ⚫ [01:49:49] Waiting... (frame #2009)
+📥 Frame #2010 from 127.0.0.1:57999 | size=33259
+🖼 Decoded frame #2010 | shape=(480, 640, 3)
+🧠 Result #2010 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 115, 'hands_detected': False}
+  [FRAME  2010]  inference=13.1ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:49:49] Waiting... (frame #2012)
+  ⚫ [01:49:49] Waiting... (frame #2015)
+  🟠 [01:49:49] HAND DETECTED — 1/2 needed
+  🟠 [01:49:49] HAND DETECTED — 2/2 needed
+  🟠 [01:49:49] HAND DETECTED — 3/2 needed
+  🟡 [01:49:49] COLLECTING... 1 frames
+  🟡 [01:49:49] COLLECTING... 3 frames
+  🟡 [01:49:49] COLLECTING... 6 frames
+  🟡 [01:49:49] COLLECTING... 9 frames
+  🟡 [01:49:49] COLLECTING... 12 frames
+  🟡 [01:49:49] COLLECTING... 15 frames
+  🟡 [01:49:50] COLLECTING... 18 frames
+📥 Frame #2040 from 127.0.0.1:57999 | size=36359
+🖼 Decoded frame #2040 | shape=(480, 640, 3)
+🧠 Result #2040 | label=Collecting... | ready=False | debug={'collecting': True, 'frames_collected': 21, 'consec_hand': 24, 'consec_nohand': 0, 'hands_detected': True}
+  🟡 [01:49:50] COLLECTING... 21 frames
+  [FRAME  2040]  inference=24.0ms (avg30)  server_total=33.3ms (avg30)  pred=Collecting...  ready=False
+  🟡 [01:49:50] COLLECTING... 24 frames
+
+  ✅ [01:49:50] PREDICTED → Yes (94%)
+[GESTURE] Yes | conf=93.8% | frames=0 | latency=16.0ms | Top3: Yes(93.8%), Go(0.3%), Hello(0.3%)
+  ⚫ [01:49:50] Waiting... (frame #2050)
+  ⚫ [01:49:50] Waiting... (frame #2052)
+  ⚫ [01:49:50] Waiting... (frame #2055)
+  ⚫ [01:49:50] Waiting... (frame #2058)
+  ⚫ [01:49:50] Waiting... (frame #2061)
+  ⚫ [01:49:50] Waiting... (frame #2064)
+  ⚫ [01:49:51] Waiting... (frame #2067)
+📥 Frame #2070 from 127.0.0.1:57999 | size=33607
+🖼 Decoded frame #2070 | shape=(480, 640, 3)
+🧠 Result #2070 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 27, 'hands_detected': False}
+  ⚫ [01:49:51] Waiting... (frame #2070)
+  [FRAME  2070]  inference=20.3ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:49:51] Waiting... (frame #2073)
+  ⚫ [01:49:51] Waiting... (frame #2076)
+  ⚫ [01:49:51] Waiting... (frame #2079)
+  ⚫ [01:49:51] Waiting... (frame #2082)
+  ⚫ [01:49:51] Waiting... (frame #2085)
+  ⚫ [01:49:51] Waiting... (frame #2088)
+  ⚫ [01:49:51] Waiting... (frame #2091)
+  ⚫ [01:49:51] Waiting... (frame #2094)
+  ⚫ [01:49:52] Waiting... (frame #2097)
+📥 Frame #2100 from 127.0.0.1:57999 | size=33783
+🖼 Decoded frame #2100 | shape=(480, 640, 3)
+🧠 Result #2100 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 57, 'hands_detected': False}
+  ⚫ [01:49:52] Waiting... (frame #2100)
+  [FRAME  2100]  inference=14.1ms (avg30)  server_total=33.3ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:49:52] Waiting... (frame #2103)
+  ⚫ [01:49:52] Waiting... (frame #2106)
+  ⚫ [01:49:52] Waiting... (frame #2109)
+  ⚫ [01:49:52] Waiting... (frame #2112)
+
+  💬 [01:49:52] SENTENCE FINALIZED | -51.2 dBFS
+       Signs   : YES
+       English : "Yes."
+       → Speaking through Pi speaker...
+
+🔊 Speaking (Coqui): Yes.
+ > Text splitted to sentences.
+['Yes.']
+[TTS] "Yes." | latency=16.0ms | dB=-51.2 dBFS
+  ⚫ [01:49:52] Waiting... (frame #2115)
+  🟠 [01:49:52] HAND DETECTED — 1/2 needed
+ > Processing time: 0.20761561393737793
+ > Real-time factor: 0.1718440047792486
+  🟠 [01:49:52] HAND DETECTED — 2/2 needed
+  🟠 [01:49:52] HAND DETECTED — 3/2 needed
+  🟡 [01:49:52] COLLECTING... 1 frames
+  🟡 [01:49:52] COLLECTING... 3 frames
+  🟡 [01:49:53] COLLECTING... 6 frames
+  🟡 [01:49:53] COLLECTING... 9 frames
+📥 Frame #2130 from 127.0.0.1:57999 | size=35251
+🖼 Decoded frame #2130 | shape=(480, 640, 3)
+🧠 Result #2130 | label=Collecting... | ready=False | debug={'collecting': True, 'frames_collected': 11, 'consec_hand': 14, 'consec_nohand': 0, 'hands_detected': True}
+  [FRAME  2130]  inference=20.3ms (avg30)  server_total=32.8ms (avg30)  pred=Collecting...  ready=False
+  🟡 [01:49:53] COLLECTING... 12 frames
+  🟡 [01:49:53] COLLECTING... 15 frames
+  🟡 [01:49:53] COLLECTING... 18 frames
+  🟡 [01:49:53] COLLECTING... 21 frames
+  🟡 [01:49:53] COLLECTING... 24 frames
+  🟡 [01:49:53] COLLECTING... 27 frames
+  🟡 [01:49:53] COLLECTING... 30 frames
+  🟡 [01:49:53] COLLECTING... 33 frames
+  🟡 [01:49:53] COLLECTING... 36 frames
+  🟡 [01:49:54] COLLECTING... 39 frames
+📥 Frame #2160 from 127.0.0.1:57999 | size=34803
+🖼 Decoded frame #2160 | shape=(480, 640, 3)
+🧠 Result #2160 | label=Collecting... | ready=False | debug={'collecting': True, 'frames_collected': 41, 'consec_hand': 44, 'consec_nohand': 0, 'hands_detected': True}
+  [FRAME  2160]  inference=23.0ms (avg30)  server_total=33.3ms (avg30)  pred=Collecting...  ready=False
+  🟡 [01:49:54] COLLECTING... 42 frames
+  🟡 [01:49:54] COLLECTING... 45 frames
+  🟡 [01:49:54] COLLECTING... 48 frames
+  🟡 [01:49:54] COLLECTING... 51 frames
+  🟡 [01:49:54] COLLECTING... 54 frames
+  🟡 [01:49:54] COLLECTING... 57 frames
+
+  ✅ [01:49:54] PREDICTED → Please (95%)
+[GESTURE] Please | conf=94.6% | frames=0 | latency=16.0ms | Top3: Please(94.6%), Me(0.4%), Go(0.3%)
+  ⚫ [01:49:54] Waiting... (frame #2184)
+  ⚫ [01:49:55] Waiting... (frame #2186)
+  ⚫ [01:49:55] Waiting... (frame #2189)
+📥 Frame #2190 from 127.0.0.1:57999 | size=33231
+🖼 Decoded frame #2190 | shape=(480, 640, 3)
+🧠 Result #2190 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 13, 'hands_detected': False}
+  [FRAME  2190]  inference=19.3ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:49:55] Waiting... (frame #2192)
+  ⚫ [01:49:55] Waiting... (frame #2195)
+  ⚫ [01:49:55] Waiting... (frame #2198)
+  ⚫ [01:49:55] Waiting... (frame #2201)
+  ⚫ [01:49:55] Waiting... (frame #2204)
+  ⚫ [01:49:55] Waiting... (frame #2207)
+  ⚫ [01:49:55] Waiting... (frame #2210)
+  ⚫ [01:49:55] Waiting... (frame #2213)
+  ⚫ [01:49:55] Waiting... (frame #2216)
+  ⚫ [01:49:56] Waiting... (frame #2219)
+📥 Frame #2220 from 127.0.0.1:57999 | size=33975
+🖼 Decoded frame #2220 | shape=(480, 640, 3)
+🧠 Result #2220 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 43, 'hands_detected': False}
+  [FRAME  2220]  inference=14.0ms (avg30)  server_total=32.3ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:49:56] Waiting... (frame #2222)
+  ⚫ [01:49:56] Waiting... (frame #2225)
+  ⚫ [01:49:56] Waiting... (frame #2228)
+  🟠 [01:49:56] HAND DETECTED — 1/2 needed
+  🟠 [01:49:56] HAND DETECTED — 2/2 needed
+  🟠 [01:49:56] HAND DETECTED — 3/2 needed
+  🟡 [01:49:56] COLLECTING... 1 frames
+  🟡 [01:49:56] COLLECTING... 3 frames
+  ❌ [01:49:56] TOO SHORT — 0 frames
+  ⚫ [01:49:56] Waiting... (frame #2242)
+  ⚫ [01:49:56] Waiting... (frame #2244)
+  ⚫ [01:49:57] Waiting... (frame #2247)
+📥 Frame #2250 from 127.0.0.1:57999 | size=34915
+🖼 Decoded frame #2250 | shape=(480, 640, 3)
+🧠 Result #2250 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 15, 'hands_detected': False}
+  ⚫ [01:49:57] Waiting... (frame #2250)
+  [FRAME  2250]  inference=15.1ms (avg30)  server_total=33.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:49:57] Waiting... (frame #2253)
+  ⚫ [01:49:57] Waiting... (frame #2256)
+  ⚫ [01:49:57] Waiting... (frame #2259)
+  ⚫ [01:49:57] Waiting... (frame #2262)
+  ⚫ [01:49:57] Waiting... (frame #2265)
+  ⚫ [01:49:57] Waiting... (frame #2268)
+  ⚫ [01:49:57] Waiting... (frame #2271)
+  ⚫ [01:49:57] Waiting... (frame #2274)
+  ⚫ [01:49:58] Waiting... (frame #2277)
+📥 Frame #2280 from 127.0.0.1:57999 | size=32611
+🖼 Decoded frame #2280 | shape=(480, 640, 3)
+🧠 Result #2280 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 45, 'hands_detected': False}
+  ⚫ [01:49:58] Waiting... (frame #2280)
+  [FRAME  2280]  inference=18.7ms (avg30)  server_total=33.3ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:49:58] Waiting... (frame #2283)
+  ⚫ [01:49:58] Waiting... (frame #2286)
+  ⚫ [01:49:58] Waiting... (frame #2289)
+  ⚫ [01:49:58] Waiting... (frame #2292)
+  ⚫ [01:49:58] Waiting... (frame #2295)
+  ⚫ [01:49:58] Waiting... (frame #2298)
+  ⚫ [01:49:58] Waiting... (frame #2301)
+  🟠 [01:49:58] HAND DETECTED — 1/2 needed
+  🟠 [01:49:58] HAND DETECTED — 2/2 needed
+  🟠 [01:49:58] HAND DETECTED — 3/2 needed
+  ⚫ [01:49:58] Waiting... (frame #2305)
+  ⚫ [01:49:58] Waiting... (frame #2307)
+📥 Frame #2310 from 127.0.0.1:57999 | size=31171
+🖼 Decoded frame #2310 | shape=(480, 640, 3)
+🧠 Result #2310 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 6, 'hands_detected': False}
+  ⚫ [01:49:59] Waiting... (frame #2310)
+  [FRAME  2310]  inference=19.9ms (avg30)  server_total=32.3ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:49:59] Waiting... (frame #2313)
+  ⚫ [01:49:59] Waiting... (frame #2316)
+  ⚫ [01:49:59] Waiting... (frame #2319)
+  ⚫ [01:49:59] Waiting... (frame #2322)
+  ⚫ [01:49:59] Waiting... (frame #2325)
+  ⚫ [01:49:59] Waiting... (frame #2328)
+  ⚫ [01:49:59] Waiting... (frame #2331)
+  ⚫ [01:49:59] Waiting... (frame #2334)
+  ⚫ [01:49:59] Waiting... (frame #2337)
+📥 Frame #2340 from 127.0.0.1:57999 | size=29111
+🖼 Decoded frame #2340 | shape=(480, 640, 3)
+🧠 Result #2340 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 36, 'hands_detected': False}
+  ⚫ [01:50:00] Waiting... (frame #2340)
+  [FRAME  2340]  inference=11.9ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:50:00] Waiting... (frame #2343)
+  ⚫ [01:50:00] Waiting... (frame #2346)
+  ⚫ [01:50:00] Waiting... (frame #2349)
+  ⚫ [01:50:00] Waiting... (frame #2352)
+  ⚫ [01:50:00] Waiting... (frame #2355)
+  ⚫ [01:50:00] Waiting... (frame #2358)
+  ⚫ [01:50:00] Waiting... (frame #2361)
+  ⚫ [01:50:00] Waiting... (frame #2364)
+  ⚫ [01:50:00] Waiting... (frame #2367)
+📥 Frame #2370 from 127.0.0.1:57999 | size=35823
+🖼 Decoded frame #2370 | shape=(480, 640, 3)
+🧠 Result #2370 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 66, 'hands_detected': False}
+  ⚫ [01:50:01] Waiting... (frame #2370)
+  [FRAME  2370]  inference=14.1ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+
+  💬 [01:50:01] SENTENCE FINALIZED | -37.3 dBFS
+       Signs   : PLEASE
+       English : "Please."
+       → Speaking through Pi speaker...
+
+🔊 Speaking (Coqui): Please.
+ > Text splitted to sentences.
+['Please.']
+[TTS] "Please." | latency=0.0ms | dB=-37.3 dBFS
+  ⚫ [01:50:01] Waiting... (frame #2373)
+  ⚫ [01:50:01] Waiting... (frame #2376)
+ > Processing time: 0.25506067276000977
+ > Real-time factor: 0.19430928117600246
+  ⚫ [01:50:01] Waiting... (frame #2379)
+  ⚫ [01:50:01] Waiting... (frame #2382)
+  ⚫ [01:50:01] Waiting... (frame #2385)
+  ⚫ [01:50:01] Waiting... (frame #2388)
+  ⚫ [01:50:01] Waiting... (frame #2391)
+  ⚫ [01:50:01] Waiting... (frame #2394)
+  ⚫ [01:50:01] Waiting... (frame #2397)
+📥 Frame #2400 from 127.0.0.1:57999 | size=38483
+🖼 Decoded frame #2400 | shape=(480, 640, 3)
+🧠 Result #2400 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 96, 'hands_detected': False}
+  ⚫ [01:50:02] Waiting... (frame #2400)
+  [FRAME  2400]  inference=21.3ms (avg30)  server_total=33.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:50:02] Waiting... (frame #2403)
+  ⚫ [01:50:02] Waiting... (frame #2406)
+  ⚫ [01:50:02] Waiting... (frame #2409)
+  ⚫ [01:50:02] Waiting... (frame #2412)
+  ⚫ [01:50:02] Waiting... (frame #2415)
+  ⚫ [01:50:02] Waiting... (frame #2418)
+  ⚫ [01:50:02] Waiting... (frame #2421)
+  ⚫ [01:50:02] Waiting... (frame #2424)
+  ⚫ [01:50:02] Waiting... (frame #2427)
+📥 Frame #2430 from 127.0.0.1:57999 | size=39615
+🖼 Decoded frame #2430 | shape=(480, 640, 3)
+🧠 Result #2430 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 126, 'hands_detected': False}
+  ⚫ [01:50:03] Waiting... (frame #2430)
+  [FRAME  2430]  inference=12.9ms (avg30)  server_total=32.3ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:50:03] Waiting... (frame #2433)
+  ⚫ [01:50:03] Waiting... (frame #2436)
+  ⚫ [01:50:03] Waiting... (frame #2439)
+  ⚫ [01:50:03] Waiting... (frame #2442)
+  ⚫ [01:50:03] Waiting... (frame #2445)
+  ⚫ [01:50:03] Waiting... (frame #2448)
+  ⚫ [01:50:03] Waiting... (frame #2451)
+  🟠 [01:50:03] HAND DETECTED — 1/2 needed
+  🟠 [01:50:03] HAND DETECTED — 2/2 needed
+  🟠 [01:50:03] HAND DETECTED — 3/2 needed
+  🟡 [01:50:03] COLLECTING... 1 frames
+📥 Frame #2460 from 127.0.0.1:57999 | size=39987
+🖼 Decoded frame #2460 | shape=(480, 640, 3)
+🧠 Result #2460 | label=Collecting... | ready=False | debug={'collecting': True, 'frames_collected': 2, 'consec_hand': 0, 'consec_nohand': 2, 'hands_detected': False}
+  [FRAME  2460]  inference=17.8ms (avg30)  server_total=33.9ms (avg30)  pred=Collecting...  ready=False
+  🟡 [01:50:04] COLLECTING... 3 frames
+  🟡 [01:50:04] COLLECTING... 6 frames
+  🟡 [01:50:04] COLLECTING... 9 frames
+  🟡 [01:50:04] COLLECTING... 12 frames
+  🟡 [01:50:04] COLLECTING... 15 frames
+  🟡 [01:50:04] COLLECTING... 18 frames
+  🟡 [01:50:04] COLLECTING... 21 frames
+  🟡 [01:50:04] COLLECTING... 24 frames
+  🟡 [01:50:04] COLLECTING... 27 frames
+📥 Frame #2490 from 127.0.0.1:57999 | size=39419
+🖼 Decoded frame #2490 | shape=(480, 640, 3)
+🧠 Result #2490 | label=Collecting... | ready=False | debug={'collecting': True, 'frames_collected': 30, 'consec_hand': 28, 'consec_nohand': 0, 'hands_detected': True}
+  🟡 [01:50:05] COLLECTING... 30 frames
+  [FRAME  2490]  inference=24.5ms (avg30)  server_total=32.8ms (avg30)  pred=Collecting...  ready=False
+  🟡 [01:50:05] COLLECTING... 33 frames
+
+  ✅ [01:50:05] PREDICTED → No (93%)
+[GESTURE] No | conf=93.0% | frames=0 | latency=32.0ms | Top3: No(93.0%), Okay(0.6%), What(0.3%)
+  ⚫ [01:50:05] Waiting... (frame #2502)
+  ⚫ [01:50:05] Waiting... (frame #2504)
+  ⚫ [01:50:05] Waiting... (frame #2507)
+  ⚫ [01:50:05] Waiting... (frame #2510)
+  ⚫ [01:50:05] Waiting... (frame #2513)
+  ⚫ [01:50:05] Waiting... (frame #2516)
+  ⚫ [01:50:05] Waiting... (frame #2519)
+📥 Frame #2520 from 127.0.0.1:57999 | size=39631
+🖼 Decoded frame #2520 | shape=(480, 640, 3)
+🧠 Result #2520 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 25, 'hands_detected': False}
+  [FRAME  2520]  inference=18.7ms (avg30)  server_total=32.3ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:50:06] Waiting... (frame #2522)
+  ⚫ [01:50:06] Waiting... (frame #2525)
+  ⚫ [01:50:06] Waiting... (frame #2528)
+  ⚫ [01:50:06] Waiting... (frame #2531)
+  ⚫ [01:50:06] Waiting... (frame #2534)
+  ⚫ [01:50:06] Waiting... (frame #2537)
+  ⚫ [01:50:06] Waiting... (frame #2540)
+  ⚫ [01:50:06] Waiting... (frame #2543)
+  ⚫ [01:50:06] Waiting... (frame #2546)
+  ⚫ [01:50:06] Waiting... (frame #2549)
+📥 Frame #2550 from 127.0.0.1:57999 | size=39679
+🖼 Decoded frame #2550 | shape=(480, 640, 3)
+🧠 Result #2550 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 55, 'hands_detected': False}
+  [FRAME  2550]  inference=14.1ms (avg30)  server_total=33.3ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:50:07] Waiting... (frame #2552)
+  ⚫ [01:50:07] Waiting... (frame #2555)
+  ⚫ [01:50:07] Waiting... (frame #2558)
+  ⚫ [01:50:07] Waiting... (frame #2561)
+
+  💬 [01:50:07] SENTENCE FINALIZED | -33.4 dBFS
+       Signs   : NO
+       English : "No."
+       → Speaking through Pi speaker...
+
+🔊 Speaking (Coqui): No.
+ > Text splitted to sentences.
+['No.']
+[TTS] "No." | latency=0.0ms | dB=-33.4 dBFS
+  ⚫ [01:50:07] Waiting... (frame #2564)
+  ⚫ [01:50:07] Waiting... (frame #2567)
+ > Processing time: 0.162520170211792
+ > Real-time factor: 0.15895891382052935
+  ⚫ [01:50:07] Waiting... (frame #2570)
+  ⚫ [01:50:07] Waiting... (frame #2573)
+  ⚫ [01:50:07] Waiting... (frame #2576)
+  ⚫ [01:50:07] Waiting... (frame #2579)
+📥 Frame #2580 from 127.0.0.1:57999 | size=39671
+🖼 Decoded frame #2580 | shape=(480, 640, 3)
+🧠 Result #2580 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 85, 'hands_detected': False}
+  [FRAME  2580]  inference=14.6ms (avg30)  server_total=33.3ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:50:08] Waiting... (frame #2582)
+  ⚫ [01:50:08] Waiting... (frame #2585)
+  ⚫ [01:50:08] Waiting... (frame #2588)
+  ⚫ [01:50:08] Waiting... (frame #2591)
+  ⚫ [01:50:08] Waiting... (frame #2594)
+  ⚫ [01:50:08] Waiting... (frame #2597)
+  ⚫ [01:50:08] Waiting... (frame #2600)
+  ⚫ [01:50:08] Waiting... (frame #2603)
+  ⚫ [01:50:08] Waiting... (frame #2606)
+  ⚫ [01:50:08] Waiting... (frame #2609)
+📥 Frame #2610 from 127.0.0.1:57999 | size=38563
+🖼 Decoded frame #2610 | shape=(480, 640, 3)
+🧠 Result #2610 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 115, 'hands_detected': False}
+  [FRAME  2610]  inference=11.5ms (avg30)  server_total=32.3ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:50:09] Waiting... (frame #2612)
+  ⚫ [01:50:09] Waiting... (frame #2615)
+  ⚫ [01:50:09] Waiting... (frame #2618)
+  ⚫ [01:50:09] Waiting... (frame #2621)
+  ⚫ [01:50:09] Waiting... (frame #2624)
+  🟠 [01:50:09] HAND DETECTED — 1/2 needed
+  🟠 [01:50:09] HAND DETECTED — 2/2 needed
+  🟠 [01:50:09] HAND DETECTED — 3/2 needed
+  🟡 [01:50:09] COLLECTING... 1 frames
+  🟡 [01:50:09] COLLECTING... 3 frames
+  🟡 [01:50:09] COLLECTING... 6 frames
+  🟡 [01:50:09] COLLECTING... 9 frames
+📥 Frame #2640 from 127.0.0.1:57999 | size=39207
+🖼 Decoded frame #2640 | shape=(480, 640, 3)
+🧠 Result #2640 | label=Collecting... | ready=False | debug={'collecting': True, 'frames_collected': 12, 'consec_hand': 15, 'consec_nohand': 0, 'hands_detected': True}
+  🟡 [01:50:09] COLLECTING... 12 frames
+  [FRAME  2640]  inference=18.2ms (avg30)  server_total=33.3ms (avg30)  pred=Collecting...  ready=False
+  🟡 [01:50:10] COLLECTING... 15 frames
+  🟡 [01:50:10] COLLECTING... 18 frames
+  🟡 [01:50:10] COLLECTING... 21 frames
+  🟡 [01:50:10] COLLECTING... 24 frames
+  🟡 [01:50:10] COLLECTING... 27 frames
+  🟡 [01:50:10] COLLECTING... 30 frames
+  🟡 [01:50:10] COLLECTING... 33 frames
+  🟡 [01:50:10] COLLECTING... 36 frames
+📥 Frame #2670 from 127.0.0.1:57999 | size=39263
+🖼 Decoded frame #2670 | shape=(480, 640, 3)
+🧠 Result #2670 | label=Thanks | ready=True | debug={}
+
+  ✅ [01:50:10] PREDICTED → Thanks (95%)
+[GESTURE] Thanks | conf=94.5% | frames=0 | latency=16.0ms | Top3: Thanks(94.5%), Who(0.3%), Want(0.2%)
+  [FRAME  2670]  inference=22.0ms (avg30)  server_total=33.3ms (avg30)  pred=Thanks  ready=True
+  ⚫ [01:50:11] Waiting... (frame #2671)
+  ⚫ [01:50:11] Waiting... (frame #2673)
+  ⚫ [01:50:11] Waiting... (frame #2676)
+  ⚫ [01:50:11] Waiting... (frame #2679)
+  ⚫ [01:50:11] Waiting... (frame #2682)
+  ⚫ [01:50:11] Waiting... (frame #2685)
+  ⚫ [01:50:11] Waiting... (frame #2688)
+  ⚫ [01:50:11] Waiting... (frame #2691)
+  ⚫ [01:50:11] Waiting... (frame #2694)
+  ⚫ [01:50:11] Waiting... (frame #2697)
+📥 Frame #2700 from 127.0.0.1:57999 | size=39879
+🖼 Decoded frame #2700 | shape=(480, 640, 3)
+🧠 Result #2700 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 36, 'hands_detected': False}
+  ⚫ [01:50:11] Waiting... (frame #2700)
+  [FRAME  2700]  inference=12.5ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:50:12] Waiting... (frame #2703)
+  ⚫ [01:50:12] Waiting... (frame #2706)
+  ⚫ [01:50:12] Waiting... (frame #2709)
+  ⚫ [01:50:12] Waiting... (frame #2712)
+  ⚫ [01:50:12] Waiting... (frame #2715)
+  ⚫ [01:50:12] Waiting... (frame #2718)
+  ⚫ [01:50:12] Waiting... (frame #2721)
+  ⚫ [01:50:12] Waiting... (frame #2724)
+  ⚫ [01:50:12] Waiting... (frame #2727)
+📥 Frame #2730 from 127.0.0.1:57999 | size=40007
+🖼 Decoded frame #2730 | shape=(480, 640, 3)
+🧠 Result #2730 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 66, 'hands_detected': False}
+  ⚫ [01:50:12] Waiting... (frame #2730)
+  [FRAME  2730]  inference=12.9ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+
+  💬 [01:50:13] SENTENCE FINALIZED | -49.2 dBFS
+       Signs   : THANKS
+       English : "Thank you."
+       → Speaking through Pi speaker...
+
+🔊 Speaking (Coqui): Thank you.
+ > Text splitted to sentences.
+['Thank you.']
+[TTS] "Thank you." | latency=0.0ms | dB=-49.2 dBFS
+  ⚫ [01:50:13] Waiting... (frame #2733)
+  ⚫ [01:50:13] Waiting... (frame #2736)
+ > Processing time: 0.23435354232788086
+ > Real-time factor: 0.19585717132844802
+  ⚫ [01:50:13] Waiting... (frame #2739)
+  ⚫ [01:50:13] Waiting... (frame #2742)
+  ⚫ [01:50:13] Waiting... (frame #2745)
+  ⚫ [01:50:13] Waiting... (frame #2748)
+  ⚫ [01:50:13] Waiting... (frame #2751)
+  ⚫ [01:50:13] Waiting... (frame #2754)
+  ⚫ [01:50:13] Waiting... (frame #2757)
+📥 Frame #2760 from 127.0.0.1:57999 | size=39535
+🖼 Decoded frame #2760 | shape=(480, 640, 3)
+🧠 Result #2760 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 96, 'hands_detected': False}
+  ⚫ [01:50:13] Waiting... (frame #2760)
+  [FRAME  2760]  inference=16.6ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:50:14] Waiting... (frame #2763)
+  ⚫ [01:50:14] Waiting... (frame #2766)
+  ⚫ [01:50:14] Waiting... (frame #2769)
+  ⚫ [01:50:14] Waiting... (frame #2772)
+  ⚫ [01:50:14] Waiting... (frame #2775)
+  ⚫ [01:50:14] Waiting... (frame #2778)
+  ⚫ [01:50:14] Waiting... (frame #2781)
+  ⚫ [01:50:14] Waiting... (frame #2784)
+  ⚫ [01:50:14] Waiting... (frame #2787)
+📥 Frame #2790 from 127.0.0.1:57999 | size=39923
+🖼 Decoded frame #2790 | shape=(480, 640, 3)
+🧠 Result #2790 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 126, 'hands_detected': False}
+  ⚫ [01:50:14] Waiting... (frame #2790)
+  [FRAME  2790]  inference=12.0ms (avg30)  server_total=33.3ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:50:15] Waiting... (frame #2793)
+  ⚫ [01:50:15] Waiting... (frame #2796)
+  ⚫ [01:50:15] Waiting... (frame #2799)
+  ⚫ [01:50:15] Waiting... (frame #2802)
+  ⚫ [01:50:15] Waiting... (frame #2805)
+  ⚫ [01:50:15] Waiting... (frame #2808)
+  ⚫ [01:50:15] Waiting... (frame #2811)
+  ⚫ [01:50:15] Waiting... (frame #2814)
+  ⚫ [01:50:15] Waiting... (frame #2817)
+📥 Frame #2820 from 127.0.0.1:57999 | size=38827
+🖼 Decoded frame #2820 | shape=(480, 640, 3)
+🧠 Result #2820 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 156, 'hands_detected': False}
+  ⚫ [01:50:15] Waiting... (frame #2820)
+  [FRAME  2820]  inference=10.9ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:50:16] Waiting... (frame #2823)
+  ⚫ [01:50:16] Waiting... (frame #2826)
+  ⚫ [01:50:16] Waiting... (frame #2829)
+  ⚫ [01:50:16] Waiting... (frame #2832)
+  ⚫ [01:50:16] Waiting... (frame #2835)
+  ⚫ [01:50:16] Waiting... (frame #2838)
+  ⚫ [01:50:16] Waiting... (frame #2841)
+  ⚫ [01:50:16] Waiting... (frame #2844)
+  ⚫ [01:50:16] Waiting... (frame #2847)
+📥 Frame #2850 from 127.0.0.1:57999 | size=39803
+🖼 Decoded frame #2850 | shape=(480, 640, 3)
+🧠 Result #2850 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 186, 'hands_detected': False}
+  ⚫ [01:50:16] Waiting... (frame #2850)
+  [FRAME  2850]  inference=12.6ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:50:17] Waiting... (frame #2853)
+  ⚫ [01:50:17] Waiting... (frame #2856)
+  ⚫ [01:50:17] Waiting... (frame #2859)
+  ⚫ [01:50:17] Waiting... (frame #2862)
+  ⚫ [01:50:17] Waiting... (frame #2865)
+  ⚫ [01:50:17] Waiting... (frame #2868)
+  ⚫ [01:50:17] Waiting... (frame #2871)
+  ⚫ [01:50:17] Waiting... (frame #2874)
+  ⚫ [01:50:17] Waiting... (frame #2877)
+📥 Frame #2880 from 127.0.0.1:57999 | size=39943
+🖼 Decoded frame #2880 | shape=(480, 640, 3)
+🧠 Result #2880 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 216, 'hands_detected': False}
+  ⚫ [01:50:17] Waiting... (frame #2880)
+  [FRAME  2880]  inference=11.9ms (avg30)  server_total=33.3ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:50:17] Waiting... (frame #2883)
+  ⚫ [01:50:18] Waiting... (frame #2886)
+  ⚫ [01:50:18] Waiting... (frame #2889)
+  ⚫ [01:50:18] Waiting... (frame #2892)
+  ⚫ [01:50:18] Waiting... (frame #2895)
+  ⚫ [01:50:18] Waiting... (frame #2898)
+  ⚫ [01:50:18] Waiting... (frame #2901)
+  ⚫ [01:50:18] Waiting... (frame #2904)
+  ⚫ [01:50:18] Waiting... (frame #2907)
+📥 Frame #2910 from 127.0.0.1:57999 | size=39791
+🖼 Decoded frame #2910 | shape=(480, 640, 3)
+🧠 Result #2910 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 246, 'hands_detected': False}
+  ⚫ [01:50:18] Waiting... (frame #2910)
+  [FRAME  2910]  inference=13.1ms (avg30)  server_total=32.3ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:50:18] Waiting... (frame #2913)
+  ⚫ [01:50:19] Waiting... (frame #2916)
+  ⚫ [01:50:19] Waiting... (frame #2919)
+  ⚫ [01:50:19] Waiting... (frame #2922)
+  ⚫ [01:50:19] Waiting... (frame #2925)
+  ⚫ [01:50:19] Waiting... (frame #2928)
+  ⚫ [01:50:19] Waiting... (frame #2931)
+  ⚫ [01:50:19] Waiting... (frame #2934)
+  ⚫ [01:50:19] Waiting... (frame #2937)
+📥 Frame #2940 from 127.0.0.1:57999 | size=39931
+🖼 Decoded frame #2940 | shape=(480, 640, 3)
+🧠 Result #2940 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 276, 'hands_detected': False}
+  ⚫ [01:50:19] Waiting... (frame #2940)
+  [FRAME  2940]  inference=13.1ms (avg30)  server_total=33.3ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:50:19] Waiting... (frame #2943)
+  ⚫ [01:50:20] Waiting... (frame #2946)
+  ⚫ [01:50:20] Waiting... (frame #2949)
+  ⚫ [01:50:20] Waiting... (frame #2952)
+  ⚫ [01:50:20] Waiting... (frame #2955)
+  ⚫ [01:50:20] Waiting... (frame #2958)
+  ⚫ [01:50:20] Waiting... (frame #2961)
+  ⚫ [01:50:20] Waiting... (frame #2964)
+  ⚫ [01:50:20] Waiting... (frame #2967)
+📥 Frame #2970 from 127.0.0.1:57999 | size=39691
+🖼 Decoded frame #2970 | shape=(480, 640, 3)
+🧠 Result #2970 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 306, 'hands_detected': False}
+  ⚫ [01:50:20] Waiting... (frame #2970)
+  [FRAME  2970]  inference=12.0ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:50:20] Waiting... (frame #2973)
+  ⚫ [01:50:21] Waiting... (frame #2976)
+  ⚫ [01:50:21] Waiting... (frame #2979)
+  ⚫ [01:50:21] Waiting... (frame #2982)
+  ⚫ [01:50:21] Waiting... (frame #2985)
+  ⚫ [01:50:21] Waiting... (frame #2988)
+  ⚫ [01:50:21] Waiting... (frame #2991)
+  ⚫ [01:50:21] Waiting... (frame #2994)
+  ⚫ [01:50:21] Waiting... (frame #2997)
+📥 Frame #3000 from 127.0.0.1:57999 | size=39847
+🖼 Decoded frame #3000 | shape=(480, 640, 3)
+🧠 Result #3000 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 336, 'hands_detected': False}
+  ⚫ [01:50:21] Waiting... (frame #3000)
+  [FRAME  3000]  inference=11.5ms (avg30)  server_total=32.3ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:50:21] Waiting... (frame #3003)
+  ⚫ [01:50:22] Waiting... (frame #3006)
+  ⚫ [01:50:22] Waiting... (frame #3009)
+  ⚫ [01:50:22] Waiting... (frame #3012)
+  ⚫ [01:50:22] Waiting... (frame #3015)
+  ⚫ [01:50:22] Waiting... (frame #3018)
+  ⚫ [01:50:22] Waiting... (frame #3021)
+  ⚫ [01:50:22] Waiting... (frame #3024)
+  🟠 [01:50:22] HAND DETECTED — 1/2 needed
+  🟠 [01:50:22] HAND DETECTED — 2/2 needed
+  🟠 [01:50:22] HAND DETECTED — 3/2 needed
+  🟡 [01:50:22] COLLECTING... 1 frames
+📥 Frame #3030 from 127.0.0.1:57999 | size=39343
+🖼 Decoded frame #3030 | shape=(480, 640, 3)
+🧠 Result #3030 | label=Collecting... | ready=False | debug={'collecting': True, 'frames_collected': 3, 'consec_hand': 6, 'consec_nohand': 0, 'hands_detected': True}
+  🟡 [01:50:22] COLLECTING... 3 frames
+  [FRAME  3030]  inference=15.6ms (avg30)  server_total=33.9ms (avg30)  pred=Collecting...  ready=False
+  🟡 [01:50:22] COLLECTING... 6 frames
+  🟡 [01:50:23] COLLECTING... 9 frames
+  🟡 [01:50:23] COLLECTING... 12 frames
+  🟡 [01:50:23] COLLECTING... 15 frames
+
+  ✅ [01:50:23] PREDICTED → You (68%)
+[GESTURE] You | conf=68.2% | frames=0 | latency=16.0ms | Top3: You(68.2%), Okay(4.7%), Eat(2.7%)
+  ⚫ [01:50:23] Waiting... (frame #3050)
+  ⚫ [01:50:23] Waiting... (frame #3052)
+  ⚫ [01:50:23] Waiting... (frame #3055)
+  ⚫ [01:50:23] Waiting... (frame #3058)
+📥 Frame #3060 from 127.0.0.1:57999 | size=38603
+🖼 Decoded frame #3060 | shape=(480, 640, 3)
+🧠 Result #3060 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 17, 'hands_detected': False}
+  [FRAME  3060]  inference=18.8ms (avg30)  server_total=33.3ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:50:23] Waiting... (frame #3061)
+  ⚫ [01:50:23] Waiting... (frame #3064)
+  🟠 [01:50:24] HAND DETECTED — 1/2 needed
+  🟠 [01:50:24] HAND DETECTED — 2/2 needed
+  🟠 [01:50:24] HAND DETECTED — 3/2 needed
+  🟡 [01:50:24] COLLECTING... 1 frames
+  🟡 [01:50:24] COLLECTING... 3 frames
+  🟡 [01:50:24] COLLECTING... 6 frames
+  🟡 [01:50:24] COLLECTING... 9 frames
+  🟡 [01:50:24] COLLECTING... 12 frames
+  🟡 [01:50:24] COLLECTING... 15 frames
+  🟡 [01:50:24] COLLECTING... 18 frames
+  🟡 [01:50:24] COLLECTING... 21 frames
+📥 Frame #3090 from 127.0.0.1:57999 | size=39351
+🖼 Decoded frame #3090 | shape=(480, 640, 3)
+🧠 Result #3090 | label=Collecting... | ready=False | debug={'collecting': True, 'frames_collected': 22, 'consec_hand': 6, 'consec_nohand': 0, 'hands_detected': True}
+  [FRAME  3090]  inference=21.9ms (avg30)  server_total=32.8ms (avg30)  pred=Collecting...  ready=False
+  🟡 [01:50:24] COLLECTING... 24 frames
+  🟡 [01:50:25] COLLECTING... 27 frames
+  🟡 [01:50:25] COLLECTING... 30 frames
+
+  ✅ [01:50:25] PREDICTED → No (50%)
+[GESTURE] No | conf=50.3% | frames=0 | latency=16.0ms | Top3: No(50.3%), Okay(16.4%), What(6.4%)
+  ⚫ [01:50:25] Waiting... (frame #3107)
+  ⚫ [01:50:25] Waiting... (frame #3109)
+  ⚫ [01:50:25] Waiting... (frame #3112)
+  ⚫ [01:50:25] Waiting... (frame #3115)
+  ⚫ [01:50:25] Waiting... (frame #3118)
+📥 Frame #3120 from 127.0.0.1:57999 | size=39407
+🖼 Decoded frame #3120 | shape=(480, 640, 3)
+🧠 Result #3120 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 20, 'hands_detected': False}
+  [FRAME  3120]  inference=18.2ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:50:25] Waiting... (frame #3121)
+  ⚫ [01:50:25] Waiting... (frame #3124)
+  ⚫ [01:50:26] Waiting... (frame #3127)
+  ⚫ [01:50:26] Waiting... (frame #3130)
+  ⚫ [01:50:26] Waiting... (frame #3133)
+  ⚫ [01:50:26] Waiting... (frame #3136)
+  ⚫ [01:50:26] Waiting... (frame #3139)
+  ⚫ [01:50:26] Waiting... (frame #3142)
+  ⚫ [01:50:26] Waiting... (frame #3145)
+  ⚫ [01:50:26] Waiting... (frame #3148)
+📥 Frame #3150 from 127.0.0.1:57999 | size=39243
+🖼 Decoded frame #3150 | shape=(480, 640, 3)
+🧠 Result #3150 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 50, 'hands_detected': False}
+  [FRAME  3150]  inference=13.6ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:50:26] Waiting... (frame #3151)
+  ⚫ [01:50:26] Waiting... (frame #3154)
+  ⚫ [01:50:27] Waiting... (frame #3157)
+  ⚫ [01:50:27] Waiting... (frame #3160)
+  ⚫ [01:50:27] Waiting... (frame #3163)
+  ⚫ [01:50:27] Waiting... (frame #3166)
+  ⚫ [01:50:27] Waiting... (frame #3169)
+
+  💬 [01:50:27] SENTENCE FINALIZED | -23.9 dBFS
+       Signs   : YOU NO
+       English : "You no."
+       → Speaking through Pi speaker...
+
+🔊 Speaking (Coqui): You no.
+ > Text splitted to sentences.
+['You no.']
+[TTS] "You no." | latency=0.0ms | dB=-23.9 dBFS
+  ⚫ [01:50:27] Waiting... (frame #3172)
+  ⚫ [01:50:27] Waiting... (frame #3175)
+ > Processing time: 0.21721673011779785
+ > Real-time factor: 0.18153535851642824
+  ⚫ [01:50:27] Waiting... (frame #3178)
+📥 Frame #3180 from 127.0.0.1:57999 | size=38743
+🖼 Decoded frame #3180 | shape=(480, 640, 3)
+🧠 Result #3180 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 80, 'hands_detected': False}
+  [FRAME  3180]  inference=17.8ms (avg30)  server_total=34.9ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:50:27] Waiting... (frame #3181)
+  ⚫ [01:50:27] Waiting... (frame #3184)
+  🟠 [01:50:28] HAND DETECTED — 1/2 needed
+  🟠 [01:50:28] HAND DETECTED — 2/2 needed
+  🟠 [01:50:28] HAND DETECTED — 3/2 needed
+  🟡 [01:50:28] COLLECTING... 1 frames
+  🟡 [01:50:28] COLLECTING... 3 frames
+  🟡 [01:50:28] COLLECTING... 6 frames
+  🟡 [01:50:28] COLLECTING... 9 frames
+  🟡 [01:50:28] COLLECTING... 12 frames
+  🟡 [01:50:28] COLLECTING... 15 frames
+📥 Frame #3210 from 127.0.0.1:57999 | size=39467
+🖼 Decoded frame #3210 | shape=(480, 640, 3)
+🧠 Result #3210 | label=What | ready=True | debug={}
+
+  ✅ [01:50:28] PREDICTED → What (92%)
+[GESTURE] What | conf=92.4% | frames=0 | latency=15.0ms | Top3: What(92.4%), Understand(0.6%), Yes(0.4%)
+  [FRAME  3210]  inference=24.5ms (avg30)  server_total=31.2ms (avg30)  pred=What  ready=True
+  ⚫ [01:50:28] Waiting... (frame #3211)
+  ⚫ [01:50:28] Waiting... (frame #3213)
+  ⚫ [01:50:29] Waiting... (frame #3216)
+  ⚫ [01:50:29] Waiting... (frame #3219)
+  ⚫ [01:50:29] Waiting... (frame #3222)
+  ⚫ [01:50:29] Waiting... (frame #3225)
+  ⚫ [01:50:29] Waiting... (frame #3228)
+  ⚫ [01:50:29] Waiting... (frame #3231)
+  ⚫ [01:50:29] Waiting... (frame #3234)
+  ⚫ [01:50:29] Waiting... (frame #3237)
+📥 Frame #3240 from 127.0.0.1:57999 | size=39315
+🖼 Decoded frame #3240 | shape=(480, 640, 3)
+🧠 Result #3240 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 36, 'hands_detected': False}
+  ⚫ [01:50:29] Waiting... (frame #3240)
+  [FRAME  3240]  inference=12.5ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:50:29] Waiting... (frame #3243)
+  ⚫ [01:50:29] Waiting... (frame #3246)
+  ⚫ [01:50:30] Waiting... (frame #3249)
+  ⚫ [01:50:30] Waiting... (frame #3252)
+  ⚫ [01:50:30] Waiting... (frame #3255)
+  ⚫ [01:50:30] Waiting... (frame #3258)
+  ⚫ [01:50:30] Waiting... (frame #3261)
+  ⚫ [01:50:30] Waiting... (frame #3264)
+  ⚫ [01:50:30] Waiting... (frame #3267)
+📥 Frame #3270 from 127.0.0.1:57999 | size=39339
+🖼 Decoded frame #3270 | shape=(480, 640, 3)
+🧠 Result #3270 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 66, 'hands_detected': False}
+  ⚫ [01:50:30] Waiting... (frame #3270)
+  [FRAME  3270]  inference=12.6ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+
+  💬 [01:50:30] SENTENCE FINALIZED | -50.0 dBFS
+       Signs   : WHAT
+       English : "What?"
+       → Speaking through Pi speaker...
+
+🔊 Speaking (Coqui): What?
+ > Text splitted to sentences.
+['What?']
+[TTS] "What?" | latency=0.0ms | dB=-50.0 dBFS
+  ⚫ [01:50:30] Waiting... (frame #3273)
+  ⚫ [01:50:30] Waiting... (frame #3276)
+ > Processing time: 0.16646242141723633
+ > Real-time factor: 0.16468487043476585
+  ⚫ [01:50:31] Waiting... (frame #3279)
+  ⚫ [01:50:31] Waiting... (frame #3282)
+  ⚫ [01:50:31] Waiting... (frame #3285)
+  ⚫ [01:50:31] Waiting... (frame #3288)
+  ⚫ [01:50:31] Waiting... (frame #3291)
+  ⚫ [01:50:31] Waiting... (frame #3294)
+  ⚫ [01:50:31] Waiting... (frame #3297)
+  🟠 [01:50:31] HAND DETECTED — 1/2 needed
+  🟠 [01:50:31] HAND DETECTED — 2/2 needed
+📥 Frame #3300 from 127.0.0.1:57999 | size=39415
+🖼 Decoded frame #3300 | shape=(480, 640, 3)
+🧠 Result #3300 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 3, 'consec_nohand': 0, 'hands_detected': True}
+  🟠 [01:50:31] HAND DETECTED — 3/2 needed
+  [FRAME  3300]  inference=16.8ms (avg30)  server_total=33.3ms (avg30)  pred=Waiting...  ready=False
+  🟡 [01:50:31] COLLECTING... 1 frames
+  🟡 [01:50:31] COLLECTING... 3 frames
+  🟡 [01:50:31] COLLECTING... 6 frames
+  🟡 [01:50:32] COLLECTING... 9 frames
+  🟡 [01:50:32] COLLECTING... 12 frames
+  🟡 [01:50:32] COLLECTING... 15 frames
+
+  ✅ [01:50:32] PREDICTED → You (34%)
+[GESTURE] You | conf=34.4% | frames=0 | latency=16.0ms | Top3: You(34.4%), Okay(23.6%), Hello(3.2%)
+  ⚫ [01:50:32] Waiting... (frame #3324)
+  ⚫ [01:50:32] Waiting... (frame #3326)
+  ⚫ [01:50:32] Waiting... (frame #3329)
+📥 Frame #3330 from 127.0.0.1:57999 | size=38723
+🖼 Decoded frame #3330 | shape=(480, 640, 3)
+🧠 Result #3330 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 13, 'hands_detected': False}
+  [FRAME  3330]  inference=22.9ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:50:32] Waiting... (frame #3332)
+  ⚫ [01:50:32] Waiting... (frame #3335)
+  ⚫ [01:50:33] Waiting... (frame #3338)
+  ⚫ [01:50:33] Waiting... (frame #3341)
+  ⚫ [01:50:33] Waiting... (frame #3344)
+  ⚫ [01:50:33] Waiting... (frame #3347)
+  ⚫ [01:50:33] Waiting... (frame #3350)
+  ⚫ [01:50:33] Waiting... (frame #3353)
+  ⚫ [01:50:33] Waiting... (frame #3356)
+  ⚫ [01:50:33] Waiting... (frame #3359)
+📥 Frame #3360 from 127.0.0.1:57999 | size=38459
+🖼 Decoded frame #3360 | shape=(480, 640, 3)
+🧠 Result #3360 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 43, 'hands_detected': False}
+  [FRAME  3360]  inference=11.5ms (avg30)  server_total=33.3ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:50:33] Waiting... (frame #3362)
+  ⚫ [01:50:33] Waiting... (frame #3365)
+  ⚫ [01:50:34] Waiting... (frame #3368)
+  ⚫ [01:50:34] Waiting... (frame #3371)
+  ⚫ [01:50:34] Waiting... (frame #3374)
+  ⚫ [01:50:34] Waiting... (frame #3377)
+  ⚫ [01:50:34] Waiting... (frame #3380)
+  ⚫ [01:50:34] Waiting... (frame #3383)
+
+  💬 [01:50:34] SENTENCE FINALIZED | -20.3 dBFS
+       Signs   : YOU
+       English : "You."
+       → Speaking through Pi speaker...
+
+🔊 Speaking (Coqui): You.
+ > Text splitted to sentences.
+['You.']
+[TTS] "You." | latency=0.0ms | dB=-20.3 dBFS
+  ⚫ [01:50:34] Waiting... (frame #3386)
+  ⚫ [01:50:34] Waiting... (frame #3389)
+📥 Frame #3390 from 127.0.0.1:57999 | size=38603
+🖼 Decoded frame #3390 | shape=(480, 640, 3)
+🧠 Result #3390 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 73, 'hands_detected': False}
+  [FRAME  3390]  inference=14.6ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+ > Processing time: 0.19437861442565918
+ > Real-time factor: 0.1799046527907062
+  ⚫ [01:50:34] Waiting... (frame #3392)
+  ⚫ [01:50:34] Waiting... (frame #3395)
+  ⚫ [01:50:34] Waiting... (frame #3398)
+  ⚫ [01:50:35] Waiting... (frame #3401)
+  ⚫ [01:50:35] Waiting... (frame #3404)
+  ⚫ [01:50:35] Waiting... (frame #3407)
+  ⚫ [01:50:35] Waiting... (frame #3410)
+  ⚫ [01:50:35] Waiting... (frame #3413)
+  ⚫ [01:50:35] Waiting... (frame #3416)
+  ⚫ [01:50:35] Waiting... (frame #3419)
+📥 Frame #3420 from 127.0.0.1:57999 | size=38955
+🖼 Decoded frame #3420 | shape=(480, 640, 3)
+🧠 Result #3420 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 103, 'hands_detected': False}
+  [FRAME  3420]  inference=14.2ms (avg30)  server_total=33.3ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:50:35] Waiting... (frame #3422)
+  ⚫ [01:50:35] Waiting... (frame #3425)
+  ⚫ [01:50:35] Waiting... (frame #3428)
+  ⚫ [01:50:36] Waiting... (frame #3431)
+  ⚫ [01:50:36] Waiting... (frame #3434)
+  ⚫ [01:50:36] Waiting... (frame #3437)
+  ⚫ [01:50:36] Waiting... (frame #3440)
+  ⚫ [01:50:36] Waiting... (frame #3443)
+  ⚫ [01:50:36] Waiting... (frame #3446)
+  ⚫ [01:50:36] Waiting... (frame #3449)
+📥 Frame #3450 from 127.0.0.1:57999 | size=39419
+🖼 Decoded frame #3450 | shape=(480, 640, 3)
+🧠 Result #3450 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 133, 'hands_detected': False}
+  [FRAME  3450]  inference=14.5ms (avg30)  server_total=32.3ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:50:36] Waiting... (frame #3452)
+  ⚫ [01:50:36] Waiting... (frame #3455)
+  ⚫ [01:50:36] Waiting... (frame #3458)
+  ⚫ [01:50:37] Waiting... (frame #3461)
+  ⚫ [01:50:37] Waiting... (frame #3464)
+  ⚫ [01:50:37] Waiting... (frame #3467)
+  ⚫ [01:50:37] Waiting... (frame #3470)
+  ⚫ [01:50:37] Waiting... (frame #3473)
+  ⚫ [01:50:37] Waiting... (frame #3476)
+  ⚫ [01:50:37] Waiting... (frame #3479)
+📥 Frame #3480 from 127.0.0.1:57999 | size=39447
+🖼 Decoded frame #3480 | shape=(480, 640, 3)
+🧠 Result #3480 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 163, 'hands_detected': False}
+  [FRAME  3480]  inference=13.0ms (avg30)  server_total=33.3ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:50:37] Waiting... (frame #3482)
+  ⚫ [01:50:37] Waiting... (frame #3485)
+  ⚫ [01:50:37] Waiting... (frame #3488)
+  ⚫ [01:50:38] Waiting... (frame #3491)
+  ⚫ [01:50:38] Waiting... (frame #3494)
+  ⚫ [01:50:38] Waiting... (frame #3497)
+  ⚫ [01:50:38] Waiting... (frame #3500)
+  ⚫ [01:50:38] Waiting... (frame #3503)
+  ⚫ [01:50:38] Waiting... (frame #3506)
+  ⚫ [01:50:38] Waiting... (frame #3509)
+📥 Frame #3510 from 127.0.0.1:57999 | size=39559
+🖼 Decoded frame #3510 | shape=(480, 640, 3)
+🧠 Result #3510 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 193, 'hands_detected': False}
+  [FRAME  3510]  inference=12.5ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:50:38] Waiting... (frame #3512)
+  ⚫ [01:50:38] Waiting... (frame #3515)
+  ⚫ [01:50:38] Waiting... (frame #3518)
+  ⚫ [01:50:39] Waiting... (frame #3521)
+  ⚫ [01:50:39] Waiting... (frame #3524)
+  ⚫ [01:50:39] Waiting... (frame #3527)
+  ⚫ [01:50:39] Waiting... (frame #3530)
+  ⚫ [01:50:39] Waiting... (frame #3533)
+  ⚫ [01:50:39] Waiting... (frame #3536)
+  ⚫ [01:50:39] Waiting... (frame #3539)
+📥 Frame #3540 from 127.0.0.1:57999 | size=38535
+🖼 Decoded frame #3540 | shape=(480, 640, 3)
+🧠 Result #3540 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 223, 'hands_detected': False}
+  [FRAME  3540]  inference=14.5ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:50:39] Waiting... (frame #3542)
+  ⚫ [01:50:39] Waiting... (frame #3545)
+  ⚫ [01:50:39] Waiting... (frame #3548)
+  ⚫ [01:50:40] Waiting... (frame #3551)
+  ⚫ [01:50:40] Waiting... (frame #3554)
+  ⚫ [01:50:40] Waiting... (frame #3557)
+  ⚫ [01:50:40] Waiting... (frame #3560)
+  ⚫ [01:50:40] Waiting... (frame #3563)
+  ⚫ [01:50:40] Waiting... (frame #3566)
+  ⚫ [01:50:40] Waiting... (frame #3569)
+📥 Frame #3570 from 127.0.0.1:57999 | size=39547
+🖼 Decoded frame #3570 | shape=(480, 640, 3)
+🧠 Result #3570 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 253, 'hands_detected': False}
+  [FRAME  3570]  inference=13.1ms (avg30)  server_total=33.9ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:50:40] Waiting... (frame #3572)
+  🟠 [01:50:40] HAND DETECTED — 1/2 needed
+  🟠 [01:50:40] HAND DETECTED — 2/2 needed
+  🟠 [01:50:40] HAND DETECTED — 3/2 needed
+  🟡 [01:50:40] COLLECTING... 1 frames
+  🟡 [01:50:40] COLLECTING... 3 frames
+  🟡 [01:50:41] COLLECTING... 6 frames
+  🟡 [01:50:41] COLLECTING... 9 frames
+  🟡 [01:50:41] COLLECTING... 12 frames
+  🟡 [01:50:41] COLLECTING... 15 frames
+  🟡 [01:50:41] COLLECTING... 18 frames
+  🟡 [01:50:41] COLLECTING... 21 frames
+📥 Frame #3600 from 127.0.0.1:57999 | size=39503
+🖼 Decoded frame #3600 | shape=(480, 640, 3)
+🧠 Result #3600 | label=Collecting... | ready=False | debug={'collecting': True, 'frames_collected': 24, 'consec_hand': 27, 'consec_nohand': 0, 'hands_detected': True}
+  🟡 [01:50:41] COLLECTING... 24 frames
+  [FRAME  3600]  inference=22.9ms (avg30)  server_total=32.8ms (avg30)  pred=Collecting...  ready=False
+  🟡 [01:50:41] COLLECTING... 27 frames
+  🟡 [01:50:41] COLLECTING... 30 frames
+
+  ✅ [01:50:42] PREDICTED → What (94%)
+[GESTURE] What | conf=94.4% | frames=0 | latency=15.0ms | Top3: What(94.4%), Understand(0.3%), Yes(0.3%)
+  ⚫ [01:50:42] Waiting... (frame #3613)
+  ⚫ [01:50:42] Waiting... (frame #3615)
+  ⚫ [01:50:42] Waiting... (frame #3618)
+  ⚫ [01:50:42] Waiting... (frame #3621)
+  ⚫ [01:50:42] Waiting... (frame #3624)
+  ⚫ [01:50:42] Waiting... (frame #3627)
+📥 Frame #3630 from 127.0.0.1:57999 | size=39359
+🖼 Decoded frame #3630 | shape=(480, 640, 3)
+🧠 Result #3630 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 24, 'hands_detected': False}
+  ⚫ [01:50:42] Waiting... (frame #3630)
+  [FRAME  3630]  inference=17.2ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:50:42] Waiting... (frame #3633)
+  ⚫ [01:50:42] Waiting... (frame #3636)
+  ⚫ [01:50:42] Waiting... (frame #3639)
+  ⚫ [01:50:43] Waiting... (frame #3642)
+  ⚫ [01:50:43] Waiting... (frame #3645)
+  🟠 [01:50:43] HAND DETECTED — 1/2 needed
+  🟠 [01:50:43] HAND DETECTED — 2/2 needed
+  🟠 [01:50:43] HAND DETECTED — 3/2 needed
+  🟡 [01:50:43] COLLECTING... 1 frames
+  🟡 [01:50:43] COLLECTING... 3 frames
+  🟡 [01:50:43] COLLECTING... 6 frames
+  🟡 [01:50:43] COLLECTING... 9 frames
+📥 Frame #3660 from 127.0.0.1:57999 | size=40803
+🖼 Decoded frame #3660 | shape=(480, 640, 3)
+🧠 Result #3660 | label=Collecting... | ready=False | debug={'collecting': True, 'frames_collected': 11, 'consec_hand': 14, 'consec_nohand': 0, 'hands_detected': True}
+  [FRAME  3660]  inference=18.8ms (avg30)  server_total=32.8ms (avg30)  pred=Collecting...  ready=False
+  🟡 [01:50:43] COLLECTING... 12 frames
+  🟡 [01:50:43] COLLECTING... 15 frames
+  🟡 [01:50:43] COLLECTING... 18 frames
+  🟡 [01:50:43] COLLECTING... 21 frames
+  🟡 [01:50:44] COLLECTING... 24 frames
+
+  ✅ [01:50:44] PREDICTED → Yes (93%)
+[GESTURE] Yes | conf=93.4% | frames=0 | latency=16.0ms | Top3: Yes(93.4%), Go(0.3%), Hello(0.3%)
+  ⚫ [01:50:44] Waiting... (frame #3682)
+  ⚫ [01:50:44] Waiting... (frame #3684)
+  ⚫ [01:50:44] Waiting... (frame #3687)
+📥 Frame #3690 from 127.0.0.1:57999 | size=38231
+🖼 Decoded frame #3690 | shape=(480, 640, 3)
+🧠 Result #3690 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 15, 'hands_detected': False}
+  ⚫ [01:50:44] Waiting... (frame #3690)
+  [FRAME  3690]  inference=20.8ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:50:44] Waiting... (frame #3693)
+  ⚫ [01:50:44] Waiting... (frame #3696)
+  ⚫ [01:50:44] Waiting... (frame #3699)
+  ⚫ [01:50:45] Waiting... (frame #3702)
+  ⚫ [01:50:45] Waiting... (frame #3705)
+  ⚫ [01:50:45] Waiting... (frame #3708)
+  ⚫ [01:50:45] Waiting... (frame #3711)
+  ⚫ [01:50:45] Waiting... (frame #3714)
+  ⚫ [01:50:45] Waiting... (frame #3717)
+📥 Frame #3720 from 127.0.0.1:57999 | size=38691
+🖼 Decoded frame #3720 | shape=(480, 640, 3)
+🧠 Result #3720 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 45, 'hands_detected': False}
+  ⚫ [01:50:45] Waiting... (frame #3720)
+  [FRAME  3720]  inference=15.1ms (avg30)  server_total=33.3ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:50:45] Waiting... (frame #3723)
+  ⚫ [01:50:45] Waiting... (frame #3726)
+  🟠 [01:50:45] HAND DETECTED — 1/2 needed
+  🟠 [01:50:45] HAND DETECTED — 2/2 needed
+  🟠 [01:50:45] HAND DETECTED — 3/2 needed
+  🟡 [01:50:45] COLLECTING... 1 frames
+  🟡 [01:50:46] COLLECTING... 3 frames
+  🟡 [01:50:46] COLLECTING... 6 frames
+  🟡 [01:50:46] COLLECTING... 9 frames
+  🟡 [01:50:46] COLLECTING... 12 frames
+
+  ✅ [01:50:46] PREDICTED → Like (29%)
+[GESTURE] Like | conf=29.0% | frames=0 | latency=15.0ms | Top3: Like(29.0%), Eat(23.5%), Help(3.9%)
+  ⚫ [01:50:46] Waiting... (frame #3749)
+📥 Frame #3750 from 127.0.0.1:57999 | size=36387
+🖼 Decoded frame #3750 | shape=(480, 640, 3)
+🧠 Result #3750 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 8, 'hands_detected': False}
+  [FRAME  3750]  inference=22.8ms (avg30)  server_total=33.9ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:50:46] Waiting... (frame #3751)
+  ⚫ [01:50:46] Waiting... (frame #3754)
+  ⚫ [01:50:46] Waiting... (frame #3757)
+  ⚫ [01:50:46] Waiting... (frame #3760)
+  ⚫ [01:50:47] Waiting... (frame #3763)
+  ⚫ [01:50:47] Waiting... (frame #3766)
+  ⚫ [01:50:47] Waiting... (frame #3769)
+  ⚫ [01:50:47] Waiting... (frame #3772)
+  ⚫ [01:50:47] Waiting... (frame #3775)
+  ⚫ [01:50:47] Waiting... (frame #3778)
+📥 Frame #3780 from 127.0.0.1:57999 | size=39475
+🖼 Decoded frame #3780 | shape=(480, 640, 3)
+🧠 Result #3780 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 38, 'hands_detected': False}
+  [FRAME  3780]  inference=17.1ms (avg30)  server_total=32.3ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:50:47] Waiting... (frame #3781)
+  ⚫ [01:50:47] Waiting... (frame #3784)
+  ⚫ [01:50:47] Waiting... (frame #3787)
+  ⚫ [01:50:47] Waiting... (frame #3790)
+  ⚫ [01:50:48] Waiting... (frame #3793)
+  ⚫ [01:50:48] Waiting... (frame #3796)
+  ⚫ [01:50:48] Waiting... (frame #3799)
+  ⚫ [01:50:48] Waiting... (frame #3802)
+  ⚫ [01:50:48] Waiting... (frame #3805)
+  ⚫ [01:50:48] Waiting... (frame #3808)
+📥 Frame #3810 from 127.0.0.1:57999 | size=38571
+🖼 Decoded frame #3810 | shape=(480, 640, 3)
+🧠 Result #3810 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 68, 'hands_detected': False}
+  [FRAME  3810]  inference=12.1ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:50:48] Waiting... (frame #3811)
+
+  💬 [01:50:48] SENTENCE FINALIZED | -55.0 dBFS
+       Signs   : WHAT YES LIKE
+       English : "Like what yes?"
+       → Speaking through Pi speaker...
+
+🔊 Speaking (Coqui): Like what yes?
+ > Text splitted to sentences.
+['Like what yes?']
+[TTS] "Like what yes?" | latency=0.0ms | dB=-55.0 dBFS
+  ⚫ [01:50:48] Waiting... (frame #3814)
+  ⚫ [01:50:48] Waiting... (frame #3817)
+  ⚫ [01:50:48] Waiting... (frame #3820)
+ > Processing time: 0.3619389533996582
+ > Real-time factor: 0.21944439953977296
+  ⚫ [01:50:49] Waiting... (frame #3823)
+  ⚫ [01:50:49] Waiting... (frame #3826)
+  ⚫ [01:50:49] Waiting... (frame #3829)
+  ⚫ [01:50:49] Waiting... (frame #3832)
+  ⚫ [01:50:49] Waiting... (frame #3835)
+  ⚫ [01:50:49] Waiting... (frame #3838)
+📥 Frame #3840 from 127.0.0.1:57999 | size=39855
+🖼 Decoded frame #3840 | shape=(480, 640, 3)
+🧠 Result #3840 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 98, 'hands_detected': False}
+  [FRAME  3840]  inference=18.1ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:50:49] Waiting... (frame #3841)
+  ⚫ [01:50:49] Waiting... (frame #3844)
+  ⚫ [01:50:49] Waiting... (frame #3847)
+  ⚫ [01:50:49] Waiting... (frame #3850)
+  ⚫ [01:50:50] Waiting... (frame #3853)
+  ⚫ [01:50:50] Waiting... (frame #3856)
+  ⚫ [01:50:50] Waiting... (frame #3859)
+  ⚫ [01:50:50] Waiting... (frame #3862)
+  ⚫ [01:50:50] Waiting... (frame #3865)
+  ⚫ [01:50:50] Waiting... (frame #3868)
+📥 Frame #3870 from 127.0.0.1:57999 | size=39883
+🖼 Decoded frame #3870 | shape=(480, 640, 3)
+🧠 Result #3870 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 128, 'hands_detected': False}
+  [FRAME  3870]  inference=13.0ms (avg30)  server_total=33.3ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:50:50] Waiting... (frame #3871)
+  ⚫ [01:50:50] Waiting... (frame #3874)
+  ⚫ [01:50:50] Waiting... (frame #3877)
+  ⚫ [01:50:50] Waiting... (frame #3880)
+  ⚫ [01:50:50] Waiting... (frame #3883)
+  ⚫ [01:50:51] Waiting... (frame #3886)
+  ⚫ [01:50:51] Waiting... (frame #3889)
+  ⚫ [01:50:51] Waiting... (frame #3892)
+  ⚫ [01:50:51] Waiting... (frame #3895)
+  ⚫ [01:50:51] Waiting... (frame #3898)
+📥 Frame #3900 from 127.0.0.1:57999 | size=39827
+🖼 Decoded frame #3900 | shape=(480, 640, 3)
+🧠 Result #3900 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 158, 'hands_detected': False}
+  [FRAME  3900]  inference=13.0ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:50:51] Waiting... (frame #3901)
+  ⚫ [01:50:51] Waiting... (frame #3904)
+  ⚫ [01:50:51] Waiting... (frame #3907)
+  ⚫ [01:50:51] Waiting... (frame #3910)
+  ⚫ [01:50:51] Waiting... (frame #3913)
+  ⚫ [01:50:52] Waiting... (frame #3916)
+  ⚫ [01:50:52] Waiting... (frame #3919)
+  ⚫ [01:50:52] Waiting... (frame #3922)
+  ⚫ [01:50:52] Waiting... (frame #3925)
+  ⚫ [01:50:52] Waiting... (frame #3928)
+📥 Frame #3930 from 127.0.0.1:57999 | size=40031
+🖼 Decoded frame #3930 | shape=(480, 640, 3)
+🧠 Result #3930 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 188, 'hands_detected': False}
+  [FRAME  3930]  inference=13.0ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:50:52] Waiting... (frame #3931)
+  ⚫ [01:50:52] Waiting... (frame #3934)
+  ⚫ [01:50:52] Waiting... (frame #3937)
+  ⚫ [01:50:52] Waiting... (frame #3940)
+  ⚫ [01:50:52] Waiting... (frame #3943)
+  ⚫ [01:50:53] Waiting... (frame #3946)
+  ⚫ [01:50:53] Waiting... (frame #3949)
+  ⚫ [01:50:53] Waiting... (frame #3952)
+  ⚫ [01:50:53] Waiting... (frame #3955)
+  ⚫ [01:50:53] Waiting... (frame #3958)
+📥 Frame #3960 from 127.0.0.1:57999 | size=39527
+🖼 Decoded frame #3960 | shape=(480, 640, 3)
+🧠 Result #3960 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 218, 'hands_detected': False}
+  [FRAME  3960]  inference=12.5ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:50:53] Waiting... (frame #3961)
+  ⚫ [01:50:53] Waiting... (frame #3964)
+  ⚫ [01:50:53] Waiting... (frame #3967)
+  ⚫ [01:50:53] Waiting... (frame #3970)
+  🟠 [01:50:53] HAND DETECTED — 1/2 needed
+  🟠 [01:50:53] HAND DETECTED — 2/2 needed
+  🟠 [01:50:53] HAND DETECTED — 3/2 needed
+  🟡 [01:50:54] COLLECTING... 1 frames
+  🟡 [01:50:54] COLLECTING... 3 frames
+  🟡 [01:50:54] COLLECTING... 6 frames
+  🟡 [01:50:54] COLLECTING... 9 frames
+  🟡 [01:50:54] COLLECTING... 12 frames
+  🟡 [01:50:54] COLLECTING... 15 frames
+📥 Frame #3990 from 127.0.0.1:57999 | size=40279
+🖼 Decoded frame #3990 | shape=(480, 640, 3)
+🧠 Result #3990 | label=Collecting... | ready=False | debug={'collecting': True, 'frames_collected': 17, 'consec_hand': 20, 'consec_nohand': 0, 'hands_detected': True}
+  [FRAME  3990]  inference=22.5ms (avg30)  server_total=33.3ms (avg30)  pred=Collecting...  ready=False
+  🟡 [01:50:54] COLLECTING... 18 frames
+  🟡 [01:50:54] COLLECTING... 21 frames
+  🟡 [01:50:54] COLLECTING... 24 frames
+  🟡 [01:50:54] COLLECTING... 27 frames
+  🟡 [01:50:54] COLLECTING... 30 frames
+  🟡 [01:50:55] COLLECTING... 33 frames
+  🟡 [01:50:55] COLLECTING... 36 frames
+
+  ✅ [01:50:55] PREDICTED → What (93%)
+[GESTURE] What | conf=93.2% | frames=0 | latency=16.0ms | Top3: What(93.2%), Understand(0.6%), Yes(0.3%)
+  ⚫ [01:50:55] Waiting... (frame #4016)
+  ⚫ [01:50:55] Waiting... (frame #4018)
+📥 Frame #4020 from 127.0.0.1:57999 | size=39559
+🖼 Decoded frame #4020 | shape=(480, 640, 3)
+🧠 Result #4020 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 11, 'hands_detected': False}
+  [FRAME  4020]  inference=22.9ms (avg30)  server_total=33.3ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:50:55] Waiting... (frame #4021)
+  ⚫ [01:50:55] Waiting... (frame #4024)
+  ⚫ [01:50:55] Waiting... (frame #4027)
+  ⚫ [01:50:55] Waiting... (frame #4030)
+  ⚫ [01:50:55] Waiting... (frame #4033)
+  ⚫ [01:50:56] Waiting... (frame #4036)
+  ⚫ [01:50:56] Waiting... (frame #4039)
+  ⚫ [01:50:56] Waiting... (frame #4042)
+  ⚫ [01:50:56] Waiting... (frame #4045)
+  ⚫ [01:50:56] Waiting... (frame #4048)
+📥 Frame #4050 from 127.0.0.1:57999 | size=39243
+🖼 Decoded frame #4050 | shape=(480, 640, 3)
+🧠 Result #4050 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 41, 'hands_detected': False}
+  [FRAME  4050]  inference=15.2ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:50:56] Waiting... (frame #4051)
+  ⚫ [01:50:56] Waiting... (frame #4054)
+  🟠 [01:50:56] HAND DETECTED — 1/2 needed
+  🟠 [01:50:56] HAND DETECTED — 2/2 needed
+  🟠 [01:50:56] HAND DETECTED — 3/2 needed
+  🟡 [01:50:56] COLLECTING... 1 frames
+  🟡 [01:50:56] COLLECTING... 3 frames
+  🟡 [01:50:56] COLLECTING... 6 frames
+  🟡 [01:50:57] COLLECTING... 9 frames
+  🟡 [01:50:57] COLLECTING... 12 frames
+  🟡 [01:50:57] COLLECTING... 15 frames
+  🟡 [01:50:57] COLLECTING... 18 frames
+  🟡 [01:50:57] COLLECTING... 21 frames
+📥 Frame #4080 from 127.0.0.1:57999 | size=41275
+🖼 Decoded frame #4080 | shape=(480, 640, 3)
+🧠 Result #4080 | label=Collecting... | ready=False | debug={'collecting': True, 'frames_collected': 22, 'consec_hand': 25, 'consec_nohand': 0, 'hands_detected': True}
+  [FRAME  4080]  inference=22.8ms (avg30)  server_total=33.3ms (avg30)  pred=Collecting...  ready=False
+  🟡 [01:50:57] COLLECTING... 24 frames
+
+  ✅ [01:50:57] PREDICTED → Yes (92%)
+[GESTURE] Yes | conf=91.8% | frames=0 | latency=31.0ms | Top3: Yes(91.8%), Go(0.4%), Family(0.3%)
+  ⚫ [01:50:57] Waiting... (frame #4091)
+  ⚫ [01:50:57] Waiting... (frame #4093)
+  ⚫ [01:50:58] Waiting... (frame #4096)
+  ⚫ [01:50:58] Waiting... (frame #4099)
+  ⚫ [01:50:58] Waiting... (frame #4102)
+  ⚫ [01:50:58] Waiting... (frame #4105)
+  ⚫ [01:50:58] Waiting... (frame #4108)
+📥 Frame #4110 from 127.0.0.1:57999 | size=39715
+🖼 Decoded frame #4110 | shape=(480, 640, 3)
+🧠 Result #4110 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 26, 'hands_detected': False}
+  [FRAME  4110]  inference=19.8ms (avg30)  server_total=32.3ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:50:58] Waiting... (frame #4111)
+  ⚫ [01:50:58] Waiting... (frame #4114)
+  ⚫ [01:50:58] Waiting... (frame #4117)
+  ⚫ [01:50:58] Waiting... (frame #4120)
+  ⚫ [01:50:58] Waiting... (frame #4123)
+  ⚫ [01:50:59] Waiting... (frame #4126)
+  ⚫ [01:50:59] Waiting... (frame #4129)
+  ⚫ [01:50:59] Waiting... (frame #4132)
+  ⚫ [01:50:59] Waiting... (frame #4135)
+  ⚫ [01:50:59] Waiting... (frame #4138)
+📥 Frame #4140 from 127.0.0.1:57999 | size=37875
+🖼 Decoded frame #4140 | shape=(480, 640, 3)
+🧠 Result #4140 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 56, 'hands_detected': False}
+  [FRAME  4140]  inference=8.8ms (avg30)  server_total=33.3ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:50:59] Waiting... (frame #4141)
+  ⚫ [01:50:59] Waiting... (frame #4144)
+  ⚫ [01:50:59] Waiting... (frame #4147)
+  ⚫ [01:50:59] Waiting... (frame #4150)
+
+  💬 [01:50:59] SENTENCE FINALIZED | -43.9 dBFS
+       Signs   : WHAT YES
+       English : "What yes?"
+       → Speaking through Pi speaker...
+
+🔊 Speaking (Coqui): What yes?
+ > Text splitted to sentences.
+['What yes?']
+[TTS] "What yes?" | latency=0.0ms | dB=-43.9 dBFS
+  ⚫ [01:50:59] Waiting... (frame #4153)
+  ⚫ [01:51:00] Waiting... (frame #4156)
+  ⚫ [01:51:00] Waiting... (frame #4159)
+ > Processing time: 0.28223586082458496
+ > Real-time factor: 0.20417653317526568
+  ⚫ [01:51:00] Waiting... (frame #4162)
+  ⚫ [01:51:00] Waiting... (frame #4165)
+  ⚫ [01:51:00] Waiting... (frame #4168)
+📥 Frame #4170 from 127.0.0.1:57999 | size=37359
+🖼 Decoded frame #4170 | shape=(480, 640, 3)
+🧠 Result #4170 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 86, 'hands_detected': False}
+  [FRAME  4170]  inference=20.8ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:51:00] Waiting... (frame #4171)
+  ⚫ [01:51:00] Waiting... (frame #4174)
+  ⚫ [01:51:00] Waiting... (frame #4177)
+  ⚫ [01:51:00] Waiting... (frame #4180)
+  ⚫ [01:51:00] Waiting... (frame #4183)
+  ⚫ [01:51:01] Waiting... (frame #4186)
+  ⚫ [01:51:01] Waiting... (frame #4189)
+  ⚫ [01:51:01] Waiting... (frame #4192)
+  ⚫ [01:51:01] Waiting... (frame #4195)
+  ⚫ [01:51:01] Waiting... (frame #4198)
+📥 Frame #4200 from 127.0.0.1:57999 | size=39731
+🖼 Decoded frame #4200 | shape=(480, 640, 3)
+🧠 Result #4200 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 116, 'hands_detected': False}
+  [FRAME  4200]  inference=12.5ms (avg30)  server_total=33.3ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:51:01] Waiting... (frame #4201)
+  ⚫ [01:51:01] Waiting... (frame #4204)
+  ⚫ [01:51:01] Waiting... (frame #4207)
+  ⚫ [01:51:01] Waiting... (frame #4210)
+  ⚫ [01:51:01] Waiting... (frame #4213)
+  ⚫ [01:51:01] Waiting... (frame #4216)
+  ⚫ [01:51:02] Waiting... (frame #4219)
+  ⚫ [01:51:02] Waiting... (frame #4222)
+  ⚫ [01:51:02] Waiting... (frame #4225)
+  ⚫ [01:51:02] Waiting... (frame #4228)
+📥 Frame #4230 from 127.0.0.1:57999 | size=39551
+🖼 Decoded frame #4230 | shape=(480, 640, 3)
+🧠 Result #4230 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 146, 'hands_detected': False}
+  [FRAME  4230]  inference=14.0ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:51:02] Waiting... (frame #4231)
+  ⚫ [01:51:02] Waiting... (frame #4234)
+  ⚫ [01:51:02] Waiting... (frame #4237)
+  ⚫ [01:51:02] Waiting... (frame #4240)
+  ⚫ [01:51:02] Waiting... (frame #4243)
+  ⚫ [01:51:02] Waiting... (frame #4246)
+  ⚫ [01:51:03] Waiting... (frame #4249)
+  ⚫ [01:51:03] Waiting... (frame #4252)
+  ⚫ [01:51:03] Waiting... (frame #4255)
+  ⚫ [01:51:03] Waiting... (frame #4258)
+📥 Frame #4260 from 127.0.0.1:57999 | size=39727
+🖼 Decoded frame #4260 | shape=(480, 640, 3)
+🧠 Result #4260 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 176, 'hands_detected': False}
+  [FRAME  4260]  inference=13.6ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:51:03] Waiting... (frame #4261)
+  ⚫ [01:51:03] Waiting... (frame #4264)
+  ⚫ [01:51:03] Waiting... (frame #4267)
+  ⚫ [01:51:03] Waiting... (frame #4270)
+  ⚫ [01:51:03] Waiting... (frame #4273)
+  ⚫ [01:51:03] Waiting... (frame #4276)
+  ⚫ [01:51:04] Waiting... (frame #4279)
+  ⚫ [01:51:04] Waiting... (frame #4282)
+  ⚫ [01:51:04] Waiting... (frame #4285)
+  🟠 [01:51:04] HAND DETECTED — 1/2 needed
+  🟠 [01:51:04] HAND DETECTED — 2/2 needed
+📥 Frame #4290 from 127.0.0.1:57999 | size=39691
+🖼 Decoded frame #4290 | shape=(480, 640, 3)
+🧠 Result #4290 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 3, 'consec_nohand': 0, 'hands_detected': True}
+  🟠 [01:51:04] HAND DETECTED — 3/2 needed
+  [FRAME  4290]  inference=14.6ms (avg30)  server_total=33.3ms (avg30)  pred=Waiting...  ready=False
+  🟡 [01:51:04] COLLECTING... 1 frames
+  🟡 [01:51:04] COLLECTING... 3 frames
+  🟡 [01:51:04] COLLECTING... 6 frames
+  🟡 [01:51:04] COLLECTING... 9 frames
+  🟡 [01:51:04] COLLECTING... 12 frames
+  🟡 [01:51:04] COLLECTING... 15 frames
+  🟡 [01:51:05] COLLECTING... 18 frames
+  🟡 [01:51:05] COLLECTING... 21 frames
+  🟡 [01:51:05] COLLECTING... 24 frames
+  🟡 [01:51:05] COLLECTING... 27 frames
+📥 Frame #4320 from 127.0.0.1:57999 | size=40055
+🖼 Decoded frame #4320 | shape=(480, 640, 3)
+🧠 Result #4320 | label=Collecting... | ready=False | debug={'collecting': True, 'frames_collected': 30, 'consec_hand': 33, 'consec_nohand': 0, 'hands_detected': True}
+  🟡 [01:51:05] COLLECTING... 30 frames
+  [FRAME  4320]  inference=23.4ms (avg30)  server_total=32.8ms (avg30)  pred=Collecting...  ready=False
+
+  ✅ [01:51:05] PREDICTED → What (81%)
+[GESTURE] What | conf=80.5% | frames=0 | latency=31.0ms | Top3: What(80.5%), No(2.9%), Understand(1.7%)
+  ⚫ [01:51:05] Waiting... (frame #4328)
+  ⚫ [01:51:05] Waiting... (frame #4330)
+  ⚫ [01:51:05] Waiting... (frame #4333)
+  ⚫ [01:51:05] Waiting... (frame #4336)
+  ⚫ [01:51:06] Waiting... (frame #4339)
+  ⚫ [01:51:06] Waiting... (frame #4342)
+  ⚫ [01:51:06] Waiting... (frame #4345)
+  ⚫ [01:51:06] Waiting... (frame #4348)
+📥 Frame #4350 from 127.0.0.1:57999 | size=39463
+🖼 Decoded frame #4350 | shape=(480, 640, 3)
+🧠 Result #4350 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 29, 'hands_detected': False}
+  [FRAME  4350]  inference=21.9ms (avg30)  server_total=32.3ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:51:06] Waiting... (frame #4351)
+  ⚫ [01:51:06] Waiting... (frame #4354)
+  ⚫ [01:51:06] Waiting... (frame #4357)
+  ⚫ [01:51:06] Waiting... (frame #4360)
+  ⚫ [01:51:06] Waiting... (frame #4363)
+  ⚫ [01:51:06] Waiting... (frame #4366)
+  ⚫ [01:51:07] Waiting... (frame #4369)
+  ⚫ [01:51:07] Waiting... (frame #4372)
+  🟠 [01:51:07] HAND DETECTED — 1/2 needed
+  🟠 [01:51:07] HAND DETECTED — 2/2 needed
+  🟠 [01:51:07] HAND DETECTED — 3/2 needed
+  🟡 [01:51:07] COLLECTING... 1 frames
+  🟡 [01:51:07] COLLECTING... 3 frames
+📥 Frame #4380 from 127.0.0.1:57999 | size=39539
+🖼 Decoded frame #4380 | shape=(480, 640, 3)
+🧠 Result #4380 | label=Collecting... | ready=False | debug={'collecting': True, 'frames_collected': 4, 'consec_hand': 7, 'consec_nohand': 0, 'hands_detected': True}
+  [FRAME  4380]  inference=16.6ms (avg30)  server_total=33.3ms (avg30)  pred=Collecting...  ready=False
+  🟡 [01:51:07] COLLECTING... 6 frames
+  🟡 [01:51:07] COLLECTING... 9 frames
+  🟡 [01:51:07] COLLECTING... 12 frames
+  🟡 [01:51:07] COLLECTING... 15 frames
+  🟡 [01:51:07] COLLECTING... 18 frames
+  🟡 [01:51:07] COLLECTING... 21 frames
+  🟡 [01:51:08] COLLECTING... 24 frames
+  🟡 [01:51:08] COLLECTING... 27 frames
+  🟡 [01:51:08] COLLECTING... 30 frames
+  🟡 [01:51:08] COLLECTING... 33 frames
+📥 Frame #4410 from 127.0.0.1:57999 | size=40239
+🖼 Decoded frame #4410 | shape=(480, 640, 3)
+🧠 Result #4410 | label=Collecting... | ready=False | debug={'collecting': True, 'frames_collected': 34, 'consec_hand': 37, 'consec_nohand': 0, 'hands_detected': True}
+  [FRAME  4410]  inference=26.6ms (avg30)  server_total=33.3ms (avg30)  pred=Collecting...  ready=False
+  🟡 [01:51:08] COLLECTING... 36 frames
+  🟡 [01:51:08] COLLECTING... 39 frames
+
+  ✅ [01:51:08] PREDICTED → Yes (93%)
+[GESTURE] Yes | conf=93.4% | frames=0 | latency=15.0ms | Top3: Yes(93.4%), Go(0.3%), Hello(0.3%)
+  ⚫ [01:51:08] Waiting... (frame #4422)
+  ⚫ [01:51:08] Waiting... (frame #4424)
+  ⚫ [01:51:08] Waiting... (frame #4427)
+  ⚫ [01:51:09] Waiting... (frame #4430)
+  ⚫ [01:51:09] Waiting... (frame #4433)
+  ⚫ [01:51:09] Waiting... (frame #4436)
+  ⚫ [01:51:09] Waiting... (frame #4439)
+📥 Frame #4440 from 127.0.0.1:57999 | size=38931
+🖼 Decoded frame #4440 | shape=(480, 640, 3)
+🧠 Result #4440 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 25, 'hands_detected': False}
+  [FRAME  4440]  inference=16.1ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:51:09] Waiting... (frame #4442)
+  ⚫ [01:51:09] Waiting... (frame #4445)
+  ⚫ [01:51:09] Waiting... (frame #4448)
+  ⚫ [01:51:09] Waiting... (frame #4451)
+  ⚫ [01:51:09] Waiting... (frame #4454)
+  ⚫ [01:51:09] Waiting... (frame #4457)
+  ⚫ [01:51:10] Waiting... (frame #4460)
+  ⚫ [01:51:10] Waiting... (frame #4463)
+  ⚫ [01:51:10] Waiting... (frame #4466)
+  ⚫ [01:51:10] Waiting... (frame #4469)
+📥 Frame #4470 from 127.0.0.1:57999 | size=38583
+🖼 Decoded frame #4470 | shape=(480, 640, 3)
+🧠 Result #4470 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 55, 'hands_detected': False}
+  [FRAME  4470]  inference=13.0ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:51:10] Waiting... (frame #4472)
+  ⚫ [01:51:10] Waiting... (frame #4475)
+  ⚫ [01:51:10] Waiting... (frame #4478)
+  ⚫ [01:51:10] Waiting... (frame #4481)
+  ⚫ [01:51:10] Waiting... (frame #4484)
+
+  💬 [01:51:10] SENTENCE FINALIZED | -47.6 dBFS
+       Signs   : WHAT YES
+       English : "What yes?"
+       → Speaking through Pi speaker...
+
+🔊 Speaking (Coqui): What yes?
+ > Text splitted to sentences.
+['What yes?']
+[TTS] "What yes?" | latency=0.0ms | dB=-47.6 dBFS
+  ⚫ [01:51:10] Waiting... (frame #4487)
+  ⚫ [01:51:11] Waiting... (frame #4490)
+ > Processing time: 0.28585052490234375
+ > Real-time factor: 0.1984573071189131
+  ⚫ [01:51:11] Waiting... (frame #4493)
+  ⚫ [01:51:11] Waiting... (frame #4496)
+  ⚫ [01:51:11] Waiting... (frame #4499)
+📥 Frame #4500 from 127.0.0.1:57999 | size=40235
+🖼 Decoded frame #4500 | shape=(480, 640, 3)
+🧠 Result #4500 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 85, 'hands_detected': False}
+  [FRAME  4500]  inference=16.6ms (avg30)  server_total=33.3ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:51:11] Waiting... (frame #4502)
+  ⚫ [01:51:11] Waiting... (frame #4505)
+  ⚫ [01:51:11] Waiting... (frame #4508)
+  ⚫ [01:51:11] Waiting... (frame #4511)
+  ⚫ [01:51:11] Waiting... (frame #4514)
+  ⚫ [01:51:11] Waiting... (frame #4517)
+  ⚫ [01:51:12] Waiting... (frame #4520)
+  ⚫ [01:51:12] Waiting... (frame #4523)
+  ⚫ [01:51:12] Waiting... (frame #4526)
+  ⚫ [01:51:12] Waiting... (frame #4529)
+📥 Frame #4530 from 127.0.0.1:57999 | size=38939
+🖼 Decoded frame #4530 | shape=(480, 640, 3)
+🧠 Result #4530 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 115, 'hands_detected': False}
+  [FRAME  4530]  inference=12.4ms (avg30)  server_total=32.3ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:51:12] Waiting... (frame #4532)
+  ⚫ [01:51:12] Waiting... (frame #4535)
+  ⚫ [01:51:12] Waiting... (frame #4538)
+  ⚫ [01:51:12] Waiting... (frame #4541)
+  ⚫ [01:51:12] Waiting... (frame #4544)
+  ⚫ [01:51:12] Waiting... (frame #4547)
+  ⚫ [01:51:13] Waiting... (frame #4550)
+  ⚫ [01:51:13] Waiting... (frame #4553)
+  ⚫ [01:51:13] Waiting... (frame #4556)
+  ⚫ [01:51:13] Waiting... (frame #4559)
+📥 Frame #4560 from 127.0.0.1:57999 | size=39295
+🖼 Decoded frame #4560 | shape=(480, 640, 3)
+🧠 Result #4560 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 145, 'hands_detected': False}
+  [FRAME  4560]  inference=13.0ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:51:13] Waiting... (frame #4562)
+  ⚫ [01:51:13] Waiting... (frame #4565)
+  🟠 [01:51:13] HAND DETECTED — 1/2 needed
+  🟠 [01:51:13] HAND DETECTED — 2/2 needed
+  🟠 [01:51:13] HAND DETECTED — 3/2 needed
+  🟡 [01:51:13] COLLECTING... 1 frames
+  🟡 [01:51:13] COLLECTING... 3 frames
+  🟡 [01:51:13] COLLECTING... 6 frames
+  🟡 [01:51:13] COLLECTING... 9 frames
+  🟡 [01:51:14] COLLECTING... 12 frames
+  🟡 [01:51:14] COLLECTING... 15 frames
+  🟡 [01:51:14] COLLECTING... 18 frames
+📥 Frame #4590 from 127.0.0.1:57999 | size=40519
+🖼 Decoded frame #4590 | shape=(480, 640, 3)
+🧠 Result #4590 | label=Collecting... | ready=False | debug={'collecting': True, 'frames_collected': 21, 'consec_hand': 24, 'consec_nohand': 0, 'hands_detected': True}
+  🟡 [01:51:14] COLLECTING... 21 frames
+  [FRAME  4590]  inference=24.4ms (avg30)  server_total=33.3ms (avg30)  pred=Collecting...  ready=False
+  🟡 [01:51:14] COLLECTING... 24 frames
+  🟡 [01:51:14] COLLECTING... 27 frames
+  🟡 [01:51:14] COLLECTING... 30 frames
+  🟡 [01:51:14] COLLECTING... 33 frames
+  🟡 [01:51:14] COLLECTING... 36 frames
+
+  ✅ [01:51:15] PREDICTED → No (54%)
+[GESTURE] No | conf=54.2% | frames=0 | latency=16.0ms | Top3: No(54.2%), What(16.6%), Okay(2.7%)
+  ⚫ [01:51:15] Waiting... (frame #4616)
+  ⚫ [01:51:15] Waiting... (frame #4618)
+📥 Frame #4620 from 127.0.0.1:57999 | size=39135
+🖼 Decoded frame #4620 | shape=(480, 640, 3)
+🧠 Result #4620 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 11, 'hands_detected': False}
+  [FRAME  4620]  inference=21.9ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:51:15] Waiting... (frame #4621)
+  ⚫ [01:51:15] Waiting... (frame #4624)
+  ⚫ [01:51:15] Waiting... (frame #4627)
+  ⚫ [01:51:15] Waiting... (frame #4630)
+  ⚫ [01:51:15] Waiting... (frame #4633)
+  ⚫ [01:51:15] Waiting... (frame #4636)
+  ⚫ [01:51:15] Waiting... (frame #4639)
+  ⚫ [01:51:16] Waiting... (frame #4642)
+  ⚫ [01:51:16] Waiting... (frame #4645)
+  ⚫ [01:51:16] Waiting... (frame #4648)
+📥 Frame #4650 from 127.0.0.1:57999 | size=38507
+🖼 Decoded frame #4650 | shape=(480, 640, 3)
+🧠 Result #4650 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 41, 'hands_detected': False}
+  [FRAME  4650]  inference=13.0ms (avg30)  server_total=33.3ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:51:16] Waiting... (frame #4651)
+  ⚫ [01:51:16] Waiting... (frame #4654)
+  ⚫ [01:51:16] Waiting... (frame #4657)
+  ⚫ [01:51:16] Waiting... (frame #4660)
+  ⚫ [01:51:16] Waiting... (frame #4663)
+  ⚫ [01:51:16] Waiting... (frame #4666)
+  ⚫ [01:51:16] Waiting... (frame #4669)
+  ⚫ [01:51:17] Waiting... (frame #4672)
+  ⚫ [01:51:17] Waiting... (frame #4675)
+  ⚫ [01:51:17] Waiting... (frame #4678)
+
+  💬 [01:51:17] SENTENCE FINALIZED | -23.8 dBFS
+       Signs   : NO
+       English : "No."
+       → Speaking through Pi speaker...
+
+🔊 Speaking (Coqui): No.
+ > Text splitted to sentences.
+['No.']
+[TTS] "No." | latency=0.0ms | dB=-23.8 dBFS
+📥 Frame #4680 from 127.0.0.1:57999 | size=37027
+🖼 Decoded frame #4680 | shape=(480, 640, 3)
+🧠 Result #4680 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 71, 'hands_detected': False}
+  [FRAME  4680]  inference=13.0ms (avg30)  server_total=33.3ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:51:17] Waiting... (frame #4681)
+ > Processing time: 0.1446704864501953
+ > Real-time factor: 0.14312563829086533
+  ⚫ [01:51:17] Waiting... (frame #4684)
+  ⚫ [01:51:17] Waiting... (frame #4687)
+  ⚫ [01:51:17] Waiting... (frame #4690)
+  ⚫ [01:51:17] Waiting... (frame #4693)
+  ⚫ [01:51:17] Waiting... (frame #4696)
+  ⚫ [01:51:17] Waiting... (frame #4699)
+  ⚫ [01:51:18] Waiting... (frame #4702)
+  ⚫ [01:51:18] Waiting... (frame #4705)
+  ⚫ [01:51:18] Waiting... (frame #4708)
+📥 Frame #4710 from 127.0.0.1:57999 | size=37799
+🖼 Decoded frame #4710 | shape=(480, 640, 3)
+🧠 Result #4710 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 101, 'hands_detected': False}
+  [FRAME  4710]  inference=15.7ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:51:18] Waiting... (frame #4711)
+  ⚫ [01:51:18] Waiting... (frame #4714)
+  ⚫ [01:51:18] Waiting... (frame #4717)
+  ⚫ [01:51:18] Waiting... (frame #4720)
+  ⚫ [01:51:18] Waiting... (frame #4723)
+  ⚫ [01:51:18] Waiting... (frame #4726)
+  ⚫ [01:51:18] Waiting... (frame #4729)
+  ⚫ [01:51:19] Waiting... (frame #4732)
+  ⚫ [01:51:19] Waiting... (frame #4735)
+  ⚫ [01:51:19] Waiting... (frame #4738)
+📥 Frame #4740 from 127.0.0.1:57999 | size=35475
+🖼 Decoded frame #4740 | shape=(480, 640, 3)
+🧠 Result #4740 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 131, 'hands_detected': False}
+  [FRAME  4740]  inference=13.5ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:51:19] Waiting... (frame #4741)
+  ⚫ [01:51:19] Waiting... (frame #4744)
+  ⚫ [01:51:19] Waiting... (frame #4747)
+  ⚫ [01:51:19] Waiting... (frame #4750)
+  ⚫ [01:51:19] Waiting... (frame #4753)
+  ⚫ [01:51:19] Waiting... (frame #4756)
+  ⚫ [01:51:19] Waiting... (frame #4759)
+  ⚫ [01:51:20] Waiting... (frame #4762)
+  ⚫ [01:51:20] Waiting... (frame #4765)
+  ⚫ [01:51:20] Waiting... (frame #4768)
+📥 Frame #4770 from 127.0.0.1:57999 | size=35131
+🖼 Decoded frame #4770 | shape=(480, 640, 3)
+🧠 Result #4770 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 161, 'hands_detected': False}
+  [FRAME  4770]  inference=12.4ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:51:20] Waiting... (frame #4771)
+  ⚫ [01:51:20] Waiting... (frame #4774)
+  ⚫ [01:51:20] Waiting... (frame #4777)
+  ⚫ [01:51:20] Waiting... (frame #4780)
+  ⚫ [01:51:20] Waiting... (frame #4783)
+  ⚫ [01:51:20] Waiting... (frame #4786)
+  ⚫ [01:51:20] Waiting... (frame #4789)
+  🟠 [01:51:21] HAND DETECTED — 1/2 needed
+  🟠 [01:51:21] HAND DETECTED — 2/2 needed
+  🟠 [01:51:21] HAND DETECTED — 3/2 needed
+  🟡 [01:51:21] COLLECTING... 1 frames
+  🟡 [01:51:21] COLLECTING... 3 frames
+📥 Frame #4800 from 127.0.0.1:57999 | size=36523
+🖼 Decoded frame #4800 | shape=(480, 640, 3)
+🧠 Result #4800 | label=Collecting... | ready=False | debug={'collecting': True, 'frames_collected': 6, 'consec_hand': 9, 'consec_nohand': 0, 'hands_detected': True}
+  🟡 [01:51:21] COLLECTING... 6 frames
+  [FRAME  4800]  inference=15.7ms (avg30)  server_total=33.3ms (avg30)  pred=Collecting...  ready=False
+  🟡 [01:51:21] COLLECTING... 9 frames
+  🟡 [01:51:21] COLLECTING... 12 frames
+  🟡 [01:51:21] COLLECTING... 15 frames
+  🟡 [01:51:21] COLLECTING... 18 frames
+  🟡 [01:51:21] COLLECTING... 21 frames
+  🟡 [01:51:21] COLLECTING... 24 frames
+  🟡 [01:51:21] COLLECTING... 27 frames
+  🟡 [01:51:22] COLLECTING... 30 frames
+  🟡 [01:51:22] COLLECTING... 33 frames
+📥 Frame #4830 from 127.0.0.1:57999 | size=36683
+🖼 Decoded frame #4830 | shape=(480, 640, 3)
+🧠 Result #4830 | label=Collecting... | ready=False | debug={'collecting': True, 'frames_collected': 36, 'consec_hand': 39, 'consec_nohand': 0, 'hands_detected': True}
+  🟡 [01:51:22] COLLECTING... 36 frames
+  [FRAME  4830]  inference=22.4ms (avg30)  server_total=32.8ms (avg30)  pred=Collecting...  ready=False
+
+  ✅ [01:51:22] PREDICTED → No (94%)
+[GESTURE] No | conf=93.8% | frames=0 | latency=31.0ms | Top3: No(93.8%), Okay(0.6%), Want(0.3%)
+  ⚫ [01:51:22] Waiting... (frame #4837)
+  ⚫ [01:51:22] Waiting... (frame #4839)
+  ⚫ [01:51:22] Waiting... (frame #4842)
+  ⚫ [01:51:22] Waiting... (frame #4845)
+  ⚫ [01:51:22] Waiting... (frame #4848)
+  ⚫ [01:51:22] Waiting... (frame #4851)
+  ⚫ [01:51:23] Waiting... (frame #4854)
+  ⚫ [01:51:23] Waiting... (frame #4857)
+📥 Frame #4860 from 127.0.0.1:57999 | size=35819
+🖼 Decoded frame #4860 | shape=(480, 640, 3)
+🧠 Result #4860 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 30, 'hands_detected': False}
+  ⚫ [01:51:23] Waiting... (frame #4860)
+  [FRAME  4860]  inference=17.7ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:51:23] Waiting... (frame #4863)
+  ⚫ [01:51:23] Waiting... (frame #4866)
+  ⚫ [01:51:23] Waiting... (frame #4869)
+  ⚫ [01:51:23] Waiting... (frame #4872)
+  ⚫ [01:51:23] Waiting... (frame #4875)
+  ⚫ [01:51:23] Waiting... (frame #4878)
+  ⚫ [01:51:23] Waiting... (frame #4881)
+  ⚫ [01:51:24] Waiting... (frame #4884)
+  ⚫ [01:51:24] Waiting... (frame #4887)
+📥 Frame #4890 from 127.0.0.1:57999 | size=35175
+🖼 Decoded frame #4890 | shape=(480, 640, 3)
+🧠 Result #4890 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 60, 'hands_detected': False}
+  ⚫ [01:51:24] Waiting... (frame #4890)
+  [FRAME  4890]  inference=12.5ms (avg30)  server_total=33.3ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:51:24] Waiting... (frame #4893)
+  ⚫ [01:51:24] Waiting... (frame #4896)
+
+  💬 [01:51:24] SENTENCE FINALIZED | -33.0 dBFS
+       Signs   : NO
+       English : "No."
+       → Speaking through Pi speaker...
+
+🔊 Speaking (Coqui): No.
+ > Text splitted to sentences.
+['No.']
+[TTS] "No." | latency=0.0ms | dB=-33.0 dBFS
+  ⚫ [01:51:24] Waiting... (frame #4899)
+  ⚫ [01:51:24] Waiting... (frame #4902)
+ > Processing time: 0.15765953063964844
+ > Real-time factor: 0.15247336186860735
+  ⚫ [01:51:24] Waiting... (frame #4905)
+  ⚫ [01:51:24] Waiting... (frame #4908)
+  ⚫ [01:51:24] Waiting... (frame #4911)
+  ⚫ [01:51:25] Waiting... (frame #4914)
+  ⚫ [01:51:25] Waiting... (frame #4917)
+📥 Frame #4920 from 127.0.0.1:57999 | size=36459
+🖼 Decoded frame #4920 | shape=(480, 640, 3)
+🧠 Result #4920 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 90, 'hands_detected': False}
+  ⚫ [01:51:25] Waiting... (frame #4920)
+  [FRAME  4920]  inference=13.1ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:51:25] Waiting... (frame #4923)
+  ⚫ [01:51:25] Waiting... (frame #4926)
+  ⚫ [01:51:25] Waiting... (frame #4929)
+  ⚫ [01:51:25] Waiting... (frame #4932)
+  ⚫ [01:51:25] Waiting... (frame #4935)
+  ⚫ [01:51:25] Waiting... (frame #4938)
+  ⚫ [01:51:25] Waiting... (frame #4941)
+  ⚫ [01:51:26] Waiting... (frame #4944)
+  ⚫ [01:51:26] Waiting... (frame #4947)
+📥 Frame #4950 from 127.0.0.1:57999 | size=36395
+🖼 Decoded frame #4950 | shape=(480, 640, 3)
+🧠 Result #4950 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 120, 'hands_detected': False}
+  ⚫ [01:51:26] Waiting... (frame #4950)
+  [FRAME  4950]  inference=12.0ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:51:26] Waiting... (frame #4953)
+  ⚫ [01:51:26] Waiting... (frame #4956)
+  🟠 [01:51:26] HAND DETECTED — 1/2 needed
+  🟠 [01:51:26] HAND DETECTED — 2/2 needed
+  🟠 [01:51:26] HAND DETECTED — 3/2 needed
+  🟡 [01:51:26] COLLECTING... 1 frames
+  🟡 [01:51:26] COLLECTING... 3 frames
+  🟡 [01:51:26] COLLECTING... 6 frames
+  🟡 [01:51:26] COLLECTING... 9 frames
+  🟡 [01:51:26] COLLECTING... 12 frames
+  🟡 [01:51:27] COLLECTING... 15 frames
+  🟡 [01:51:27] COLLECTING... 18 frames
+📥 Frame #4980 from 127.0.0.1:57999 | size=36739
+🖼 Decoded frame #4980 | shape=(480, 640, 3)
+🧠 Result #4980 | label=Collecting... | ready=False | debug={'collecting': True, 'frames_collected': 20, 'consec_hand': 23, 'consec_nohand': 0, 'hands_detected': True}
+  [FRAME  4980]  inference=23.0ms (avg30)  server_total=33.3ms (avg30)  pred=Collecting...  ready=False
+  🟡 [01:51:27] COLLECTING... 21 frames
+  🟡 [01:51:27] COLLECTING... 24 frames
+  🟡 [01:51:27] COLLECTING... 27 frames
+  🟡 [01:51:27] COLLECTING... 30 frames
+
+  ✅ [01:51:27] PREDICTED → What (94%)
+[GESTURE] What | conf=93.8% | frames=0 | latency=16.0ms | Top3: What(93.8%), No(0.4%), Understand(0.3%)
+  ⚫ [01:51:27] Waiting... (frame #4997)
+  ⚫ [01:51:27] Waiting... (frame #4999)
+  ⚫ [01:51:27] Waiting... (frame #5002)
+  ⚫ [01:51:28] Waiting... (frame #5005)
+  ⚫ [01:51:28] Waiting... (frame #5008)
+📥 Frame #5010 from 127.0.0.1:57999 | size=36615
+🖼 Decoded frame #5010 | shape=(480, 640, 3)
+🧠 Result #5010 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 20, 'hands_detected': False}
+  [FRAME  5010]  inference=19.4ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:51:28] Waiting... (frame #5011)
+  ⚫ [01:51:28] Waiting... (frame #5014)
+  ⚫ [01:51:28] Waiting... (frame #5017)
+  ⚫ [01:51:28] Waiting... (frame #5020)
+  ⚫ [01:51:28] Waiting... (frame #5023)
+  ⚫ [01:51:28] Waiting... (frame #5026)
+  ⚫ [01:51:28] Waiting... (frame #5029)
+  ⚫ [01:51:28] Waiting... (frame #5032)
+  ⚫ [01:51:29] Waiting... (frame #5035)
+  ⚫ [01:51:29] Waiting... (frame #5038)
+📥 Frame #5040 from 127.0.0.1:57999 | size=35891
+🖼 Decoded frame #5040 | shape=(480, 640, 3)
+🧠 Result #5040 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 50, 'hands_detected': False}
+  [FRAME  5040]  inference=11.9ms (avg30)  server_total=33.3ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:51:29] Waiting... (frame #5041)
+  ⚫ [01:51:29] Waiting... (frame #5044)
+  ⚫ [01:51:29] Waiting... (frame #5047)
+  🟠 [01:51:29] HAND DETECTED — 1/2 needed
+  🟠 [01:51:29] HAND DETECTED — 2/2 needed
+  🟠 [01:51:29] HAND DETECTED — 3/2 needed
+  🟡 [01:51:29] COLLECTING... 1 frames
+  🟡 [01:51:29] COLLECTING... 3 frames
+  🟡 [01:51:29] COLLECTING... 6 frames
+  🟡 [01:51:29] COLLECTING... 9 frames
+  🟡 [01:51:29] COLLECTING... 12 frames
+  🟡 [01:51:30] COLLECTING... 15 frames
+  🟡 [01:51:30] COLLECTING... 18 frames
+📥 Frame #5070 from 127.0.0.1:57999 | size=38319
+🖼 Decoded frame #5070 | shape=(480, 640, 3)
+🧠 Result #5070 | label=Collecting... | ready=False | debug={'collecting': True, 'frames_collected': 19, 'consec_hand': 22, 'consec_nohand': 0, 'hands_detected': True}
+  [FRAME  5070]  inference=24.0ms (avg30)  server_total=33.3ms (avg30)  pred=Collecting...  ready=False
+  🟡 [01:51:30] COLLECTING... 21 frames
+  🟡 [01:51:30] COLLECTING... 24 frames
+  🟡 [01:51:30] COLLECTING... 27 frames
+
+  ✅ [01:51:30] PREDICTED → Eat (84%)
+[GESTURE] Eat | conf=83.9% | frames=0 | latency=16.0ms | Top3: Eat(83.9%), Me(1.9%), Know(1.4%)
+  ⚫ [01:51:30] Waiting... (frame #5085)
+  ⚫ [01:51:30] Waiting... (frame #5087)
+  ⚫ [01:51:30] Waiting... (frame #5090)
+  ⚫ [01:51:30] Waiting... (frame #5093)
+  ⚫ [01:51:31] Waiting... (frame #5096)
+  ⚫ [01:51:31] Waiting... (frame #5099)
+📥 Frame #5100 from 127.0.0.1:57999 | size=36975
+🖼 Decoded frame #5100 | shape=(480, 640, 3)
+🧠 Result #5100 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 22, 'hands_detected': False}
+  [FRAME  5100]  inference=17.8ms (avg30)  server_total=32.3ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:51:31] Waiting... (frame #5102)
+  ⚫ [01:51:31] Waiting... (frame #5105)
+  ⚫ [01:51:31] Waiting... (frame #5108)
+  ⚫ [01:51:31] Waiting... (frame #5111)
+  ⚫ [01:51:31] Waiting... (frame #5114)
+  ⚫ [01:51:31] Waiting... (frame #5117)
+  ⚫ [01:51:31] Waiting... (frame #5120)
+  ⚫ [01:51:31] Waiting... (frame #5123)
+  ⚫ [01:51:32] Waiting... (frame #5126)
+  ⚫ [01:51:32] Waiting... (frame #5129)
+📥 Frame #5130 from 127.0.0.1:57999 | size=37123
+🖼 Decoded frame #5130 | shape=(480, 640, 3)
+🧠 Result #5130 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 52, 'hands_detected': False}
+  [FRAME  5130]  inference=14.1ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:51:32] Waiting... (frame #5132)
+  ⚫ [01:51:32] Waiting... (frame #5135)
+  ⚫ [01:51:32] Waiting... (frame #5138)
+  ⚫ [01:51:32] Waiting... (frame #5141)
+  ⚫ [01:51:32] Waiting... (frame #5144)
+  ⚫ [01:51:32] Waiting... (frame #5147)
+
+  💬 [01:51:32] SENTENCE FINALIZED | -45.9 dBFS
+       Signs   : WHAT EAT
+       English : "Eat what?"
+       → Speaking through Pi speaker...
+
+🔊 Speaking (Coqui): Eat what?
+ > Text splitted to sentences.
+['Eat what?']
+[TTS] "Eat what?" | latency=0.0ms | dB=-45.9 dBFS
+  ⚫ [01:51:32] Waiting... (frame #5150)
+  ⚫ [01:51:32] Waiting... (frame #5153)
+ > Processing time: 0.22212934494018555
+ > Real-time factor: 0.1692216713630145
+  ⚫ [01:51:33] Waiting... (frame #5156)
+  ⚫ [01:51:33] Waiting... (frame #5159)
+📥 Frame #5160 from 127.0.0.1:57999 | size=35455
+🖼 Decoded frame #5160 | shape=(480, 640, 3)
+🧠 Result #5160 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 82, 'hands_detected': False}
+  [FRAME  5160]  inference=15.6ms (avg30)  server_total=34.4ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:51:33] Waiting... (frame #5162)
+  ⚫ [01:51:33] Waiting... (frame #5165)
+  ⚫ [01:51:33] Waiting... (frame #5168)
+  ⚫ [01:51:33] Waiting... (frame #5171)
+  ⚫ [01:51:33] Waiting... (frame #5174)
+  ⚫ [01:51:33] Waiting... (frame #5177)
+  ⚫ [01:51:33] Waiting... (frame #5180)
+  ⚫ [01:51:33] Waiting... (frame #5183)
+  ⚫ [01:51:33] Waiting... (frame #5186)
+  ⚫ [01:51:34] Waiting... (frame #5189)
+📥 Frame #5190 from 127.0.0.1:57999 | size=26811
+🖼 Decoded frame #5190 | shape=(480, 640, 3)
+🧠 Result #5190 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 112, 'hands_detected': False}
+  [FRAME  5190]  inference=13.6ms (avg30)  server_total=31.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:51:34] Waiting... (frame #5192)
+  ⚫ [01:51:34] Waiting... (frame #5195)
+  ⚫ [01:51:34] Waiting... (frame #5198)
+  ⚫ [01:51:34] Waiting... (frame #5201)
+  ⚫ [01:51:34] Waiting... (frame #5204)
+  ⚫ [01:51:34] Waiting... (frame #5207)
+  ⚫ [01:51:34] Waiting... (frame #5210)
+  ⚫ [01:51:34] Waiting... (frame #5213)
+  ⚫ [01:51:35] Waiting... (frame #5216)
+  ⚫ [01:51:35] Waiting... (frame #5219)
+📥 Frame #5220 from 127.0.0.1:57999 | size=29327
+🖼 Decoded frame #5220 | shape=(480, 640, 3)
+🧠 Result #5220 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 142, 'hands_detected': False}
+  [FRAME  5220]  inference=13.6ms (avg30)  server_total=33.3ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:51:35] Waiting... (frame #5222)
+  ⚫ [01:51:35] Waiting... (frame #5225)
+  ⚫ [01:51:35] Waiting... (frame #5228)
+  ⚫ [01:51:35] Waiting... (frame #5231)
+  ⚫ [01:51:35] Waiting... (frame #5234)
+  ⚫ [01:51:35] Waiting... (frame #5237)
+  ⚫ [01:51:35] Waiting... (frame #5240)
+  ⚫ [01:51:35] Waiting... (frame #5243)
+  ⚫ [01:51:35] Waiting... (frame #5246)
+  ⚫ [01:51:36] Waiting... (frame #5249)
+📥 Frame #5250 from 127.0.0.1:57999 | size=33155
+🖼 Decoded frame #5250 | shape=(480, 640, 3)
+🧠 Result #5250 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 172, 'hands_detected': False}
+  [FRAME  5250]  inference=14.6ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:51:36] Waiting... (frame #5252)
+  ⚫ [01:51:36] Waiting... (frame #5255)
+  ⚫ [01:51:36] Waiting... (frame #5258)
+  ⚫ [01:51:36] Waiting... (frame #5261)
+  ⚫ [01:51:36] Waiting... (frame #5264)
+  ⚫ [01:51:36] Waiting... (frame #5267)
+  ⚫ [01:51:36] Waiting... (frame #5270)
+  ⚫ [01:51:36] Waiting... (frame #5273)
+  ⚫ [01:51:36] Waiting... (frame #5276)
+  ⚫ [01:51:37] Waiting... (frame #5279)
+📥 Frame #5280 from 127.0.0.1:57999 | size=39695
+🖼 Decoded frame #5280 | shape=(480, 640, 3)
+🧠 Result #5280 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 202, 'hands_detected': False}
+  [FRAME  5280]  inference=18.2ms (avg30)  server_total=33.3ms (avg30)  pred=Waiting...  ready=False
+  🟠 [01:51:37] HAND DETECTED — 1/2 needed
+  🟠 [01:51:37] HAND DETECTED — 2/2 needed
+  🟠 [01:51:37] HAND DETECTED — 3/2 needed
+  ⚫ [01:51:37] Waiting... (frame #5285)
+  ⚫ [01:51:37] Waiting... (frame #5287)
+  🟠 [01:51:37] HAND DETECTED — 1/2 needed
+  🟠 [01:51:37] HAND DETECTED — 2/2 needed
+  🟠 [01:51:37] HAND DETECTED — 3/2 needed
+  🟡 [01:51:37] COLLECTING... 1 frames
+  🟡 [01:51:37] COLLECTING... 3 frames
+  🟡 [01:51:37] COLLECTING... 6 frames
+  🟡 [01:51:37] COLLECTING... 9 frames
+  🟡 [01:51:37] COLLECTING... 12 frames
+  🟡 [01:51:37] COLLECTING... 15 frames
+  🟡 [01:51:38] COLLECTING... 18 frames
+📥 Frame #5310 from 127.0.0.1:57999 | size=40471
+🖼 Decoded frame #5310 | shape=(480, 640, 3)
+🧠 Result #5310 | label=Collecting... | ready=False | debug={'collecting': True, 'frames_collected': 20, 'consec_hand': 23, 'consec_nohand': 0, 'hands_detected': True}
+  [FRAME  5310]  inference=23.9ms (avg30)  server_total=32.8ms (avg30)  pred=Collecting...  ready=False
+  🟡 [01:51:38] COLLECTING... 21 frames
+  🟡 [01:51:38] COLLECTING... 24 frames
+  🟡 [01:51:38] COLLECTING... 27 frames
+
+  ✅ [01:51:38] PREDICTED → What (91%)
+[GESTURE] What | conf=91.1% | frames=0 | latency=16.0ms | Top3: What(91.1%), No(0.6%), Yes(0.5%)
+  ⚫ [01:51:38] Waiting... (frame #5324)
+  ⚫ [01:51:38] Waiting... (frame #5326)
+  ⚫ [01:51:38] Waiting... (frame #5329)
+  ⚫ [01:51:38] Waiting... (frame #5332)
+  ⚫ [01:51:38] Waiting... (frame #5335)
+  ⚫ [01:51:39] Waiting... (frame #5338)
+📥 Frame #5340 from 127.0.0.1:57999 | size=37523
+🖼 Decoded frame #5340 | shape=(480, 640, 3)
+🧠 Result #5340 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 23, 'hands_detected': False}
+  [FRAME  5340]  inference=20.3ms (avg30)  server_total=33.3ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:51:39] Waiting... (frame #5341)
+  ⚫ [01:51:39] Waiting... (frame #5344)
+  ⚫ [01:51:39] Waiting... (frame #5347)
+  ⚫ [01:51:39] Waiting... (frame #5350)
+  ⚫ [01:51:39] Waiting... (frame #5353)
+  ⚫ [01:51:39] Waiting... (frame #5356)
+  ⚫ [01:51:39] Waiting... (frame #5359)
+  ⚫ [01:51:39] Waiting... (frame #5362)
+  ⚫ [01:51:39] Waiting... (frame #5365)
+  🟠 [01:51:39] HAND DETECTED — 1/2 needed
+  🟠 [01:51:40] HAND DETECTED — 2/2 needed
+  🟠 [01:51:40] HAND DETECTED — 3/2 needed
+📥 Frame #5370 from 127.0.0.1:57999 | size=38059
+🖼 Decoded frame #5370 | shape=(480, 640, 3)
+🧠 Result #5370 | label=Collecting... | ready=False | debug={'collecting': True, 'frames_collected': 1, 'consec_hand': 4, 'consec_nohand': 0, 'hands_detected': True}
+  🟡 [01:51:40] COLLECTING... 1 frames
+  [FRAME  5370]  inference=17.7ms (avg30)  server_total=33.3ms (avg30)  pred=Collecting...  ready=False
+  🟡 [01:51:40] COLLECTING... 3 frames
+  🟡 [01:51:40] COLLECTING... 6 frames
+  🟡 [01:51:40] COLLECTING... 9 frames
+  🟡 [01:51:40] COLLECTING... 12 frames
+  🟡 [01:51:40] COLLECTING... 15 frames
+  🟡 [01:51:40] COLLECTING... 18 frames
+  🟡 [01:51:40] COLLECTING... 21 frames
+  🟡 [01:51:40] COLLECTING... 24 frames
+  🟡 [01:51:40] COLLECTING... 27 frames
+  🟡 [01:51:41] COLLECTING... 30 frames
+📥 Frame #5400 from 127.0.0.1:57999 | size=38215
+🖼 Decoded frame #5400 | shape=(480, 640, 3)
+🧠 Result #5400 | label=Collecting... | ready=False | debug={'collecting': True, 'frames_collected': 30, 'consec_hand': 0, 'consec_nohand': 1, 'hands_detected': False}
+  [FRAME  5400]  inference=20.3ms (avg30)  server_total=32.3ms (avg30)  pred=Collecting...  ready=False
+
+  ✅ [01:51:41] PREDICTED → Yes (94%)
+[GESTURE] Yes | conf=94.0% | frames=0 | latency=16.0ms | Top3: Yes(94.0%), Go(0.3%), Hello(0.3%)
+  ⚫ [01:51:41] Waiting... (frame #5406)
+  ⚫ [01:51:41] Waiting... (frame #5408)
+  ⚫ [01:51:41] Waiting... (frame #5411)
+  ⚫ [01:51:41] Waiting... (frame #5414)
+  ⚫ [01:51:41] Waiting... (frame #5417)
+  ⚫ [01:51:41] Waiting... (frame #5420)
+  ⚫ [01:51:41] Waiting... (frame #5423)
+  ⚫ [01:51:41] Waiting... (frame #5426)
+  ⚫ [01:51:42] Waiting... (frame #5429)
+📥 Frame #5430 from 127.0.0.1:57999 | size=39131
+🖼 Decoded frame #5430 | shape=(480, 640, 3)
+🧠 Result #5430 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 31, 'hands_detected': False}
+  [FRAME  5430]  inference=18.8ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:51:42] Waiting... (frame #5432)
+  ⚫ [01:51:42] Waiting... (frame #5435)
+  ⚫ [01:51:42] Waiting... (frame #5438)
+  ⚫ [01:51:42] Waiting... (frame #5441)
+  ⚫ [01:51:42] Waiting... (frame #5444)
+  ⚫ [01:51:42] Waiting... (frame #5447)
+  ⚫ [01:51:42] Waiting... (frame #5450)
+  ⚫ [01:51:42] Waiting... (frame #5453)
+  ⚫ [01:51:42] Waiting... (frame #5456)
+  🟠 [01:51:42] HAND DETECTED — 1/2 needed
+  🟠 [01:51:42] HAND DETECTED — 2/2 needed
+  🟠 [01:51:43] HAND DETECTED — 3/2 needed
+📥 Frame #5460 from 127.0.0.1:57999 | size=39499
+🖼 Decoded frame #5460 | shape=(480, 640, 3)
+🧠 Result #5460 | label=Collecting... | ready=False | debug={'collecting': True, 'frames_collected': 1, 'consec_hand': 4, 'consec_nohand': 0, 'hands_detected': True}
+  🟡 [01:51:43] COLLECTING... 1 frames
+  [FRAME  5460]  inference=14.6ms (avg30)  server_total=33.3ms (avg30)  pred=Collecting...  ready=False
+  🟡 [01:51:43] COLLECTING... 3 frames
+  🟡 [01:51:43] COLLECTING... 6 frames
+  🟡 [01:51:43] COLLECTING... 9 frames
+  🟡 [01:51:43] COLLECTING... 12 frames
+  🟡 [01:51:43] COLLECTING... 15 frames
+  🟡 [01:51:43] COLLECTING... 18 frames
+  🟡 [01:51:43] COLLECTING... 21 frames
+  🟡 [01:51:43] COLLECTING... 24 frames
+📥 Frame #5490 from 127.0.0.1:57999 | size=39235
+🖼 Decoded frame #5490 | shape=(480, 640, 3)
+🧠 Result #5490 | label=Collecting... | ready=False | debug={'collecting': True, 'frames_collected': 26, 'consec_hand': 0, 'consec_nohand': 5, 'hands_detected': False}
+  [FRAME  5490]  inference=21.9ms (avg30)  server_total=32.3ms (avg30)  pred=Collecting...  ready=False
+
+  ✅ [01:51:44] PREDICTED → You (69%)
+[GESTURE] You | conf=69.2% | frames=0 | latency=16.0ms | Top3: You(69.2%), Understand(7.7%), Morning(1.2%)
+  ⚫ [01:51:44] Waiting... (frame #5492)
+  ⚫ [01:51:44] Waiting... (frame #5494)
+  ⚫ [01:51:44] Waiting... (frame #5497)
+  ⚫ [01:51:44] Waiting... (frame #5500)
+  ⚫ [01:51:44] Waiting... (frame #5503)
+  ⚫ [01:51:44] Waiting... (frame #5506)
+  ⚫ [01:51:44] Waiting... (frame #5509)
+  ⚫ [01:51:44] Waiting... (frame #5512)
+  ⚫ [01:51:44] Waiting... (frame #5515)
+  ⚫ [01:51:44] Waiting... (frame #5518)
+📥 Frame #5520 from 127.0.0.1:57999 | size=40811
+🖼 Decoded frame #5520 | shape=(480, 640, 3)
+🧠 Result #5520 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 35, 'hands_detected': False}
+  [FRAME  5520]  inference=14.1ms (avg30)  server_total=33.9ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:51:45] Waiting... (frame #5521)
+  ⚫ [01:51:45] Waiting... (frame #5524)
+  ⚫ [01:51:45] Waiting... (frame #5527)
+  ⚫ [01:51:45] Waiting... (frame #5530)
+  ⚫ [01:51:45] Waiting... (frame #5533)
+  ⚫ [01:51:45] Waiting... (frame #5536)
+  ⚫ [01:51:45] Waiting... (frame #5539)
+  ⚫ [01:51:45] Waiting... (frame #5542)
+  ⚫ [01:51:45] Waiting... (frame #5545)
+  ⚫ [01:51:45] Waiting... (frame #5548)
+📥 Frame #5550 from 127.0.0.1:57999 | size=40003
+🖼 Decoded frame #5550 | shape=(480, 640, 3)
+🧠 Result #5550 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 65, 'hands_detected': False}
+  [FRAME  5550]  inference=13.5ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:51:46] Waiting... (frame #5551)
+
+  💬 [01:51:46] SENTENCE FINALIZED | -57.2 dBFS
+       Signs   : WHAT YES YOU
+       English : "What yes you?"
+       → Speaking through Pi speaker...
+
+🔊 Speaking (Coqui): What yes you?
+ > Text splitted to sentences.
+['What yes you?']
+[TTS] "What yes you?" | latency=0.0ms | dB=-57.2 dBFS
+  ⚫ [01:51:46] Waiting... (frame #5554)
+  ⚫ [01:51:46] Waiting... (frame #5557)
+  🟠 [01:51:46] HAND DETECTED — 1/2 needed
+  🟠 [01:51:46] HAND DETECTED — 2/2 needed
+  🟠 [01:51:46] HAND DETECTED — 3/2 needed
+ > Processing time: 0.36066508293151855
+ > Real-time factor: 0.23346245533818646
+  🟡 [01:51:46] COLLECTING... 1 frames
+  🟡 [01:51:46] COLLECTING... 3 frames
+  🟡 [01:51:46] COLLECTING... 6 frames
+  🟡 [01:51:46] COLLECTING... 9 frames
+  🟡 [01:51:46] COLLECTING... 12 frames
+  🟡 [01:51:46] COLLECTING... 15 frames
+📥 Frame #5580 from 127.0.0.1:57999 | size=40251
+🖼 Decoded frame #5580 | shape=(480, 640, 3)
+🧠 Result #5580 | label=Collecting... | ready=False | debug={'collecting': True, 'frames_collected': 16, 'consec_hand': 0, 'consec_nohand': 4, 'hands_detected': False}
+  [FRAME  5580]  inference=30.7ms (avg30)  server_total=35.4ms (avg30)  pred=Collecting...  ready=False
+
+  ✅ [01:51:47] PREDICTED → Name (92%)
+[GESTURE] Name | conf=92.2% | frames=0 | latency=16.0ms | Top3: Name(92.2%), Friend(0.6%), Home(0.4%)
+  ⚫ [01:51:47] Waiting... (frame #5583)
+  ⚫ [01:51:47] Waiting... (frame #5585)
+  ⚫ [01:51:47] Waiting... (frame #5588)
+  ⚫ [01:51:47] Waiting... (frame #5591)
+  ⚫ [01:51:47] Waiting... (frame #5594)
+  ⚫ [01:51:47] Waiting... (frame #5597)
+  ⚫ [01:51:47] Waiting... (frame #5600)
+  ⚫ [01:51:47] Waiting... (frame #5603)
+  ⚫ [01:51:47] Waiting... (frame #5606)
+  ⚫ [01:51:47] Waiting... (frame #5609)
+📥 Frame #5610 from 127.0.0.1:57999 | size=41207
+🖼 Decoded frame #5610 | shape=(480, 640, 3)
+🧠 Result #5610 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 34, 'hands_detected': False}
+  [FRAME  5610]  inference=14.1ms (avg30)  server_total=30.7ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:51:48] Waiting... (frame #5612)
+  ⚫ [01:51:48] Waiting... (frame #5615)
+  ⚫ [01:51:48] Waiting... (frame #5618)
+  ⚫ [01:51:48] Waiting... (frame #5621)
+  ⚫ [01:51:48] Waiting... (frame #5624)
+  ⚫ [01:51:48] Waiting... (frame #5627)
+  ⚫ [01:51:48] Waiting... (frame #5630)
+  ⚫ [01:51:48] Waiting... (frame #5633)
+  ⚫ [01:51:48] Waiting... (frame #5636)
+  ⚫ [01:51:48] Waiting... (frame #5639)
+📥 Frame #5640 from 127.0.0.1:57999 | size=42075
+🖼 Decoded frame #5640 | shape=(480, 640, 3)
+🧠 Result #5640 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 64, 'hands_detected': False}
+  [FRAME  5640]  inference=14.6ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:51:49] Waiting... (frame #5642)
+  ⚫ [01:51:49] Waiting... (frame #5645)
+  ⚫ [01:51:49] Waiting... (frame #5648)
+
+  💬 [01:51:49] SENTENCE FINALIZED | -49.1 dBFS
+       Signs   : NAME
+       English : "Name."
+       → Speaking through Pi speaker...
+
+🔊 Speaking (Coqui): Name.
+ > Text splitted to sentences.
+['Name.']
+[TTS] "Name." | latency=0.0ms | dB=-49.1 dBFS
+  ⚫ [01:51:49] Waiting... (frame #5651)
+  ⚫ [01:51:49] Waiting... (frame #5654)
+  ⚫ [01:51:49] Waiting... (frame #5657)
+  ⚫ [01:51:49] Waiting... (frame #5660)
+  ⚫ [01:51:49] Waiting... (frame #5663)
+  ⚫ [01:51:49] Waiting... (frame #5666)
+  ⚫ [01:51:49] Waiting... (frame #5669)
+📥 Frame #5670 from 127.0.0.1:57999 | size=41511
+🖼 Decoded frame #5670 | shape=(480, 640, 3)
+🧠 Result #5670 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 94, 'hands_detected': False}
+  [FRAME  5670]  inference=23.4ms (avg30)  server_total=33.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:51:50] Waiting... (frame #5672)
+  ⚫ [01:51:50] Waiting... (frame #5675)
+  ⚫ [01:51:50] Waiting... (frame #5678)
+  ⚫ [01:51:50] Waiting... (frame #5681)
+  ⚫ [01:51:50] Waiting... (frame #5684)
+  ⚫ [01:51:50] Waiting... (frame #5687)
+  ⚫ [01:51:50] Waiting... (frame #5690)
+  ⚫ [01:51:50] Waiting... (frame #5693)
+  ⚫ [01:51:50] Waiting... (frame #5696)
+  ⚫ [01:51:50] Waiting... (frame #5699)
+📥 Frame #5700 from 127.0.0.1:57999 | size=41247
+🖼 Decoded frame #5700 | shape=(480, 640, 3)
+🧠 Result #5700 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 124, 'hands_detected': False}
+  [FRAME  5700]  inference=25.1ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:51:51] Waiting... (frame #5702)
+  ⚫ [01:51:51] Waiting... (frame #5705)
+  ⚫ [01:51:51] Waiting... (frame #5708)
+  ⚫ [01:51:51] Waiting... (frame #5711)
+  ⚫ [01:51:51] Waiting... (frame #5714)
+  ⚫ [01:51:51] Waiting... (frame #5717)
+ > Processing time: 2.3579275608062744
+ > Real-time factor: 0.27442943330260505
+  ⚫ [01:51:51] Waiting... (frame #5720)
+  ⚫ [01:51:51] Waiting... (frame #5723)
+  ⚫ [01:51:51] Waiting... (frame #5726)
+  ⚫ [01:51:51] Waiting... (frame #5729)
+📥 Frame #5730 from 127.0.0.1:57999 | size=41931
+🖼 Decoded frame #5730 | shape=(480, 640, 3)
+🧠 Result #5730 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 154, 'hands_detected': False}
+  [FRAME  5730]  inference=21.8ms (avg30)  server_total=32.3ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:51:52] Waiting... (frame #5732)
+  ⚫ [01:51:52] Waiting... (frame #5735)
+  ⚫ [01:51:52] Waiting... (frame #5738)
+  ⚫ [01:51:52] Waiting... (frame #5741)
+  ⚫ [01:51:52] Waiting... (frame #5744)
+  ⚫ [01:51:52] Waiting... (frame #5747)
+  ⚫ [01:51:52] Waiting... (frame #5750)
+  ⚫ [01:51:52] Waiting... (frame #5753)
+  ⚫ [01:51:52] Waiting... (frame #5756)
+  ⚫ [01:51:52] Waiting... (frame #5759)
+📥 Frame #5760 from 127.0.0.1:57999 | size=41735
+🖼 Decoded frame #5760 | shape=(480, 640, 3)
+🧠 Result #5760 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 184, 'hands_detected': False}
+  [FRAME  5760]  inference=12.4ms (avg30)  server_total=33.3ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:51:53] Waiting... (frame #5762)
+  ⚫ [01:51:53] Waiting... (frame #5765)
+  ⚫ [01:51:53] Waiting... (frame #5768)
+  ⚫ [01:51:53] Waiting... (frame #5771)
+  ⚫ [01:51:53] Waiting... (frame #5774)
+  ⚫ [01:51:53] Waiting... (frame #5777)
+  ⚫ [01:51:53] Waiting... (frame #5780)
+  ⚫ [01:51:53] Waiting... (frame #5783)
+  ⚫ [01:51:53] Waiting... (frame #5786)
+  ⚫ [01:51:53] Waiting... (frame #5789)
+📥 Frame #5790 from 127.0.0.1:57999 | size=41311
+🖼 Decoded frame #5790 | shape=(480, 640, 3)
+🧠 Result #5790 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 214, 'hands_detected': False}
+  [FRAME  5790]  inference=12.0ms (avg30)  server_total=32.3ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:51:53] Waiting... (frame #5792)
+  ⚫ [01:51:54] Waiting... (frame #5795)
+  ⚫ [01:51:54] Waiting... (frame #5798)
+  ⚫ [01:51:54] Waiting... (frame #5801)
+  ⚫ [01:51:54] Waiting... (frame #5804)
+  ⚫ [01:51:54] Waiting... (frame #5807)
+  ⚫ [01:51:54] Waiting... (frame #5810)
+  ⚫ [01:51:54] Waiting... (frame #5813)
+  ⚫ [01:51:54] Waiting... (frame #5816)
+  ⚫ [01:51:54] Waiting... (frame #5819)
+📥 Frame #5820 from 127.0.0.1:57999 | size=40739
+🖼 Decoded frame #5820 | shape=(480, 640, 3)
+🧠 Result #5820 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 1, 'consec_nohand': 0, 'hands_detected': True}
+  🟠 [01:51:54] HAND DETECTED — 1/2 needed
+  [FRAME  5820]  inference=15.6ms (avg30)  server_total=33.9ms (avg30)  pred=Waiting...  ready=False
+  🟠 [01:51:54] HAND DETECTED — 2/2 needed
+  🟠 [01:51:54] HAND DETECTED — 3/2 needed
+  🟡 [01:51:55] COLLECTING... 1 frames
+  🟡 [01:51:55] COLLECTING... 3 frames
+  🟡 [01:51:55] COLLECTING... 6 frames
+  🟡 [01:51:55] COLLECTING... 9 frames
+  🟡 [01:51:55] COLLECTING... 12 frames
+  🟡 [01:51:55] COLLECTING... 15 frames
+  🟡 [01:51:55] COLLECTING... 18 frames
+  🟡 [01:51:55] COLLECTING... 21 frames
+  🟡 [01:51:55] COLLECTING... 24 frames
+  🟡 [01:51:55] COLLECTING... 27 frames
+📥 Frame #5850 from 127.0.0.1:57999 | size=42011
+🖼 Decoded frame #5850 | shape=(480, 640, 3)
+🧠 Result #5850 | label=Collecting... | ready=False | debug={'collecting': True, 'frames_collected': 28, 'consec_hand': 31, 'consec_nohand': 0, 'hands_detected': True}
+  [FRAME  5850]  inference=26.0ms (avg30)  server_total=32.8ms (avg30)  pred=Collecting...  ready=False
+  🟡 [01:51:55] COLLECTING... 30 frames
+  🟡 [01:51:56] COLLECTING... 33 frames
+  🟡 [01:51:56] COLLECTING... 36 frames
+
+  ✅ [01:51:56] PREDICTED → What (94%)
+[GESTURE] What | conf=93.7% | frames=0 | latency=16.0ms | Top3: What(93.7%), Understand(0.5%), Yes(0.3%)
+  ⚫ [01:51:56] Waiting... (frame #5866)
+  ⚫ [01:51:56] Waiting... (frame #5868)
+  ⚫ [01:51:56] Waiting... (frame #5871)
+  ⚫ [01:51:56] Waiting... (frame #5874)
+  ⚫ [01:51:56] Waiting... (frame #5877)
+📥 Frame #5880 from 127.0.0.1:57999 | size=40971
+🖼 Decoded frame #5880 | shape=(480, 640, 3)
+🧠 Result #5880 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 21, 'hands_detected': False}
+  ⚫ [01:51:56] Waiting... (frame #5880)
+  [FRAME  5880]  inference=16.6ms (avg30)  server_total=32.3ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:51:57] Waiting... (frame #5883)
+  ⚫ [01:51:57] Waiting... (frame #5886)
+  ⚫ [01:51:57] Waiting... (frame #5889)
+  ⚫ [01:51:57] Waiting... (frame #5892)
+  ⚫ [01:51:57] Waiting... (frame #5895)
+  ⚫ [01:51:57] Waiting... (frame #5898)
+  ⚫ [01:51:57] Waiting... (frame #5901)
+  🟠 [01:51:57] HAND DETECTED — 1/2 needed
+  🟠 [01:51:57] HAND DETECTED — 2/2 needed
+  🟠 [01:51:57] HAND DETECTED — 3/2 needed
+  🟡 [01:51:57] COLLECTING... 1 frames
+  🟡 [01:51:57] COLLECTING... 3 frames
+📥 Frame #5910 from 127.0.0.1:57999 | size=42499
+🖼 Decoded frame #5910 | shape=(480, 640, 3)
+🧠 Result #5910 | label=Collecting... | ready=False | debug={'collecting': True, 'frames_collected': 4, 'consec_hand': 7, 'consec_nohand': 0, 'hands_detected': True}
+  [FRAME  5910]  inference=13.6ms (avg30)  server_total=33.9ms (avg30)  pred=Collecting...  ready=False
+  🟡 [01:51:57] COLLECTING... 6 frames
+  🟡 [01:51:58] COLLECTING... 9 frames
+  🟡 [01:51:58] COLLECTING... 12 frames
+  🟡 [01:51:58] COLLECTING... 15 frames
+  🟡 [01:51:58] COLLECTING... 18 frames
+  🟡 [01:51:58] COLLECTING... 21 frames
+  🟡 [01:51:58] COLLECTING... 24 frames
+  🟡 [01:51:58] COLLECTING... 27 frames
+📥 Frame #5940 from 127.0.0.1:57999 | size=40683
+🖼 Decoded frame #5940 | shape=(480, 640, 3)
+🧠 Result #5940 | label=Collecting... | ready=False | debug={'collecting': True, 'frames_collected': 29, 'consec_hand': 0, 'consec_nohand': 4, 'hands_detected': False}
+  [FRAME  5940]  inference=26.1ms (avg30)  server_total=32.8ms (avg30)  pred=Collecting...  ready=False
+
+  ✅ [01:51:58] PREDICTED → Sorry (30%)
+[GESTURE] Sorry | conf=30.3% | frames=0 | latency=15.0ms | Top3: Sorry(30.3%), Love(10.6%), Help(5.6%)
+  ⚫ [01:51:58] Waiting... (frame #5943)
+  ⚫ [01:51:59] Waiting... (frame #5945)
+  ⚫ [01:51:59] Waiting... (frame #5948)
+  ⚫ [01:51:59] Waiting... (frame #5951)
+  ⚫ [01:51:59] Waiting... (frame #5954)
+  ⚫ [01:51:59] Waiting... (frame #5957)
+  ⚫ [01:51:59] Waiting... (frame #5960)
+  ⚫ [01:51:59] Waiting... (frame #5963)
+  ⚫ [01:51:59] Waiting... (frame #5966)
+  ⚫ [01:51:59] Waiting... (frame #5969)
+📥 Frame #5970 from 127.0.0.1:57999 | size=41419
+🖼 Decoded frame #5970 | shape=(480, 640, 3)
+🧠 Result #5970 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 34, 'hands_detected': False}
+  [FRAME  5970]  inference=13.5ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:51:59] Waiting... (frame #5972)
+  ⚫ [01:52:00] Waiting... (frame #5975)
+  ⚫ [01:52:00] Waiting... (frame #5978)
+  ⚫ [01:52:00] Waiting... (frame #5981)
+  ⚫ [01:52:00] Waiting... (frame #5984)
+  ⚫ [01:52:00] Waiting... (frame #5987)
+  ⚫ [01:52:00] Waiting... (frame #5990)
+  ⚫ [01:52:00] Waiting... (frame #5993)
+  ⚫ [01:52:00] Waiting... (frame #5996)
+  ⚫ [01:52:00] Waiting... (frame #5999)
+📥 Frame #6000 from 127.0.0.1:57999 | size=41107
+🖼 Decoded frame #6000 | shape=(480, 640, 3)
+🧠 Result #6000 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 64, 'hands_detected': False}
+  [FRAME  6000]  inference=12.5ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:52:00] Waiting... (frame #6002)
+
+  💬 [01:52:00] SENTENCE FINALIZED | -39.8 dBFS
+       Signs   : WHAT SORRY
+       English : "What sorry?"
+       → Speaking through Pi speaker...
+
+🔊 Speaking (Coqui): What sorry?
+ > Text splitted to sentences.
+['What sorry?']
+[TTS] "What sorry?" | latency=0.0ms | dB=-39.8 dBFS
+  ⚫ [01:52:01] Waiting... (frame #6005)
+  ⚫ [01:52:01] Waiting... (frame #6008)
+  ⚫ [01:52:01] Waiting... (frame #6011)
+ > Processing time: 0.317244291305542
+ > Real-time factor: 0.22386189910673326
+  ⚫ [01:52:01] Waiting... (frame #6014)
+  🟠 [01:52:01] HAND DETECTED — 1/2 needed
+  🟠 [01:52:01] HAND DETECTED — 2/2 needed
+  🟠 [01:52:01] HAND DETECTED — 3/2 needed
+  🟡 [01:52:01] COLLECTING... 1 frames
+  🟡 [01:52:01] COLLECTING... 3 frames
+  🟡 [01:52:01] COLLECTING... 6 frames
+  🟡 [01:52:01] COLLECTING... 9 frames
+📥 Frame #6030 from 127.0.0.1:57999 | size=42995
+🖼 Decoded frame #6030 | shape=(480, 640, 3)
+🧠 Result #6030 | label=Collecting... | ready=False | debug={'collecting': True, 'frames_collected': 11, 'consec_hand': 14, 'consec_nohand': 0, 'hands_detected': True}
+  [FRAME  6030]  inference=19.8ms (avg30)  server_total=33.3ms (avg30)  pred=Collecting...  ready=False
+  ❌ [01:52:02] TOO SHORT — 0 frames
+  ⚫ [01:52:02] Waiting... (frame #6037)
+  ⚫ [01:52:02] Waiting... (frame #6039)
+  ⚫ [01:52:02] Waiting... (frame #6042)
+  ⚫ [01:52:02] Waiting... (frame #6045)
+  ⚫ [01:52:02] Waiting... (frame #6048)
+  ⚫ [01:52:02] Waiting... (frame #6051)
+  ⚫ [01:52:02] Waiting... (frame #6054)
+  ⚫ [01:52:02] Waiting... (frame #6057)
+📥 Frame #6060 from 127.0.0.1:57999 | size=40759
+🖼 Decoded frame #6060 | shape=(480, 640, 3)
+🧠 Result #6060 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 30, 'hands_detected': False}
+  ⚫ [01:52:02] Waiting... (frame #6060)
+  [FRAME  6060]  inference=13.0ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:52:02] Waiting... (frame #6063)
+  ⚫ [01:52:03] Waiting... (frame #6066)
+  ⚫ [01:52:03] Waiting... (frame #6069)
+  ⚫ [01:52:03] Waiting... (frame #6072)
+  ⚫ [01:52:03] Waiting... (frame #6075)
+  ⚫ [01:52:03] Waiting... (frame #6078)
+  ⚫ [01:52:03] Waiting... (frame #6081)
+  ⚫ [01:52:03] Waiting... (frame #6084)
+  ⚫ [01:52:03] Waiting... (frame #6087)
+📥 Frame #6090 from 127.0.0.1:57999 | size=42015
+🖼 Decoded frame #6090 | shape=(480, 640, 3)
+🧠 Result #6090 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 60, 'hands_detected': False}
+  ⚫ [01:52:03] Waiting... (frame #6090)
+  [FRAME  6090]  inference=12.5ms (avg30)  server_total=33.3ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:52:03] Waiting... (frame #6093)
+  ⚫ [01:52:04] Waiting... (frame #6096)
+  ⚫ [01:52:04] Waiting... (frame #6099)
+  ⚫ [01:52:04] Waiting... (frame #6102)
+  ⚫ [01:52:04] Waiting... (frame #6105)
+  ⚫ [01:52:04] Waiting... (frame #6108)
+  ⚫ [01:52:04] Waiting... (frame #6111)
+  ⚫ [01:52:04] Waiting... (frame #6114)
+  ⚫ [01:52:04] Waiting... (frame #6117)
+📥 Frame #6120 from 127.0.0.1:57999 | size=41879
+🖼 Decoded frame #6120 | shape=(480, 640, 3)
+🧠 Result #6120 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 90, 'hands_detected': False}
+  ⚫ [01:52:04] Waiting... (frame #6120)
+  [FRAME  6120]  inference=12.0ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:52:04] Waiting... (frame #6123)
+  ⚫ [01:52:05] Waiting... (frame #6126)
+  ⚫ [01:52:05] Waiting... (frame #6129)
+  ⚫ [01:52:05] Waiting... (frame #6132)
+  ⚫ [01:52:05] Waiting... (frame #6135)
+  ⚫ [01:52:05] Waiting... (frame #6138)
+  ⚫ [01:52:05] Waiting... (frame #6141)
+  ⚫ [01:52:05] Waiting... (frame #6144)
+  ⚫ [01:52:05] Waiting... (frame #6147)
+📥 Frame #6150 from 127.0.0.1:57999 | size=42275
+🖼 Decoded frame #6150 | shape=(480, 640, 3)
+🧠 Result #6150 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 120, 'hands_detected': False}
+  ⚫ [01:52:05] Waiting... (frame #6150)
+  [FRAME  6150]  inference=15.6ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:52:05] Waiting... (frame #6153)
+  ⚫ [01:52:06] Waiting... (frame #6156)
+  ⚫ [01:52:06] Waiting... (frame #6159)
+  ⚫ [01:52:06] Waiting... (frame #6162)
+  ⚫ [01:52:06] Waiting... (frame #6165)
+  ⚫ [01:52:06] Waiting... (frame #6168)
+  🟠 [01:52:06] HAND DETECTED — 1/2 needed
+  🟠 [01:52:06] HAND DETECTED — 2/2 needed
+  🟠 [01:52:06] HAND DETECTED — 3/2 needed
+  🟡 [01:52:06] COLLECTING... 1 frames
+  🟡 [01:52:06] COLLECTING... 3 frames
+  🟡 [01:52:06] COLLECTING... 6 frames
+📥 Frame #6180 from 127.0.0.1:57999 | size=42339
+🖼 Decoded frame #6180 | shape=(480, 640, 3)
+🧠 Result #6180 | label=Collecting... | ready=False | debug={'collecting': True, 'frames_collected': 7, 'consec_hand': 10, 'consec_nohand': 0, 'hands_detected': True}
+  [FRAME  6180]  inference=18.7ms (avg30)  server_total=33.3ms (avg30)  pred=Collecting...  ready=False
+  🟡 [01:52:06] COLLECTING... 9 frames
+  🟡 [01:52:06] COLLECTING... 12 frames
+  🟡 [01:52:07] COLLECTING... 15 frames
+  🟡 [01:52:07] COLLECTING... 18 frames
+  🟡 [01:52:07] COLLECTING... 21 frames
+  🟡 [01:52:07] COLLECTING... 24 frames
+  🟡 [01:52:07] COLLECTING... 27 frames
+  🟡 [01:52:07] COLLECTING... 30 frames
+  🟡 [01:52:07] COLLECTING... 33 frames
+📥 Frame #6210 from 127.0.0.1:57999 | size=40951
+🖼 Decoded frame #6210 | shape=(480, 640, 3)
+🧠 Result #6210 | label=Collecting... | ready=False | debug={'collecting': True, 'frames_collected': 34, 'consec_hand': 0, 'consec_nohand': 3, 'hands_detected': False}
+  [FRAME  6210]  inference=24.5ms (avg30)  server_total=32.8ms (avg30)  pred=Collecting...  ready=False
+
+  ✅ [01:52:07] PREDICTED → What (92%)
+[GESTURE] What | conf=91.8% | frames=0 | latency=16.0ms | Top3: What(91.8%), Understand(0.7%), Yes(0.4%)
+  ⚫ [01:52:07] Waiting... (frame #6214)
+  ⚫ [01:52:07] Waiting... (frame #6216)
+  ⚫ [01:52:08] Waiting... (frame #6219)
+  ⚫ [01:52:08] Waiting... (frame #6222)
+  ⚫ [01:52:08] Waiting... (frame #6225)
+  ⚫ [01:52:08] Waiting... (frame #6228)
+  ⚫ [01:52:08] Waiting... (frame #6231)
+  ⚫ [01:52:08] Waiting... (frame #6234)
+  ⚫ [01:52:08] Waiting... (frame #6237)
+📥 Frame #6240 from 127.0.0.1:57999 | size=40991
+🖼 Decoded frame #6240 | shape=(480, 640, 3)
+🧠 Result #6240 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 33, 'hands_detected': False}
+  ⚫ [01:52:08] Waiting... (frame #6240)
+  [FRAME  6240]  inference=13.0ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:52:08] Waiting... (frame #6243)
+  ⚫ [01:52:08] Waiting... (frame #6246)
+  🟠 [01:52:09] HAND DETECTED — 1/2 needed
+  🟠 [01:52:09] HAND DETECTED — 2/2 needed
+  🟠 [01:52:09] HAND DETECTED — 3/2 needed
+  🟡 [01:52:09] COLLECTING... 1 frames
+  🟡 [01:52:09] COLLECTING... 3 frames
+  🟡 [01:52:09] COLLECTING... 6 frames
+  🟡 [01:52:09] COLLECTING... 9 frames
+  🟡 [01:52:09] COLLECTING... 12 frames
+  🟡 [01:52:09] COLLECTING... 15 frames
+  🟡 [01:52:09] COLLECTING... 18 frames
+📥 Frame #6270 from 127.0.0.1:57999 | size=43935
+🖼 Decoded frame #6270 | shape=(480, 640, 3)
+🧠 Result #6270 | label=Collecting... | ready=False | debug={'collecting': True, 'frames_collected': 20, 'consec_hand': 23, 'consec_nohand': 0, 'hands_detected': True}
+  [FRAME  6270]  inference=23.4ms (avg30)  server_total=33.3ms (avg30)  pred=Collecting...  ready=False
+  🟡 [01:52:09] COLLECTING... 21 frames
+  🟡 [01:52:09] COLLECTING... 24 frames
+  🟡 [01:52:10] COLLECTING... 27 frames
+  🟡 [01:52:10] COLLECTING... 30 frames
+  🟡 [01:52:10] COLLECTING... 33 frames
+  🟡 [01:52:10] COLLECTING... 36 frames
+
+  ✅ [01:52:10] PREDICTED → You (89%)
+[GESTURE] You | conf=89.2% | frames=0 | latency=16.0ms | Top3: You(89.2%), Okay(0.8%), Go(0.6%)
+  ⚫ [01:52:10] Waiting... (frame #6294)
+  ⚫ [01:52:10] Waiting... (frame #6296)
+  ⚫ [01:52:10] Waiting... (frame #6299)
+📥 Frame #6300 from 127.0.0.1:57999 | size=40175
+🖼 Decoded frame #6300 | shape=(480, 640, 3)
+🧠 Result #6300 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 13, 'hands_detected': False}
+  [FRAME  6300]  inference=23.5ms (avg30)  server_total=32.8ms (avg30)  pred=Waiting...  ready=False
+  ⚫ [01:52:10] Waiting... (frame #6302)
+  ⚫ [01:52:10] Waiting... (frame #6305)
+  ⚫ [01:52:11] Waiting... (frame #6308)
+  ⚫ [01:52:11] Waiting... (frame #6311)
+  ⚫ [01:52:11] Waiting... (frame #6314)
+  ⚫ [01:52:11] Waiting... (frame #6317)
+  ⚫ [01:52:11] Waiting... (frame #6320)
+  ⚫ [01:52:11] Waiting... (frame #6323)
+  ⚫ [01:52:11] Waiting... (frame #6326)
+  ⚫ [01:52:11] Waiting... (frame #6329)
+📥 Frame #6330 from 127.0.0.1:57999 | size=40471
+🖼 Decoded frame #6330 | shape=(480, 640, 3)
+🧠 Result #6330 | label=Waiting... | ready=False | debug={'collecting': False, 'frames_collected': 0, 'consec_hand': 0, 'consec_nohand': 43, 'hands_detected': False}
+  [FRAME  6330]  inference=15.1ms (avg30)  server_total=33.9ms (avg30)  pred=Waiting...  ready=False
 INFO:     connection closed

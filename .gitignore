@@ -27,3 +27,7 @@ backend/src/tts/__pycache__/tts_engine.cpython-310.pyc
 
 *.pyc
 *.pyc
+*.wav
+*.pyc
+*.log
+*.pyc
