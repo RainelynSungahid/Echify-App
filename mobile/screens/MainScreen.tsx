@@ -12,7 +12,6 @@ import {
   closeSttSocket,
   connectSttSocket,
   startSttListening,
-  stopSttListening,
 } from "../services/stt";
 
 import AudioWave from "../components/AudioWave";
@@ -190,17 +189,14 @@ export default function MainScreen() {
   }, [activeTab]);
 
   // ── KEEP EXACT PI SPEECH TOGGLE FLOW ──────────────────────────────────────
-  const handleSpeechToggle = () => {
-    if (isSpeechListening) {
-      stopSttListening();
-      setIsRecording(false);
-      // wait for transcript/error before setting isSpeechListening false
-    } else {
-      setSttText("Listening...");
-      setIsSpeechListening(true);
-      startSttListening();
-    }
-  };
+const handleSpeechStart = () => {
+  if (isSpeechListening) return;
+
+  setSttText("Listening...");
+  setIsSpeechListening(true);
+  setIsRecording(false);
+  startSttListening();
+};
 
   // ── Render ────────────────────────────────────────────────────────────────
   return (
@@ -319,18 +315,17 @@ export default function MainScreen() {
                   </View>
 
                   <TouchableOpacity
-                    style={[
-                      styles.toggleButton,
-                      isSpeechListening
-                        ? styles.stopButton
-                        : styles.startButton,
-                    ]}
-                    onPress={handleSpeechToggle}
-                  >
-                    <Text style={styles.toggleButtonText}>
-                      {isSpeechListening ? "Stop" : "Start"}
-                    </Text>
-                  </TouchableOpacity>
+                      style={[
+                        styles.toggleButton,
+                        isSpeechListening ? styles.disabledButton : styles.startButton,
+                      ]}
+                      onPress={handleSpeechStart}
+                      disabled={isSpeechListening}
+                    >
+                      <Text style={styles.toggleButtonText}>
+                        {isSpeechListening ? "Listening..." : "Start"}
+                      </Text>
+                    </TouchableOpacity>
                 </View>
               </View>
 
@@ -622,4 +617,7 @@ const styles = StyleSheet.create({
     borderColor: THEME.border,
     padding: 24,
   },
+  disabledButton: {
+  backgroundColor: THEME.muted,
+},
 });

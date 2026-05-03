@@ -1,13 +1,14 @@
+// stt.ts
 let sttSocket: WebSocket | null = null;
 let reconnectTimeout: ReturnType<typeof setTimeout> | null = null;
 let sttMessageCallback: ((data: any) => void) | null = null;
 
 let pendingStart = false;
-let pendingStop = false;
 
 const getSttWsUrl = () => {
   const host =
     typeof window !== "undefined" ? window.location.hostname : "localhost";
+
   return `ws://${host}:8000/ws/stt-live`;
 };
 
@@ -35,18 +36,15 @@ export const connectSttSocket = (onMessage: (data: any) => void) => {
       sttSocket?.send(JSON.stringify({ action: "start" }));
       pendingStart = false;
     }
-
-    if (pendingStop) {
-      console.log("🛑 Sending deferred STOP to STT");
-      sttSocket?.send(JSON.stringify({ action: "stop" }));
-      pendingStop = false;
-    }
   };
 
   sttSocket.onmessage = (e) => {
     try {
       const data = JSON.parse(e.data);
-      if (sttMessageCallback) sttMessageCallback(data);
+
+      if (sttMessageCallback) {
+        sttMessageCallback(data);
+      }
     } catch (err) {
       console.log("STT socket parse error:", err);
     }
@@ -60,10 +58,13 @@ export const connectSttSocket = (onMessage: (data: any) => void) => {
     console.log("🔌 STT WebSocket closed");
     sttSocket = null;
 
-    if (!reconnectTimeout) {
+    if (!reconnectTimeout && sttMessageCallback) {
       reconnectTimeout = setTimeout(() => {
         reconnectTimeout = null;
-        if (sttMessageCallback) connectSttSocket(sttMessageCallback);
+
+        if (sttMessageCallback) {
+          connectSttSocket(sttMessageCallback);
+        }
       }, 3000);
     }
   };
@@ -89,32 +90,15 @@ export const startSttListening = () => {
   }
 };
 
-export const stopSttListening = () => {
-  if (!sttSocket) {
-    console.log("⚠️ STT socket not created yet, queue STOP");
-    pendingStop = true;
-    return;
-  }
-
-  if (sttSocket.readyState === WebSocket.OPEN) {
-    console.log("🛑 Sending STOP to STT");
-    sttSocket.send(JSON.stringify({ action: "stop" }));
-    pendingStop = false;
-    return;
-  }
-
-  if (sttSocket.readyState === WebSocket.CONNECTING) {
-    console.log("⏳ STT socket still connecting, queue STOP");
-    pendingStop = true;
-  }
-};
-
 export const closeSttSocket = () => {
-  if (reconnectTimeout) clearTimeout(reconnectTimeout);
+  if (reconnectTimeout) {
+    clearTimeout(reconnectTimeout);
+  }
+
   reconnectTimeout = null;
   pendingStart = false;
-  pendingStop = false;
   sttMessageCallback = null;
+
   sttSocket?.close();
   sttSocket = null;
 };
