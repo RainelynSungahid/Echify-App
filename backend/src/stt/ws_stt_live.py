@@ -184,7 +184,7 @@ async def stt_live_endpoint(websocket: WebSocket):
         nonlocal is_listening, recorded_chunks, dbfs_samples, rec_start
 
         LOUD_THRESHOLD = 0.02
-        SILENCE_SECONDS = 3.0
+        SILENCE_SECONDS = 1.0
         MIN_RECORD_SECONDS = 0.5
 
         speech_started = False

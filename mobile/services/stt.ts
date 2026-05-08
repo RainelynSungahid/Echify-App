@@ -4,6 +4,7 @@ let reconnectTimeout: ReturnType<typeof setTimeout> | null = null;
 let sttMessageCallback: ((data: any) => void) | null = null;
 
 let pendingStart = false;
+let pendingStop = false;
 
 const getSttWsUrl = () => {
   const host =
@@ -35,6 +36,12 @@ export const connectSttSocket = (onMessage: (data: any) => void) => {
       console.log("🎤 Sending deferred START to STT");
       sttSocket?.send(JSON.stringify({ action: "start" }));
       pendingStart = false;
+    }
+
+    if (pendingStop) {
+      console.log("🛑 Sending deferred STOP to STT");
+      sttSocket?.send(JSON.stringify({ action: "stop" }));
+      pendingStop = false;
     }
   };
 
@@ -71,6 +78,8 @@ export const connectSttSocket = (onMessage: (data: any) => void) => {
 };
 
 export const startSttListening = () => {
+  pendingStop = false;
+
   if (!sttSocket) {
     console.log("⚠️ STT socket not created yet, queue START");
     pendingStart = true;
@@ -90,6 +99,28 @@ export const startSttListening = () => {
   }
 };
 
+export const stopSttListening = () => {
+  pendingStart = false;
+
+  if (!sttSocket) {
+    console.log("⚠️ STT socket not created yet, queue STOP");
+    pendingStop = true;
+    return;
+  }
+
+  if (sttSocket.readyState === WebSocket.OPEN) {
+    console.log("🛑 Sending STOP to STT");
+    sttSocket.send(JSON.stringify({ action: "stop" }));
+    pendingStop = false;
+    return;
+  }
+
+  if (sttSocket.readyState === WebSocket.CONNECTING) {
+    console.log("⏳ STT socket still connecting, queue STOP");
+    pendingStop = true;
+  }
+};
+
 export const closeSttSocket = () => {
   if (reconnectTimeout) {
     clearTimeout(reconnectTimeout);
@@ -97,6 +128,7 @@ export const closeSttSocket = () => {
 
   reconnectTimeout = null;
   pendingStart = false;
+  pendingStop = false;
   sttMessageCallback = null;
 
   sttSocket?.close();

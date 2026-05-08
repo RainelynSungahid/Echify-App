@@ -12,6 +12,7 @@ import {
   closeSttSocket,
   connectSttSocket,
   startSttListening,
+   stopSttListening,
 } from "../services/stt";
 
 import AudioWave from "../components/AudioWave";
@@ -189,15 +190,18 @@ export default function MainScreen() {
   }, [activeTab]);
 
   // ── KEEP EXACT PI SPEECH TOGGLE FLOW ──────────────────────────────────────
-const handleSpeechStart = () => {
-  if (isSpeechListening) return;
+const handleSpeechToggle = () => {
+  if (isSpeechListening) {
+    setSttText("Transcribing...");
+    stopSttListening();
+    setIsSpeechListening(false);
+    return;
+  }
 
   setSttText("Listening...");
   setIsSpeechListening(true);
-  setIsRecording(false);
   startSttListening();
 };
-
   // ── Render ────────────────────────────────────────────────────────────────
   return (
     <View style={styles.container}>
@@ -317,13 +321,12 @@ const handleSpeechStart = () => {
                   <TouchableOpacity
                       style={[
                         styles.toggleButton,
-                        isSpeechListening ? styles.disabledButton : styles.startButton,
+                        isSpeechListening ? styles.stopButton : styles.startButton,
                       ]}
-                      onPress={handleSpeechStart}
-                      disabled={isSpeechListening}
+                      onPress={handleSpeechToggle}
                     >
                       <Text style={styles.toggleButtonText}>
-                        {isSpeechListening ? "Listening..." : "Start"}
+                        {isSpeechListening ? "Stop" : "Start"}
                       </Text>
                     </TouchableOpacity>
                 </View>
@@ -617,7 +620,4 @@ const styles = StyleSheet.create({
     borderColor: THEME.border,
     padding: 24,
   },
-  disabledButton: {
-  backgroundColor: THEME.muted,
-},
 });
